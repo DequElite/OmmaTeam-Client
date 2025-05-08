@@ -1,16 +1,5 @@
+import { ButtonProps } from "../../api/types/props.types";
 import styles from "./style.module.scss";
-
-type ButtonVariant = 'branded' | 'dark' | 'branded-reverese';
-
-interface ButtonProps {
-    children: React.ReactNode;
-    variant: ButtonVariant;
-    width: number;
-    height: number;
-    className?: any;
-    animation?: boolean;
-    onClick: () => void;
-}
 
 export default function Button(props: ButtonProps){
     return (

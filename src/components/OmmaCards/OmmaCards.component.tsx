@@ -1,16 +1,7 @@
 import { useNavigate } from "@tanstack/react-router";
 import Button from "../Button/Button.component";
 import styles from "./style.module.scss";
-
-interface OmmaCardsProps {
-    iconPath: string;
-    title: string;
-    desc: string;
-    buttonText: string;
-    link: string;
-    width: number;
-    height: number;
-}
+import { OmmaCardsProps } from "../../api/types/props.types";
 
 export default function OmmaCard(props: OmmaCardsProps){
     const navigate = useNavigate();
@@ -24,7 +15,8 @@ export default function OmmaCard(props: OmmaCardsProps){
             className={styles['card']} 
             style={{
                 width: `${props.width}%`, 
-                height: `${props.height}%`
+                height: `${props.height}%`,
+                ...props.style
             }}
         >
             <img src={props.iconPath} alt="Card icon" className={styles['card__img']}/>
