@@ -9,6 +9,7 @@ interface ButtonProps {
     height: number;
     className?: any;
     animation?: boolean;
+    onClick: () => void;
 }
 
 export default function Button(props: ButtonProps){
@@ -23,7 +24,8 @@ export default function Button(props: ButtonProps){
                 ${styles[props.variant]} 
                 ${props.className} 
                 ${props.animation && styles['animated']}`}
-
+            
+                onClick={props.onClick}
         >
             { props.children }
         </button>

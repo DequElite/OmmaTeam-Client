@@ -10,7 +10,7 @@
     &__first{
         background: linear-gradient(220deg, vars.$light_orange, vars.$light_purple);
         width: 100%;
-        height: 100%;
+        height: 100vh;
         border-radius: 20px;
         padding: 15px;
         box-sizing: border-box;
@@ -18,20 +18,26 @@
         justify-content: start;
         text-align: center;
         color: vars.$light_font;
-        overflow: hidden;
+        overflow-x: hidden;
+        position: relative;
     }
 
     &__second{
         width: 100%;
-        height: 100%;
+        height: 100vh;
         padding: 20px;
         box-sizing: border-box;
+        font-family: vars.$primary_font;
+        overflow: hidden;
+        animation: scroll-watcher-hover linear;
+        animation-timeline: scroll();
     }
 }
 
 .homelayout__first{
     &-container {
         width: 30%;
+        overflow: hidden;
     }
     
     &-header{
@@ -50,6 +56,7 @@
         font-weight:900;
         margin-top: -5%;
         margin-bottom: 30%;
+        font-family: vars.$primary_font;
     }
 
     &::after{
@@ -78,9 +85,26 @@
 }
 
 .homelayout__second{
+
     &-header{
         width: 100%;
         
+        img{
+            width: 6%;
+        }
+
+        h3 {
+            font-size: 2rem;
+        }
+    }
+
+    &-cards{
+        width: 100%;
+        height: 70%;
+        padding: 10px;
+        box-sizing: border-box;
+        gap: 5%;
+        @include mixs.centeredRow;
     }
 }
 
@@ -121,3 +145,9 @@
     }
   }
   
+@keyframes scroll-watcher-hover{
+    to{
+        scale: 1 1;
+        opacity: 1;
+    }
+}

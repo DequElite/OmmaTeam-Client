@@ -1,18 +1,32 @@
+@use "@/styles/mixins.style.scss" as mixs;
+
 .card {
     background-color: #F5F5F5;
     box-shadow: 0 4px 2px #0000006e;
     border-radius: 15px;
-    padding: 15px;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
+    padding: 35px;
+    box-sizing: border-box;
+    @include mixs.centeredColumn;
 
     &__img{
-        width: 10%;
+        width: 20%;
     }
 
     &__title{
+        margin-top: 5px;
+        color: #424242;
+        font-size: 1.5rem;
+        text-align: center;
+    }
 
+    &__desc {
+        margin-top: -5px;
+        color: #7E7E7E;
+        font-size: 1.3rem;
+    }
+
+    button {
+        margin-top: auto;
     }
 
 }
