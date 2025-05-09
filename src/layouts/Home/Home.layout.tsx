@@ -4,21 +4,12 @@ import OmmaCard from "../../components/OmmaCards/OmmaCards.component";
 import styles from './style.module.scss';
 import { useEffect, useMemo, useState } from "react";
 import { OmmaCardsProps } from "../../api/types/props.types";
+import useIsScreenWidth from "../../hooks/useIsScreenWidth";
 
 export default function HomeLayout() {
     const navigate = useNavigate();
-    const [isSmallScreen, setIsSmallScreen] = useState(false);
     const [currentCardSlide, setCurrentCardSlide] = useState(0);
-
-    useEffect(() => {
-      const handleResize = () => {
-        setIsSmallScreen(window.innerWidth <= 600);
-      };
-
-      handleResize();
-      window.addEventListener('resize', handleResize);
-      return () => window.removeEventListener('resize', handleResize);
-    }, []);
+    const { isSmallScreen } = useIsScreenWidth({ minScreenWidth: 600 });
 
     useEffect(()=>{
       const interval = setInterval(()=>{

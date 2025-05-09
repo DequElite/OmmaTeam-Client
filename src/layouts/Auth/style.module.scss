@@ -5,6 +5,7 @@
     width: 100%;
     height: 100vh;
     @include mixs.centeredRow;
+    font-family: vars.$primary_font;
 
     &__form, &__preview {
         height: 100%;
@@ -24,6 +25,34 @@
 
     &-header {
         width: 100%;
+
+        &-img{
+          width: 15%;
+        }
+
+        &-title {
+          margin-top: 0px;
+        }
+
+        &-desc{
+          margin-top: -5px;
+        }
+
+        .desc-text{
+          font-size: 1.15rem;
+          color: vars.$darker_font;
+          font-weight: 400;
+        }
+
+        .desc-link {
+          font-weight: 700;
+          color: vars.$light_link_font;
+          text-decoration: none;
+        }
+    }
+
+    &-line {
+      color: vars.$darker_font;
     }
 }   
 
@@ -98,3 +127,35 @@
       transform: rotate(360deg);
     }
   }
+
+  @media (max-width: 600px) {
+    .authlayout {
+        &__preview {
+          display: none;
+        }
+  
+        &__form {
+          width: 100%;
+          &-container{
+            width: 100%;
+          }
+        }
+    }
+  }
+  
+@media (max-width: 1200px) and (min-width: 600px) {
+  .authlayout {
+      &__preview {
+          display: none;
+      }
+    
+      &__form {
+        width: 80%;
+
+        &-container{
+          width: 80%;
+        }
+      }
+  }
+}
+  
