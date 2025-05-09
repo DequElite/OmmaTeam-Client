@@ -4,7 +4,6 @@ import OmmaCard from "../../components/OmmaCards/OmmaCards.component";
 import styles from './style.module.scss';
 import { useEffect, useMemo, useState } from "react";
 import { OmmaCardsProps } from "../../api/types/props.types";
-import { Swiper, SwiperSlide } from "swiper/react";
 
 export default function HomeLayout() {
     const navigate = useNavigate();
