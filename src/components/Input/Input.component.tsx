@@ -25,7 +25,7 @@ export default function InputField({
         className={`${styles.input} ${isError ? styles.errorInput : ""}`}
         {...rest} 
       />
-      {isError && <p className={styles.error}>*{errorText}</p>}
+      {isError && errorText !== '' && <p className={styles.error}>*{errorText}</p>}
     </div>
   );
 }

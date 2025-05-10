@@ -7,7 +7,7 @@ export interface SignUp {
     email: string;
     username: string;
     password: string;
-    role: UsersRoles;
+    role?: UsersRoles;
 }
 
 export interface LogIn {

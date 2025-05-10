@@ -1,4 +1,5 @@
 @use "@/styles/variables.style.scss" as vars;
+@use "@/styles/mixins.style.scss" as mixs;
 
 .button {
     border-radius: 15px;
@@ -13,6 +14,7 @@
         scale: 0.9;
         box-shadow: 0 0 10px #424242;
     }
+    
 }
 
 .dark {

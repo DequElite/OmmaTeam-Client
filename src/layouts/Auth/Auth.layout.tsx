@@ -19,7 +19,7 @@ export default function AuthLayout(props: AuthProps) {
     return (
         <>
             <main className={styles['authlayout']}>
-                <form className={styles['authlayout__form']}>
+                <div className={styles['authlayout__form']}>
                     <div className={styles['authlayout__form-container']}>
                         <header className={styles['authlayout__form-header']}>
                             <img 
@@ -37,7 +37,7 @@ export default function AuthLayout(props: AuthProps) {
                         <hr className={styles['authlayout__form-line']}/>
                         {props.children}
                     </div>
-                </form>
+                </div>
                 <section className={styles['authlayout__preview']}>
                     <div className={styles['authlayout__preview-container']}>
                         <h1>OmmaTeam</h1>

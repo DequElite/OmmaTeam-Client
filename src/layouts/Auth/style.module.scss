@@ -54,7 +54,50 @@
     &-line {
       color: vars.$darker_font;
     }
-}   
+} 
+
+.authlayout__form-container{
+  .form-shell {
+    @include mixs.centeredColumn;
+    gap: 20px;
+    padding-top: 15px;
+
+    &__or{
+      width: 100%;
+      @include mixs.centeredRow;
+      position: relative;
+    }
+
+    .or-line {
+      width: 100%;
+      height: 2px;
+      background: linear-gradient(220deg, vars.$light_orange, vars.$light_purple);
+      position: absolute;
+      top: 50%;
+      left: 0%;
+      transform: translate(0%, 0%);
+      z-index: 0;
+      transition: 1s;
+    }
+
+    .or-text{
+      background-color: #FFFFFF;
+      color: vars.$light_purple;      
+      position: relative;
+      padding: 2px;
+      font-weight: bold;
+      font-size: 0.9rem;
+      padding: 5px;
+    }
+    .button-google{
+        @include mixs.centeredRow;
+        gap: 7px;
+        img {
+            width: 6%;
+        }
+    }
+  }
+}
 
 .authlayout__preview{
     width: 50%;

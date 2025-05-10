@@ -5,7 +5,8 @@ export const emailField = z.string().email("Incorrect mail format!");
 
 export const usernameField = z
   .string()
-  .max(25, "Username must not be longer than 25 characters!");
+  .max(25, "Username must not be longer than 25 characters!")
+  .min(6, "The username must contain at least 6 characters!");
 
 export const passwordField = z
   .string()
@@ -26,7 +27,7 @@ export const signUpSchema = z.object({
   email: emailField,
   username: usernameField,
   password: passwordField,
-  role: roleField,
+  role: roleField.optional(),
 });
 
 export const logInSchema = z.object({

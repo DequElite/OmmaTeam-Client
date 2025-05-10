@@ -17,5 +17,6 @@ export interface ButtonProps {
     height: number;
     className?: any;
     animation?: boolean;
-    onClick: () => void;
+    onClick?: () => void;
+    type?: 'button' | 'submit' | 'reset';
 }
