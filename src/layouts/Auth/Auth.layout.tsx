@@ -30,9 +30,9 @@ export default function AuthLayout(props: AuthProps) {
                             <h1 className={styles['authlayout__form-header-title']}>
                                 {AUTH_TITLES[props.authType]}
                             </h1>
-                            <p className={styles['authlayout__form-header-desc']}>
+                            <div className={styles['authlayout__form-header-desc']}>
                                 {props.desc}
-                            </p>
+                            </div>
                         </header>
                         <hr className={styles['authlayout__form-line']}/>
                         {props.children}
