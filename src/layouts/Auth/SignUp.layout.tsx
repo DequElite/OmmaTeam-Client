@@ -4,18 +4,41 @@ import InputField from "../../components/Input/Input.component";
 import styles from "./style.module.scss";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { SignUp } from "../../api/types/user.types";
+import { SignUp, UsersRoles } from "../../api/types/user.types";
+import { useMutation } from "@tanstack/react-query";
+import { UserService } from "../../api/services/UserRegister.service";
 
+const userService = new UserService();
+
+/*
+    todo: ГЛАВНОЕ: сохраняй аксес токен в локал сторейж. 
+    todo настрой редюкс и сохраняй после регистрации в него
+*/
+//TODO: ВТОРОСТЕПЕННОЕ: сделать месседж бокс и перенос на главную страницу
 export default function SignUpLayout() {
     const { register, handleSubmit, formState: {errors} } = useForm<SignUp>({
         mode:'onChange',
         resolver: zodResolver(signUpSchema)
     });
 
-    const onSubmit: SubmitHandler<SignUp> = (data: SignUp) => {
-        console.log(data);
+    const {mutate} = useMutation({
+        mutationFn: (data: SignUp) => userService.signUp(data),
+        onSuccess: (data: any) => {
+            console.debug('SUCCESS: ', data);
+        },
+        onError: (err: any) => {
+            console.error('error: ', err);
+        },
+    })
 
-        //TODO: выучи TanStack Query и используй его тут!!!
+
+    const onSubmit: SubmitHandler<SignUp> = (data: SignUp) => {
+        console.log('DATA ON SUBMIT: ', data);
+
+        mutate({
+            ...data,
+            role: UsersRoles.User
+        });
     }
 
     return (

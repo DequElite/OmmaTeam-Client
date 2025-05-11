@@ -11,7 +11,8 @@ import {
     LogIn, 
     SignUp, 
     TPartialChangeDto, 
-    TPasswordChangeDto 
+    TPasswordChangeDto, 
+    User
 } from "../types/user.types";
 
 export class UserService {
@@ -38,5 +39,9 @@ export class UserService {
     public async changeProfile(body: TPartialChangeDto){
         validateSchemas(changeProfileSchema, body);
         return handleResponse(registerClient.post('/auth/profile/change-profile', body));
+    }
+
+    public async getAllForTest(){
+        return handleResponse(registerClient.get<User[]>('/sign/sign-up/all'))
     }
 }

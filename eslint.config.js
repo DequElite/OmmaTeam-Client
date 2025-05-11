@@ -11,8 +11,8 @@ export default {
   extends: [
     js.configs.recommended,
     ...tseslint.configs.recommended,
-    eslintPluginPrettier.recommended, // Плагин Prettier
-    eslintConfigPrettier, // Включаем конфигурацию Prettier для отключения конфликтов
+    eslintPluginPrettier.recommended, 
+    eslintConfigPrettier,
   ],
   files: ['**/*.{ts,tsx}'],
   languageOptions: {
@@ -22,7 +22,7 @@ export default {
   plugins: {
     'react-hooks': reactHooks,
     'react-refresh': reactRefresh,
-    prettier: eslintPluginPrettier, // Объявляем плагин Prettier
+    prettier: eslintPluginPrettier,
   },
   rules: {
     ...reactHooks.configs.recommended.rules,
