@@ -6,6 +6,12 @@ export enum UsersRoles {
 	Admin = 'ADMIN',
 };
 
+export interface UserProfileResponse {
+	username: string;
+    email: string;
+    role: UsersRoles;
+}
+
 export interface AdditionalUserData {
 	id: string;
     refresh_token: string | null;

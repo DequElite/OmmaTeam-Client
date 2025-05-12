@@ -8,8 +8,9 @@ import { SignUp, UsersRoles } from "../../api/types/user.types";
 import { useMutation } from "@tanstack/react-query";
 import { UserService } from "../../api/services/UserRegister.service";
 import { useNavigate } from "@tanstack/react-router";
+import { SetAccessToken } from "../../utils/getTokenFromLocalStorage.util";
 import { useAppDispatch } from "../../store/store";
-import { setUserProfile } from "../../store/slices/userProfile.slice";
+import { getUserProfile } from "../../store/services/userProfile.service";
 
 const userService = new UserService();
 
@@ -20,6 +21,8 @@ const userService = new UserService();
 export default function SignUpLayout() {
     const navigate = useNavigate();
 
+    const dispatch = useAppDispatch();
+
     const { register, handleSubmit, formState: {errors} } = useForm<SignUp>({
         mode:'onChange',
         resolver: zodResolver(signUpSchema)
@@ -28,8 +31,17 @@ export default function SignUpLayout() {
     const {mutate} = useMutation({
         mutationFn: (data: SignUp) => userService.signUp(data),
         onSuccess: (data: any) => {
-            console.debug('SUCCESS: ', data);
-            localStorage.setItem('_acsToken', data.data.accessToken);            
+            console.debug('SUCCESS: ', data.data);
+            SetAccessToken(data.data.accessToken);   
+
+            // dispatch(setUserProfile({
+            //     username: data.data.username,
+            //     email: data.data.email,
+            //     role: data.data.role,
+            //     isSuccessStatus: true
+            // }));
+
+            dispatch(getUserProfile());
 
             navigate({ to:'/' })
         },

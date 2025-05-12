@@ -1,7 +1,8 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { UsersRoles } from "../../api/types/user.types";
+import { getUserProfile } from "../services/userProfile.service";
 
-type UserProfileState = {
+export type UserProfileState = {
     username: string;
     email: string;
     role: UsersRoles;
@@ -18,20 +19,16 @@ const initialUserProfileState: UserProfileState = {
 export const userProfileSlice = createSlice({
     name: 'userProfile',
     initialState: initialUserProfileState,
-    reducers: {
-        setUserProfile: (
-            state,
-            action: PayloadAction<{ username: string, email: string, role: UsersRoles }>
-        ) => {
-            state.email = action.payload.email;
-            state.role = action.payload.role;
-            state.username = action.payload.username;
-        }
-    },
+    reducers: {},
     extraReducers: (builder) => {
-        // builde.addmatcher(fetchprofile.matchFullfilled)
+        builder
+            .addCase(getUserProfile.fulfilled, (state, action) => {
+                state.isSuccessStatus = true;
+                state.username = action.payload.username;
+                state.email = action.payload.email;
+                state.role = action.payload.role;
+            })
     },
 });
 
-export const { setUserProfile } = userProfileSlice.actions;
 export default userProfileSlice.reducer;

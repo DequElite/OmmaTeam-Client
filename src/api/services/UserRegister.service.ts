@@ -41,6 +41,10 @@ export class UserService {
         return handleResponse(registerClient.post('/auth/profile/change-profile', body));
     }
 
+    public async refreshToken(){
+        return handleResponse(registerClient.get('/auth/refresh-tokens'));
+    }
+
     public async getAllForTest(){
         return handleResponse(registerClient.get<User[]>('/sign/sign-up/all'))
     }
