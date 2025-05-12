@@ -1,11 +1,14 @@
-import { configureStore, createAsyncThunk, createSelector, UnknownAction } from "@reduxjs/toolkit";
+import { configureStore, createAsyncThunk, createSelector } from "@reduxjs/toolkit";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
+import userProfileSlice from "./slices/userProfile.slice";
 
 export const extraArgument = {};
 
 const store = configureStore({
-    reducer: function (state: any, action: UnknownAction) {}
+    reducer: {
+        userProfile: userProfileSlice
+    }
 })
 
 export type AppState = ReturnType<typeof store.getState>;

@@ -7,15 +7,19 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { SignUp, UsersRoles } from "../../api/types/user.types";
 import { useMutation } from "@tanstack/react-query";
 import { UserService } from "../../api/services/UserRegister.service";
+import { useNavigate } from "@tanstack/react-router";
+import { useAppDispatch } from "../../store/store";
+import { setUserProfile } from "../../store/slices/userProfile.slice";
 
 const userService = new UserService();
 
 /*
-    todo: ГЛАВНОЕ: сохраняй аксес токен в локал сторейж. 
-    todo настрой редюкс и сохраняй после регистрации в него
+    todo: ГЛАВНОЕ: настрой редюкс и сохраняй после регистрации в него
 */
 //TODO: ВТОРОСТЕПЕННОЕ: сделать месседж бокс и перенос на главную страницу
 export default function SignUpLayout() {
+    const navigate = useNavigate();
+
     const { register, handleSubmit, formState: {errors} } = useForm<SignUp>({
         mode:'onChange',
         resolver: zodResolver(signUpSchema)
@@ -25,6 +29,9 @@ export default function SignUpLayout() {
         mutationFn: (data: SignUp) => userService.signUp(data),
         onSuccess: (data: any) => {
             console.debug('SUCCESS: ', data);
+            localStorage.setItem('_acsToken', data.data.accessToken);            
+
+            navigate({ to:'/' })
         },
         onError: (err: any) => {
             console.error('error: ', err);
@@ -33,7 +40,7 @@ export default function SignUpLayout() {
 
 
     const onSubmit: SubmitHandler<SignUp> = (data: SignUp) => {
-        console.log('DATA ON SUBMIT: ', data);
+        console.debug('DATA ON SUBMIT: ', data);
 
         mutate({
             ...data,
