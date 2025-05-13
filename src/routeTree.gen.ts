@@ -15,6 +15,7 @@ import { Route as IndexImport } from './routes/index'
 import { Route as AuthSignupIndexImport } from './routes/auth/signup/index'
 import { Route as AuthResetPasswordIndexImport } from './routes/auth/reset-password/index'
 import { Route as AuthLoginIndexImport } from './routes/auth/login/index'
+import { Route as AuthGoogleIndexImport } from './routes/auth/google/index'
 import { Route as AuthForgotPasswordIndexImport } from './routes/auth/forgot-password/index'
 
 // Create/Update Routes
@@ -43,6 +44,12 @@ const AuthLoginIndexRoute = AuthLoginIndexImport.update({
   getParentRoute: () => rootRoute,
 } as any)
 
+const AuthGoogleIndexRoute = AuthGoogleIndexImport.update({
+  id: '/auth/google/',
+  path: '/auth/google/',
+  getParentRoute: () => rootRoute,
+} as any)
+
 const AuthForgotPasswordIndexRoute = AuthForgotPasswordIndexImport.update({
   id: '/auth/forgot-password/',
   path: '/auth/forgot-password/',
@@ -65,6 +72,13 @@ declare module '@tanstack/react-router' {
       path: '/auth/forgot-password'
       fullPath: '/auth/forgot-password'
       preLoaderRoute: typeof AuthForgotPasswordIndexImport
+      parentRoute: typeof rootRoute
+    }
+    '/auth/google/': {
+      id: '/auth/google/'
+      path: '/auth/google'
+      fullPath: '/auth/google'
+      preLoaderRoute: typeof AuthGoogleIndexImport
       parentRoute: typeof rootRoute
     }
     '/auth/login/': {
@@ -96,6 +110,7 @@ declare module '@tanstack/react-router' {
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/auth/forgot-password': typeof AuthForgotPasswordIndexRoute
+  '/auth/google': typeof AuthGoogleIndexRoute
   '/auth/login': typeof AuthLoginIndexRoute
   '/auth/reset-password': typeof AuthResetPasswordIndexRoute
   '/auth/signup': typeof AuthSignupIndexRoute
@@ -104,6 +119,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/auth/forgot-password': typeof AuthForgotPasswordIndexRoute
+  '/auth/google': typeof AuthGoogleIndexRoute
   '/auth/login': typeof AuthLoginIndexRoute
   '/auth/reset-password': typeof AuthResetPasswordIndexRoute
   '/auth/signup': typeof AuthSignupIndexRoute
@@ -113,6 +129,7 @@ export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexRoute
   '/auth/forgot-password/': typeof AuthForgotPasswordIndexRoute
+  '/auth/google/': typeof AuthGoogleIndexRoute
   '/auth/login/': typeof AuthLoginIndexRoute
   '/auth/reset-password/': typeof AuthResetPasswordIndexRoute
   '/auth/signup/': typeof AuthSignupIndexRoute
@@ -123,6 +140,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/auth/forgot-password'
+    | '/auth/google'
     | '/auth/login'
     | '/auth/reset-password'
     | '/auth/signup'
@@ -130,6 +148,7 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/auth/forgot-password'
+    | '/auth/google'
     | '/auth/login'
     | '/auth/reset-password'
     | '/auth/signup'
@@ -137,6 +156,7 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/auth/forgot-password/'
+    | '/auth/google/'
     | '/auth/login/'
     | '/auth/reset-password/'
     | '/auth/signup/'
@@ -146,6 +166,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AuthForgotPasswordIndexRoute: typeof AuthForgotPasswordIndexRoute
+  AuthGoogleIndexRoute: typeof AuthGoogleIndexRoute
   AuthLoginIndexRoute: typeof AuthLoginIndexRoute
   AuthResetPasswordIndexRoute: typeof AuthResetPasswordIndexRoute
   AuthSignupIndexRoute: typeof AuthSignupIndexRoute
@@ -154,6 +175,7 @@ export interface RootRouteChildren {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AuthForgotPasswordIndexRoute: AuthForgotPasswordIndexRoute,
+  AuthGoogleIndexRoute: AuthGoogleIndexRoute,
   AuthLoginIndexRoute: AuthLoginIndexRoute,
   AuthResetPasswordIndexRoute: AuthResetPasswordIndexRoute,
   AuthSignupIndexRoute: AuthSignupIndexRoute,
@@ -171,6 +193,7 @@ export const routeTree = rootRoute
       "children": [
         "/",
         "/auth/forgot-password/",
+        "/auth/google/",
         "/auth/login/",
         "/auth/reset-password/",
         "/auth/signup/"
@@ -181,6 +204,9 @@ export const routeTree = rootRoute
     },
     "/auth/forgot-password/": {
       "filePath": "auth/forgot-password/index.tsx"
+    },
+    "/auth/google/": {
+      "filePath": "auth/google/index.tsx"
     },
     "/auth/login/": {
       "filePath": "auth/login/index.tsx"

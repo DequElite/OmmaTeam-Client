@@ -2,7 +2,7 @@ import axios, { AxiosInstance } from "axios";
 import { ReturnAccessToken } from "../../utils/getTokenFromLocalStorage.util";
 
 const APP_MODE = import.meta.env.VITE_DEV_MODE || "DEV";
-const BaseRegisterUrl = 
+export const BaseRegisterUrl = 
     APP_MODE === "DEV" 
         ? import.meta.env.VITE_REGISTER_DEV 
         : import.meta.env.VITE_REGISTER_PROD; 

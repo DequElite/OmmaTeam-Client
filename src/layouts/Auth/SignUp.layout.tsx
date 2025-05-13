@@ -48,7 +48,9 @@ export default function SignUpLayout() {
             ...data,
             role: UsersRoles.User
         });
-    }
+    };
+
+    const signByGoogle = () => window.location.href = userService.googleSign();
 
     return (
         <>
@@ -102,7 +104,7 @@ export default function SignUpLayout() {
                     variant='branded-reverese'
                     width={100}
                     height={6}
-                    onClick={()=>{console.log("clicked")}}
+                    onClick={signByGoogle}
                 >
                     <div className={styles['button-google']}>
                         <img src="/icons/GoogleIcon.png" alt="Google logo Icon"/>
