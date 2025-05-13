@@ -26,7 +26,7 @@ registerClient.interceptors.response.use(
         return response
     },
     async (err) => {
-        if(err.response && err.response.status === 403) {
+        if(err.response && err.response.status === 403 || err.response.status === 500) {
             try {
                 const userService = new UserService();
                 const response = await userService.refreshToken();

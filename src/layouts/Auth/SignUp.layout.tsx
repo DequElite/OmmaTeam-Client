@@ -14,9 +14,6 @@ import { getUserProfile } from "../../store/services/userProfile.service";
 
 const userService = new UserService();
 
-/*
-    todo: ГЛАВНОЕ: настрой редюкс и сохраняй после регистрации в него
-*/
 //TODO: ВТОРОСТЕПЕННОЕ: сделать месседж бокс и перенос на главную страницу
 export default function SignUpLayout() {
     const navigate = useNavigate();
@@ -33,13 +30,6 @@ export default function SignUpLayout() {
         onSuccess: (data: any) => {
             console.debug('SUCCESS: ', data.data);
             SetAccessToken(data.data.accessToken);   
-
-            // dispatch(setUserProfile({
-            //     username: data.data.username,
-            //     email: data.data.email,
-            //     role: data.data.role,
-            //     isSuccessStatus: true
-            // }));
 
             dispatch(getUserProfile());
 
