@@ -5,8 +5,10 @@ import styles from './style.module.scss';
 import { useEffect, useMemo, useState } from "react";
 import { OmmaCardsProps } from "../../api/types/props.types";
 import useIsScreenWidth from "../../hooks/useIsScreenWidth";
+import { useAppSelector } from "../../store/store";
 
 export default function HomeLayout() {
+    const userProfileState = useAppSelector(state => state.userProfile);
     const navigate = useNavigate();
     const [currentCardSlide, setCurrentCardSlide] = useState(0);
     const { isSmallScreen } = useIsScreenWidth({ minScreenWidth: 600 });
@@ -27,27 +29,31 @@ export default function HomeLayout() {
           title: "Work in team",
           desc: "Join or create teams, easily manage tasks, and keep track of your progress with insightful statistics!",
           buttonText: "Create team",
-          link: "/teams"
+          link: `${userProfileState.status.isAuth ? "/auth/signup" : ''}`
         },
         {
           iconPath: "/icons/ChatIcon.png",
           title: "Team Chat",
           desc: "Engage in quick, clear, and seamless conversations with your teammates in the team chat!",
           buttonText: "Let’s work",
-          link: "/chat"
+          link: `${userProfileState.status.isAuth ? "/auth/signup" : ''}`
         },
         {
           iconPath: "/icons/GraphIcon.png",
           title: "Task Management Made Simple",
           desc: "Assign tasks, track progress, and collaborate with your team. Manage deadlines, priorities, and subtasks effortlessly!",
           buttonText: "Get Started",
-          link: "/tasks"
+          link: `${!userProfileState.status.isAuth ? "/auth/signup" : ''}`
         }
       ]
     }, [])
   
     const handleClick = () => {
-      navigate({ to: '' });
+      if(userProfileState.status.isAuth) {
+        navigate({ to: '' });
+      } else if (!userProfileState.status.isAuth) {
+        navigate({ to: '/auth/signup' });
+      }
     }
 
     return (

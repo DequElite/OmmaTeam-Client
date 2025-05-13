@@ -92,7 +92,7 @@ export default function SignUpLayout() {
                     height={6}
                     type='submit'
                 >
-                    <span style={{fontSize:'1.2rem', color:"#FFFFFF"}}>Sign Up</span>
+                    <span style={{fontSize:'1.15rem', color:"#FFFFFF"}}>Sign Up</span>
                 </Button>
                 <div className={styles['form-shell__or']}>
                     <div className={styles['or-line']}></div>
@@ -106,7 +106,7 @@ export default function SignUpLayout() {
                 >
                     <div className={styles['button-google']}>
                         <img src="/icons/GoogleIcon.png" alt="Google logo Icon"/>
-                        <span style={{fontSize:'1.2rem', color:"#FFFFFF"}}>Log In by Google</span>
+                        <span style={{fontSize:'1.15rem', color:"#FFFFFF"}}>Log In by Google</span>
                     </div>
                 </Button>
             </form>
