@@ -15,28 +15,28 @@ export default function HomeLayout() {
 
     useEffect(()=>{
       const interval = setInterval(()=>{
-        setCurrentCardSlide(prevState => (prevState + 1) % cards.length);
+        setCurrentCardSlide(prevState => (prevState + 1) % OmmaCards.length);
       },5000);
 
       return () => clearInterval(interval);
     }
     , []);
 
-    const cards = useMemo(()=>{
+    const OmmaCards = useMemo(()=>{
       return [
         {
           iconPath: "/icons/TeamIcon.png",
           title: "Work in team",
           desc: "Join or create teams, easily manage tasks, and keep track of your progress with insightful statistics!",
           buttonText: "Create team",
-          link: `${userProfileState.status.isAuth ? "/auth/signup" : ''}`
+          link: `${!userProfileState.status.isAuth ? "/auth/signup" : ''}`
         },
         {
           iconPath: "/icons/ChatIcon.png",
           title: "Team Chat",
           desc: "Engage in quick, clear, and seamless conversations with your teammates in the team chat!",
           buttonText: "Let’s work",
-          link: `${userProfileState.status.isAuth ? "/auth/signup" : ''}`
+          link: `${!userProfileState.status.isAuth ? "/auth/signup" : ''}`
         },
         {
           iconPath: "/icons/GraphIcon.png",
@@ -90,7 +90,7 @@ export default function HomeLayout() {
             {
               isSmallScreen
               ? (
-                cards.map((card: OmmaCardsProps) => (
+                OmmaCards.map((card: OmmaCardsProps) => (
                   <OmmaCard
                     key={card.link}
                     {...card}
@@ -104,9 +104,9 @@ export default function HomeLayout() {
                 ))
               ) 
               : (
-                cards.map((card: OmmaCardsProps) => (
+                OmmaCards.map((card: OmmaCardsProps, index: number) => (
                   <OmmaCard
-                    key={card.link}
+                    key={index}
                     {...card}
                     width={isSmallScreen ? 100 : 100 / 3.5} 
                     height={100}

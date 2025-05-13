@@ -5,18 +5,46 @@ import styles from "./style.module.scss";
 import { LogIn } from "../../api/types/user.types";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { logInSchema } from "../../api/schemas-validate/register.schema";
+import { useMutation } from "@tanstack/react-query";
+import { UserService } from "../../api/services/UserRegister.service";
+import { SetAccessToken } from "../../utils/getTokenFromLocalStorage.util";
+import { useNavigate } from "@tanstack/react-router";
+import { getUserProfile } from "../../store/services/userProfile.service";
+import { useAppDispatch } from "../../store/store";
 
+const userService = new UserService();
+
+//TODO: ВТОРОСТЕПЕННОЕ: сделать месседж бокс и перенос на главную страницу
 export default function LogInLayout() {
+    const navigate = useNavigate();
+
+    const dispatch = useAppDispatch();
+
     const { register, handleSubmit, formState: {errors} } = useForm<LogIn>({
         mode: 'onChange',
         resolver: zodResolver(logInSchema)
     });
 
+    const { mutate } = useMutation({
+        mutationFn: (data:LogIn) => userService.logIn(data),
+        onSuccess: async (data: any) => {
+            console.debug('SUCCESS: ', data.data);
+            SetAccessToken(data.data.accessToken);
+
+            await dispatch(getUserProfile());
+
+            navigate({ to: '/' });
+        },
+        onError: (err: any) => {
+            console.error('error: ', err);
+        },
+    });
+
     const onSubmit: SubmitHandler<LogIn> = (data: LogIn) => {
         console.debug('DATA ON SUBMIT: ', data);
-    }
 
-    //todo: доделай логин. добавь useMutation
+        mutate(data)
+    }
 
     return (
         <>

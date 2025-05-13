@@ -27,11 +27,11 @@ export default function SignUpLayout() {
 
     const {mutate} = useMutation({
         mutationFn: (data: SignUp) => userService.signUp(data),
-        onSuccess: (data: any) => {
+        onSuccess: async (data: any) => {
             console.debug('SUCCESS: ', data.data);
             SetAccessToken(data.data.accessToken);   
 
-            dispatch(getUserProfile());
+            await dispatch(getUserProfile());
 
             navigate({ to:'/' })
         },
