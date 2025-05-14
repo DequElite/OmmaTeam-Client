@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./style.module.scss";
 
-type AuthType = 'SignUp' | 'LogIn' | 'ResetPassword' | 'ForgotPassoword';
+type AuthType = 'SignUp' | 'LogIn' | 'ResetPassword' | 'ForgotPassoword' | 'GoogleSign';
 interface AuthProps {
     children: React.ReactNode;
     authType: AuthType;
@@ -12,7 +12,8 @@ const AUTH_TITLES: Record<AuthType, string> = {
     SignUp: 'Get Started',
     LogIn: 'Welcome back',
     ForgotPassoword: 'Forgot Password?',
-    ResetPassword: 'Reset to new password'
+    ResetPassword: 'Reset to new password',
+    GoogleSign: 'We are registering you via Google...'
 }
 
 export default function AuthLayout(props: AuthProps) {

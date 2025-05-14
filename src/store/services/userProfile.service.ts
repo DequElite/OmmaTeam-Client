@@ -20,6 +20,8 @@ export const getUserProfile = createAsyncThunk<UserProfileResponse, void, {
             console.error("Error at getUserProfile thunk: ", err);
 
             if (err instanceof AxiosError && (err.response?.status === 401 || err.response?.status === 403)) {
+                console.error("Error DETECTED: ", err);
+
                 try {
                     const response = await registerClient.get('/auth/refresh-tokens');
                     
@@ -30,12 +32,12 @@ export const getUserProfile = createAsyncThunk<UserProfileResponse, void, {
                         return retryResponse.data.user;
                     } else {
                         window.location.href = "/auth/login";
-                       return rejectWithValue("Failed to refresh token");
+                        return rejectWithValue({ message: "Failed to refresh token", status: response.status });
                     }
                 } catch (refreshError) {
                     console.error("Token refresh error: ", refreshError);
                     window.location.href = "/auth/login";
-                    return rejectWithValue(refreshError);
+                    return rejectWithValue({ message: refreshError.message || "Token refresh failed", status: 500 });
                 }
             }
 

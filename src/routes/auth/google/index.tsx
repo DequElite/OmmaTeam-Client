@@ -3,6 +3,8 @@ import { useEffect } from 'react';
 import { SetAccessToken } from '../../../utils/getTokenFromLocalStorage.util';
 import { useAppDispatch } from '../../../store/store';
 import { getUserProfile } from '../../../store/services/userProfile.service';
+import AuthLayout from '../../../layouts/Auth/Auth.layout';
+import GoogleLayout from '../../../layouts/Auth/Google.layout';
 
 export const Route = createFileRoute('/auth/google/')({
   component: RouteComponent,
@@ -34,7 +36,12 @@ function RouteComponent() {
 
   return (
     <>
-      <p>Signing by google...</p>
+      <AuthLayout
+        authType='GoogleSign'
+        desc={<div></div>}
+      >
+        <GoogleLayout></GoogleLayout>
+      </AuthLayout>
     </>
   )
 }
