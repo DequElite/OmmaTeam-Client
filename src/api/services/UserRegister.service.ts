@@ -8,7 +8,9 @@ import {
     signUpSchema 
 } from "../schemas-validate/register.schema";
 import { 
+    ForgotPassowrd,
     LogIn, 
+    ResetPassword, 
     SignUp, 
     TPartialChangeDto, 
     TPasswordChangeDto, 
@@ -51,5 +53,13 @@ export class UserService {
 
     public googleSign(): string{
         return `${BaseRegisterUrl}/sign/google-sign`;
+    }
+
+    public async forgotPassowrd(body: ForgotPassowrd){
+        return handleResponse(registerClient.post('/forgot-password/send-reset-password-key', body));
+    }
+
+    public async resetPassoword(body: ResetPassword){
+        return handleResponse(registerClient.post('/forgot-password/reset-password', body))
     }
 }

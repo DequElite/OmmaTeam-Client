@@ -31,12 +31,10 @@ export const getUserProfile = createAsyncThunk<UserProfileResponse, void, {
                         const retryResponse = await extra.userService.getProfile();
                         return retryResponse.data.user;
                     } else {
-                        window.location.href = "/auth/login";
                         return rejectWithValue({ message: "Failed to refresh token", status: response.status });
                     }
                 } catch (refreshError) {
                     console.error("Token refresh error: ", refreshError);
-                    window.location.href = "/auth/login";
                     return rejectWithValue({ message: refreshError.message || "Token refresh failed", status: 500 });
                 }
             }

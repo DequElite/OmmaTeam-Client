@@ -3,6 +3,10 @@ import { UsersRoles } from "../types/user.types";
 
 export const emailField = z.string().email("Incorrect mail format!");
 
+export const ForgotPassowrdSchema = z.object({
+  email: emailField,
+});
+
 export const usernameField = z
   .string()
   .max(25, "Username must not be longer than 25 characters!")
@@ -15,6 +19,10 @@ export const passwordField = z
   .regex(/[A-Z]/, "The password must contain uppercase letters!")
   .regex(/[0-9]/, "The password must contain numbers!")
   .regex(/[!@#$%^&*(),.?":{}|<>]/, "The password must contain special characters!")
+
+export const ResetPassowrdSchema = z.object({
+  password: passwordField,
+})
 
 export const passwordFieldLogin = z
   .string()

@@ -8,7 +8,7 @@ import { logInSchema } from "../../api/schemas-validate/register.schema";
 import { useMutation } from "@tanstack/react-query";
 import { UserService } from "../../api/services/UserRegister.service";
 import { SetAccessToken } from "../../utils/getTokenFromLocalStorage.util";
-import { useNavigate } from "@tanstack/react-router";
+import { Link, useNavigate } from "@tanstack/react-router";
 import { getUserProfile } from "../../store/services/userProfile.service";
 import { useAppDispatch } from "../../store/store";
 import PasswordInput from "../../components/Input/PasswordInput.component";
@@ -29,7 +29,6 @@ export default function LogInLayout() {
     const { mutate } = useMutation({
         mutationFn: (data:LogIn) => userService.logIn(data),
         onSuccess: async (data: any) => {
-            console.debug('SUCCESS: ', data.data);
             SetAccessToken(data.data.accessToken);
 
             await dispatch(getUserProfile());
@@ -41,11 +40,7 @@ export default function LogInLayout() {
         },
     });
 
-    const onSubmit: SubmitHandler<LogIn> = (data: LogIn) => {
-        console.debug('DATA ON SUBMIT: ', data);
-
-        mutate(data)
-    }
+    const onSubmit: SubmitHandler<LogIn> = (data: LogIn) => mutate(data);
 
     const signByGoogle = () => window.location.href = userService.googleSign();
 
@@ -81,6 +76,13 @@ export default function LogInLayout() {
                     errorText={typeof errors.password?.message === 'string' ? errors.password.message : ''}
                     {...register('password')}
                 />
+
+                <div className={styles['form-shell__forgot-password']}>
+                  <Link to="../forgot-password">
+                    Forgot Passoword?
+                  </Link>
+                </div>
+
                 <Button 
                     variant='branded'
                     width={100}

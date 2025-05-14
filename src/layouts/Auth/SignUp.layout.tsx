@@ -29,7 +29,6 @@ export default function SignUpLayout() {
     const {mutate} = useMutation({
         mutationFn: (data: SignUp) => userService.signUp(data),
         onSuccess: async (data: any) => {
-            console.debug('SUCCESS: ', data.data);
             SetAccessToken(data.data.accessToken);   
 
             await dispatch(getUserProfile());
@@ -43,7 +42,6 @@ export default function SignUpLayout() {
 
 
     const onSubmit: SubmitHandler<SignUp> = (data: SignUp) => {
-        console.debug('DATA ON SUBMIT: ', data);
 
         mutate({
             ...data,

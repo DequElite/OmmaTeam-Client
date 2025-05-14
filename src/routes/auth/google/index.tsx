@@ -18,11 +18,11 @@ function RouteComponent() {
   const { accessToken } = Route.useSearch();
 
   useEffect(()=>{
-    const checkToken = () => {
+    const checkToken = async () => {
       if(accessToken) {
         SetAccessToken(accessToken);
 
-        dispatch(getUserProfile());
+        await dispatch(getUserProfile());
 
         navigate({ to: '/' })
       } else {

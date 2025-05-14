@@ -96,6 +96,18 @@
             width: 6%;
         }
     }
+
+    &__forgot-password{
+      width: 100%;
+      @include mixs.centeredRow;
+      justify-content: end;
+
+      a{
+        font-weight: 700;
+          color: vars.$light_link_font;
+          text-decoration: none;
+      }
+    }
   }
 }
 

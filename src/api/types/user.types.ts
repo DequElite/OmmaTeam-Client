@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { logInSchema, signUpSchema } from "../schemas-validate/register.schema";
+import { ForgotPassowrdSchema, logInSchema, ResetPassowrdSchema, signUpSchema } from "../schemas-validate/register.schema";
 
 export enum UsersRoles {
 	User = 'USER',
@@ -34,6 +34,11 @@ export interface User {
 
 export type SignUp = z.infer<typeof signUpSchema>;
 export type LogIn = z.infer<typeof logInSchema>;
+
+export type ForgotPassowrd = z.infer<typeof ForgotPassowrdSchema>;
+export type ResetPassword = z.infer<typeof ResetPassowrdSchema> & {
+	resetToken:string;
+};
 
 export interface ChangeProfileDto {
 	username: string;
