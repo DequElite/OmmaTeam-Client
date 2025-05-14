@@ -1,3 +1,5 @@
+import { InputHTMLAttributes } from "react";
+
 export interface OmmaCardsProps {
     iconPath: string;
     title: string;
@@ -19,4 +21,11 @@ export interface ButtonProps {
     animation?: boolean;
     onClick?: () => void;
     type?: 'button' | 'submit' | 'reset';
+}
+
+export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
+  title: string;
+  isRequired: boolean;
+  errorText: string;
+  isError: boolean;
 }

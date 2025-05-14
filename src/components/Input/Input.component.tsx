@@ -1,12 +1,5 @@
-import React, { InputHTMLAttributes } from "react";
+import { InputProps } from "../../api/types/props.types";
 import styles from "./style.module.scss";
-
-interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
-  title: string;
-  isRequired: boolean;
-  errorText: string;
-  isError: boolean;
-}
 
 export default function InputField({
   title,

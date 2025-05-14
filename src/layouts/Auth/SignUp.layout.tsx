@@ -11,6 +11,7 @@ import { useNavigate } from "@tanstack/react-router";
 import { SetAccessToken } from "../../utils/getTokenFromLocalStorage.util";
 import { useAppDispatch } from "../../store/store";
 import { getUserProfile } from "../../store/services/userProfile.service";
+import PasswordInput from "../../components/Input/PasswordInput.component";
 
 const userService = new UserService();
 
@@ -78,9 +79,8 @@ export default function SignUpLayout() {
                     {...register('username')}
                 />
 
-                <InputField 
+                <PasswordInput 
                     placeholder="Strong Password"
-                    type="password"
                     title="Password"
                     isRequired={true}
                     isError={!!errors.password}

@@ -39,3 +39,26 @@
         color: #F21313;
     }
 }
+
+.password-field {
+  width: 100%;
+  @include mixs.centeredRow;
+  position: relative;
+
+  .eye {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: transparent;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #666;
+    @include mixs.centeredRow;
+
+    &:hover {
+      color: #333;
+    }
+  }
+}

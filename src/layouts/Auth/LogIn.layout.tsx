@@ -11,6 +11,7 @@ import { SetAccessToken } from "../../utils/getTokenFromLocalStorage.util";
 import { useNavigate } from "@tanstack/react-router";
 import { getUserProfile } from "../../store/services/userProfile.service";
 import { useAppDispatch } from "../../store/store";
+import PasswordInput from "../../components/Input/PasswordInput.component";
 
 const userService = new UserService();
 
@@ -63,9 +64,17 @@ export default function LogInLayout() {
                     errorText={typeof errors.email?.message === 'string' ? errors.email.message : ''}
                     {...register('email')}
                 />
-                <InputField 
+                {/* <InputField 
                     placeholder="Strong Password"
                     type="password"
+                    title="Password"
+                    isRequired={true}
+                    isError={!!errors.password}
+                    errorText={typeof errors.password?.message === 'string' ? errors.password.message : ''}
+                    {...register('password')}
+                /> */}
+                <PasswordInput 
+                    placeholder="Strong Password"
                     title="Password"
                     isRequired={true}
                     isError={!!errors.password}
