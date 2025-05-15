@@ -11,6 +11,7 @@ import {
     ForgotPassowrd,
     LogIn, 
     ResetPassword, 
+    ResetPasswordShared, 
     SignUp, 
     TPartialChangeDto, 
     TPasswordChangeDto, 
@@ -59,7 +60,7 @@ export class UserService {
         return handleResponse(registerClient.post('/forgot-password/send-reset-password-key', body));
     }
 
-    public async resetPassoword(body: ResetPassword){
+    public async resetPassoword(body: ResetPasswordShared){
         return handleResponse(registerClient.post('/forgot-password/reset-password', body))
     }
 }

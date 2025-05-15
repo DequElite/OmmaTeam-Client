@@ -1,7 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { UserProfileResponse } from "../../api/types/user.types";
 import { AppDispatch, AppState, extraArgument } from "../store";
-import { SetAccessToken } from "../../utils/getTokenFromLocalStorage.util";
+import { ReturnAccessToken, SetAccessToken } from "../../utils/getTokenFromLocalStorage.util";
 import registerClient from "../../api/clients/register-service.client";
 import { AxiosError } from "axios";
 
@@ -15,6 +15,7 @@ export const getUserProfile = createAsyncThunk<UserProfileResponse, void, {
     async (_: any, {extra, rejectWithValue}) => {
         try {
             const response = await extra.userService.getProfile();
+            console.log("asss: ", ReturnAccessToken())
             return response.data.user;
         } catch (err: unknown) {
             console.error("Error at getUserProfile thunk: ", err);

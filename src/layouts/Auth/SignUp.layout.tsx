@@ -29,7 +29,7 @@ export default function SignUpLayout() {
     const {mutate} = useMutation({
         mutationFn: (data: SignUp) => userService.signUp(data),
         onSuccess: async (data: any) => {
-            SetAccessToken(data.data.accessToken);   
+            await SetAccessToken(data.data.accessToken);   
 
             await dispatch(getUserProfile());
 

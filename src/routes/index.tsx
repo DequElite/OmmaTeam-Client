@@ -8,6 +8,7 @@ export const Route = createFileRoute('/')({
 })
 
 function RouteComponent() {
+
   return (
     <>
       <HomeLayout></HomeLayout>

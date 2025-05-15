@@ -36,9 +36,10 @@ export type SignUp = z.infer<typeof signUpSchema>;
 export type LogIn = z.infer<typeof logInSchema>;
 
 export type ForgotPassowrd = z.infer<typeof ForgotPassowrdSchema>;
-export type ResetPassword = z.infer<typeof ResetPassowrdSchema> & {
+export type ResetPasswordShared = z.infer<typeof ResetPassowrdSchema> & {
 	resetToken:string;
 };
+export type ResetPassword = z.infer<typeof ResetPassowrdSchema>;
 
 export interface ChangeProfileDto {
 	username: string;

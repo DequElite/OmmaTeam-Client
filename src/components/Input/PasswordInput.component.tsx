@@ -26,7 +26,7 @@ export default function PasswordInput({
                     type={isHoveredPassword ? "password" : "text"}
                     {...rest}
                 />
-                <button className={styles['eye']} onClick={toggleVisiblePassword}>
+                <button type="button" className={styles['eye']} onClick={toggleVisiblePassword}>
                     { isHoveredPassword ? <IoIosEye /> :  <IoIosEyeOff /> }
                 </button>
             </div>

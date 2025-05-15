@@ -29,7 +29,7 @@ export default function LogInLayout() {
     const { mutate } = useMutation({
         mutationFn: (data:LogIn) => userService.logIn(data),
         onSuccess: async (data: any) => {
-            SetAccessToken(data.data.accessToken);
+            await SetAccessToken(data.data.accessToken);
 
             await dispatch(getUserProfile());
 

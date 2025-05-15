@@ -2,12 +2,16 @@ import { createFileRoute } from '@tanstack/react-router'
 import AuthLayout from '../../../layouts/Auth/Auth.layout'
 import styles from "../../../layouts/Auth/style.module.scss";
 import ResetPasswordLayout from '../../../layouts/Auth/ResetPassword.layout';
+import { useEffect } from 'react';
 
 export const Route = createFileRoute('/auth/reset-password/')({
   component: RouteComponent,
 })
 
 function RouteComponent() {
+
+  const { key } = Route.useSearch();
+
   return (
     <>
       <AuthLayout
@@ -18,7 +22,7 @@ function RouteComponent() {
           </div>
         }
       >
-        <ResetPasswordLayout></ResetPasswordLayout>
+        <ResetPasswordLayout keyQuery={key}></ResetPasswordLayout>
       </AuthLayout>
     </>
   )

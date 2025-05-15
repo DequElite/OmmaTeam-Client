@@ -1,6 +1,6 @@
 import { createFileRoute, useNavigate } from '@tanstack/react-router'
 import { useEffect } from 'react';
-import { SetAccessToken } from '../../../utils/getTokenFromLocalStorage.util';
+import { ReturnAccessToken, SetAccessToken } from '../../../utils/getTokenFromLocalStorage.util';
 import { useAppDispatch } from '../../../store/store';
 import { getUserProfile } from '../../../store/services/userProfile.service';
 import AuthLayout from '../../../layouts/Auth/Auth.layout';
@@ -22,9 +22,12 @@ function RouteComponent() {
       if(accessToken) {
         SetAccessToken(accessToken);
 
-        await dispatch(getUserProfile());
+        if(ReturnAccessToken()){
+          await dispatch(getUserProfile());
 
-        navigate({ to: '/' })
+          console.log("token: ", ReturnAccessToken())
+          navigate({ to: '/' })
+        }
       } else {
         console.error("Google login failed");
         navigate({ to: '/auth/login' })

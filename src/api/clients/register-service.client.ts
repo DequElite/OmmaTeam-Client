@@ -1,4 +1,4 @@
-import axios, { AxiosInstance } from "axios";
+import axios, { AxiosInstance, InternalAxiosRequestConfig } from "axios";
 import { ReturnAccessToken } from "../../utils/getTokenFromLocalStorage.util";
 
 const APP_MODE = import.meta.env.VITE_DEV_MODE || "DEV";
@@ -18,5 +18,19 @@ const registerClient: AxiosInstance = axios.create({
     withCredentials: true,
     timeout: 50000,
 });
+
+registerClient.interceptors.request.use(
+    (config: InternalAxiosRequestConfig) => {
+        const token = ReturnAccessToken();
+        if (token) {
+            config.headers = config.headers || {};
+            config.headers['Authorization'] = `Bearer ${token}`;
+        }
+        return config;
+    }, 
+    (error)=>{
+        return Promise.reject(error);
+    }
+);
 
 export default registerClient;
