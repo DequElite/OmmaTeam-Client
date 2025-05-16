@@ -36,12 +36,12 @@ export class UserService {
 
     public async changePassword(body: TPasswordChangeDto){
         validateSchemas(passwordField, body.password);
-        return handleResponse(registerClient.post('/auth/profile/change-password', body));
+        return handleResponse(registerClient.patch('/auth/profile/change-password', body));
     }
 
     public async changeProfile(body: TPartialChangeDto){
         validateSchemas(changeProfileSchema, body);
-        return handleResponse(registerClient.post('/auth/profile/change-profile', body));
+        return handleResponse(registerClient.patch('/auth/profile/change-profile', body));
     }
 
     public async refreshToken(){
