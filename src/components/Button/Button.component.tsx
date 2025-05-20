@@ -5,7 +5,6 @@ export default function Button(props: ButtonProps){
     return (
         <button 
             type={props.type || 'button'}
-
             style={{
                 width: `${props.width}%`,
                 height: `${props.height}vh`
