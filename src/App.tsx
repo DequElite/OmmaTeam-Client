@@ -4,6 +4,7 @@ import "./App.scss";
 import { useAppDispatch } from "./store/store";
 import { useEffect } from "react";
 import { getUserProfile } from "./store/services/userProfile.service";
+import { MessageBox } from "./components/MessageBox/MessageBox.component";
 
 const router = createRouter({
   routeTree,
@@ -19,7 +20,10 @@ function App() {
   },[])
 
   return (
-    <RouterProvider router={router} />
+    <>
+      <MessageBox />
+      <RouterProvider router={router} />
+    </>
   )
 }
 

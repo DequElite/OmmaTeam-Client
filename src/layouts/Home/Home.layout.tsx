@@ -6,12 +6,15 @@ import { useEffect, useMemo, useState } from "react";
 import { OmmaCardsProps } from "../../api/types/props.types";
 import useIsScreenWidth from "../../hooks/useIsScreenWidth";
 import { useAppSelector } from "../../store/store";
+import { useMessageBox } from "../../contexts/MessageBoxContext/useMessageBox";
 
 export default function HomeLayout() {
     const userProfileState = useAppSelector(state => state.userProfile);
     const navigate = useNavigate();
     const [currentCardSlide, setCurrentCardSlide] = useState(0);
     const { isSmallScreen } = useIsScreenWidth({ minScreenWidth: 600 });
+
+    const { updateState } = useMessageBox();
 
     useEffect(()=>{
       const interval = setInterval(()=>{
@@ -51,6 +54,11 @@ export default function HomeLayout() {
     const handleClick = () => {
       if(userProfileState.status.isAuth) {
         navigate({ to: '' });
+        updateState({
+          isOpened: true,
+          type: 'success',
+          desc: `Welcome back, ${userProfileState.username}`
+        })
       } else if (!userProfileState.status.isAuth) {
         navigate({ to: '/auth/signup' });
       }

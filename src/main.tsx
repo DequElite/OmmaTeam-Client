@@ -9,6 +9,7 @@ import {
   QueryClientProvider,
 } from '@tanstack/react-query'
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
+import { MessageBoxProvider } from './contexts/MessageBoxContext/MessageBox.provider.tsx'
 
 const queryClient = new QueryClient()
 
@@ -16,7 +17,9 @@ createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <Provider store={store}> 
       <QueryClientProvider client={queryClient}>
-        <App />
+        <MessageBoxProvider>
+          <App />
+        </MessageBoxProvider>
         <ReactQueryDevtools initialIsOpen={false} />
       </QueryClientProvider>
     </Provider>

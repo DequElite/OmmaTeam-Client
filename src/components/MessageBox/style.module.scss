@@ -1,0 +1,91 @@
+@use "@/styles/variables.style.scss" as *;
+@use "@/styles/mixins.style.scss" as *;
+
+.box{
+    background-color: #E9E9E9;
+    width: 450px;
+    max-width: 450px;
+    height: 100px;
+    position: absolute;
+    z-index: 100;
+    left: 50%;
+    top: 2%;
+    border-radius: 8px;
+    padding: 16px;
+    box-sizing: border-box;
+    font-family: $primary_font;
+    transition: 0.5s;
+    @include centeredColumn;
+    align-items: start;
+    gap: 0;
+    transform: translate(-50%, 0%);
+    transition: transform 0.6s ease, opacity 0.6s ease;
+    opacity: 1;
+
+    @each $type, $color in (
+        info: $info-color,
+        error: $error-color,
+        warning: $warning-color,
+        success: $success-color
+    ) {
+        &.#{$type} {
+            border-left: 5px solid #{$color};
+
+            .box__title {
+                color: #{$color};
+            }
+        }
+    }
+
+    &__title{
+        font-size: 1.4rem;
+        font-weight:bolder;
+    }
+
+    &__desc{
+        font-size: 1rem;
+        margin-top: -10px;
+        color: #666666;
+        font-weight:500;
+    }
+
+    &.closed {
+        animation: slideOut 0.4s ease forwards;
+        pointer-events: none;
+
+    }
+
+    &.opened {
+        animation: slideIn 0.4s ease forwards;
+    }
+}
+
+@keyframes slideIn {
+  0% {
+    transform: translate(-50%, -150%) scale(0.2);
+    opacity: 0;
+  }
+  100% {
+    transform: translate(-50%, 0%) scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes slideOut {
+  0% {
+    transform: translate(-50%, 0%) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-50%, -150%) scale(0.2);
+    opacity: 0;
+  }
+}
+
+@media (max-width: 600px) {
+    .box{
+        width: 400px;
+        max-width: 400px;
+    }
+}
+
