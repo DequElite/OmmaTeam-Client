@@ -6,8 +6,9 @@ on:
       - main
       - master
   pull_request:
-    - main
-    - master
+    branches:
+      - main
+      - master
     
 jobs:
   tests:
@@ -24,7 +25,5 @@ jobs:
 
       - name: Run tests
         run: npm run test
-      
-      - name: Preview
-        run: npm run preview
+
       
