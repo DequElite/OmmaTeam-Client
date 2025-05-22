@@ -12,31 +12,61 @@ import { Link, useNavigate } from "@tanstack/react-router";
 import { getUserProfile } from "../../store/services/userProfile.service";
 import { useAppDispatch } from "../../store/store";
 import PasswordInput from "../../components/Input/PasswordInput.component";
+import { useMessageBox } from "../../contexts/MessageBoxContext/useMessageBox";
 
 const userService = new UserService();
 
-//TODO: ВТОРОСТЕПЕННОЕ: сделать месседж бокс и перенос на главную страницу
 export default function LogInLayout() {
     const navigate = useNavigate();
-
     const dispatch = useAppDispatch();
+    const { updateState } = useMessageBox();
 
     const { register, handleSubmit, formState: {errors} } = useForm<LogIn>({
         mode: 'onChange',
         resolver: zodResolver(logInSchema)
     });
 
-    const { mutate } = useMutation({
+    const { mutate, isPending } = useMutation({
         mutationFn: (data:LogIn) => userService.logIn(data),
         onSuccess: async (data: any) => {
             await SetAccessToken(data.data.accessToken);
 
             await dispatch(getUserProfile());
 
+            updateState({
+                isOpened: true,
+                type: 'success',
+                desc: 'LogIn successful!'
+            });
+
             navigate({ to: '/' });
         },
         onError: (err: any) => {
             console.error('error: ', err);
+
+            switch(err.status) {
+                case 401:
+                    updateState({
+                        isOpened: true,
+                        type: 'error',
+                        desc: 'Invalid password!'
+                    });
+                    break;
+                case 404:
+                    updateState({
+                        isOpened: true,
+                        type: 'error',
+                        desc: 'User not found ☹️'
+                    });
+                    break;
+                default:
+                    updateState({
+                        isOpened: true,
+                        type: 'error',
+                        desc: 'Unknown error'
+                    });
+                    break;
+            }
         },
     });
 
@@ -88,6 +118,7 @@ export default function LogInLayout() {
                     width={100}
                     height={6}
                     type='submit'
+                    disabled={isPending}
                 >
                     <span style={{fontSize:'1.15rem', color:"#FFFFFF"}}>Log In</span>
                 </Button>

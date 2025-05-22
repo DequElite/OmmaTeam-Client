@@ -5,6 +5,7 @@ export default function Button(props: ButtonProps){
     return (
         <button 
             type={props.type || 'button'}
+            disabled={props.disabled}
             style={{
                 width: `${props.width}%`,
                 height: `${props.height}vh`
@@ -15,7 +16,7 @@ export default function Button(props: ButtonProps){
                 ${props.className} 
                 ${props.animation && styles['animated']}`}
             
-                onClick={props.onClick}
+            onClick={props.onClick}
         >
             { props.children }
         </button>

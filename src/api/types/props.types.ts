@@ -21,6 +21,7 @@ export interface ButtonProps {
     animation?: boolean;
     onClick?: () => void;
     type?: 'button' | 'submit' | 'reset';
+    disabled?: boolean;
 }
 
 export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {

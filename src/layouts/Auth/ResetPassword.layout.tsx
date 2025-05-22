@@ -8,27 +8,58 @@ import Button from '../../components/Button/Button.component';
 import { useMutation } from '@tanstack/react-query';
 import { UserService } from '../../api/services/UserRegister.service';
 import { useNavigate } from '@tanstack/react-router';
+import { useMessageBox } from '../../contexts/MessageBoxContext/useMessageBox';
 
 const userService = new UserService();
 
-//TODO: ВТОРОСТЕПЕННОЕ: сделать месседж бокс и перенос на главную страницу
 export default function ResetPasswordLayout({
     keyQuery
 }: {keyQuery: string}) {
     const navigate = useNavigate();
+    const { updateState } = useMessageBox();
 
     const {register, handleSubmit, formState: {errors}} = useForm<ResetPassword>({
         mode: 'onChange',
         resolver: zodResolver(ResetPassowrdSchema)
     });
 
-    const {mutate} = useMutation({
+    const {mutate, isPending} = useMutation({
         mutationFn: (data: ResetPasswordShared) => userService.resetPassoword(data),
         onSuccess: () => {
+            updateState({
+                isOpened: true,
+                type: 'success',
+                desc: 'Your password was reset successfully!'
+            });
+
             navigate({ to:'/auth/login' })
         },
         onError: (err: any) => {
             console.error('error: ', err);
+
+            switch(err.status) {
+                case 401:
+                    updateState({
+                        isOpened: true,
+                        type: 'error',
+                        desc: 'Reset token expired'
+                    });
+                    break;
+                case 404:
+                    updateState({
+                        isOpened: true,
+                        type: 'error',
+                        desc: 'Reset token not found'
+                    });
+                    break;
+                default:
+                    updateState({
+                        isOpened: true,
+                        type: 'error',
+                        desc: 'Unknown error'
+                    });
+                    break;
+            }
         },
     })
 

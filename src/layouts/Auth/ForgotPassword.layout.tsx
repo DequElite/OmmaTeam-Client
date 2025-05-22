@@ -7,24 +7,48 @@ import { ForgotPassowrd } from "../../api/types/user.types";
 import Button from "../../components/Button/Button.component";
 import { useMutation } from "@tanstack/react-query";
 import { UserService } from "../../api/services/UserRegister.service";
+import { useMessageBox } from "../../contexts/MessageBoxContext/useMessageBox";
 
 const userService = new UserService();
 
-//TODO: ВТОРОСТЕПЕННОЕ: сделать месседж бокс и перенос на главную страницу
 export default function ForgotPasswordLayout() {
+    const { updateState } = useMessageBox();
 
     const { register, handleSubmit, formState: {errors} } = useForm<ForgotPassowrd>({
         mode: 'onChange',
         resolver: zodResolver(ForgotPassowrdSchema)
     });
 
-    const { mutate } = useMutation({
+    const { mutate, isPending } = useMutation({
         mutationFn: (data: ForgotPassowrd) => userService.forgotPassowrd(data),
         onSuccess: () => {
             console.debug('SUCCESS SENDED')
+
+            updateState({
+                isOpened: true,
+                type: 'success',
+                desc: 'Email sent successful'
+            });
         },
         onError: (err: any) => {
             console.error('error: ', err);
+
+            switch(err.status) {
+                case 404:
+                    updateState({
+                        isOpened: true,
+                        type: 'error',
+                        desc: 'User not found ☹️'
+                    });
+                    break;
+                default:
+                    updateState({
+                        isOpened: true,
+                        type: 'error',
+                        desc: 'Unknown error'
+                    });
+                    break;
+            }
         },
     })
 
@@ -54,6 +78,7 @@ export default function ForgotPasswordLayout() {
                     width={100}
                     height={6}
                     type='submit'
+                    disabled={isPending}
                 >
                     <span style={{fontSize:'1.15rem', color:"#FFFFFF"}}>Send Key</span>
                 </Button>
