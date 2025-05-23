@@ -7,6 +7,7 @@ import { OmmaCardsProps } from "../../api/types/props.types";
 import useIsScreenWidth from "../../hooks/useIsScreenWidth";
 import { useAppSelector } from "../../store/store";
 import { useMessageBox } from "../../contexts/MessageBoxContext/useMessageBox";
+import { useTranslation } from "react-i18next";
 
 export default function HomeLayout() {
     const userProfileState = useAppSelector(state => state.userProfile);
@@ -15,6 +16,7 @@ export default function HomeLayout() {
     const { isSmallScreen } = useIsScreenWidth({ minScreenWidth: 600 });
 
     const { updateState } = useMessageBox();
+    const { t } = useTranslation(); 
 
     useEffect(()=>{
       const interval = setInterval(()=>{
@@ -73,7 +75,7 @@ export default function HomeLayout() {
             </header>
             <div className={styles['homelayout__first-desc']}>
               <h4>
-                <strong>Perform team tasks conveniently and quickly</strong>
+                <strong>{t('omma_desc.desc')}</strong>
               </h4>
             </div>
             <div className={styles['homelayout__first-button']}>

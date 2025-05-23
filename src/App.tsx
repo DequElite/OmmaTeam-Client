@@ -5,6 +5,7 @@ import { useAppDispatch } from "./store/store";
 import { useEffect } from "react";
 import { getUserProfile } from "./store/services/userProfile.service";
 import { MessageBox } from "./components/MessageBox/MessageBox.component";
+import { LanguageBox } from "./components/LanguageBox/LanguageBox.component";
 
 const router = createRouter({
   routeTree,
@@ -21,6 +22,7 @@ function App() {
 
   return (
     <>
+      <LanguageBox />
       <MessageBox />
       <RouterProvider router={router} />
     </>

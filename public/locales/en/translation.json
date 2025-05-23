@@ -1,0 +1,23 @@
+{
+    "omma_desc": {
+        "desc": "Perform team tasks conveniently and quickly",
+        "small_desc": "OmmaTeam - Fast and convenient",
+        "cards": {
+            "workInTeam": {
+                "title": "Work in team",
+                "desc": "Join or create teams, easily manage tasks, and keep track of your progress with insightful statistics!"
+            },
+            "teamChat": {
+                "title": "Team Chat",
+                "desc": "Engage in quick, clear, and seamless conversations with your teammates in the team chat!"
+            },
+            "taskMMSimple": {
+                "title": "Task Management Made Simple",
+                "desc": "Assign tasks, track progress, and collaborate with your team. Manage deadlines, priorities, and subtasks effortlessly!"
+            }
+        }
+    },
+    "buttons": {
+        "getStarted": "Get Started"
+    }
+}
