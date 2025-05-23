@@ -18,6 +18,45 @@
         }
     },
     "buttons": {
-        "getStarted": "Get Started"
+        "getStarted": "Get Started",
+        "createTeam": "Create team",
+        "letWork": "Let`s work",
+        "SignUp": "Sign Up",
+        "LogIn": "Log In",
+        "GoogleSign": "Log In by Google",
+        "SendKey": "Send Key",
+        "Confirm": "Confirm"
+    },
+    "forms": {
+        "SignUp": {
+            "title": "Get Started",
+            "desc": "Welcome to OmmaTeam - Create your account or",
+            "fields": [
+                "Email",
+                "Username",
+                "Password"
+            ]
+        },
+        "LogIn": {
+            "title": "Welcome back",
+            "desc": "Welcome to OmmaTeam - Log In in your account or",
+            "fields": [
+                "Email",
+                "Password"
+            ]
+        },
+        "ForgotPassoword": {
+            "title": "Forgot Password?",
+            "desc": "Don`t worry! We will send you an email to your mail, just write your mail down!",
+            "field": "Email"
+        },
+        "ResetPassword": {
+            "title": "Reset to new password",
+            "desc": "So, you can now change your old password to a new one!",
+            "field": "New Password"
+        },
+        "GoogleSign": {
+            "title": "We are registering you via Google..."
+        }
     }
 }

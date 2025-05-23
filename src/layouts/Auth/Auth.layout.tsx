@@ -1,5 +1,6 @@
 import React from "react";
 import styles from "./style.module.scss";
+import { useTranslation } from "react-i18next";
 
 type AuthType = 'SignUp' | 'LogIn' | 'ResetPassword' | 'ForgotPassoword' | 'GoogleSign';
 interface AuthProps {
@@ -17,6 +18,8 @@ const AUTH_TITLES: Record<AuthType, string> = {
 }
 
 export default function AuthLayout(props: AuthProps) {
+    const { t } = useTranslation();
+
     return (
         <>
             <main className={styles['authlayout']}>
@@ -29,7 +32,7 @@ export default function AuthLayout(props: AuthProps) {
                                 className={styles['authlayout__form-header-img']}
                             />
                             <h1 className={styles['authlayout__form-header-title']}>
-                                {AUTH_TITLES[props.authType]}
+                                {t(`forms.${props.authType}.title`)}
                             </h1>
                             <div className={styles['authlayout__form-header-desc']}>
                                 {props.desc}
@@ -43,7 +46,7 @@ export default function AuthLayout(props: AuthProps) {
                     <div className={styles['authlayout__preview-container']}>
                         <h1>OmmaTeam</h1>
                         <h4>
-                            <strong>Perform team tasks conveniently and quickly</strong>
+                            <strong>{t("omma_desc.desc")}</strong>
                         </h4>
                     </div>
                 </section>

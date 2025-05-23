@@ -8,11 +8,13 @@ import Button from "../../components/Button/Button.component";
 import { useMutation } from "@tanstack/react-query";
 import { UserService } from "../../api/services/UserRegister.service";
 import { useMessageBox } from "../../contexts/MessageBoxContext/useMessageBox";
+import { useTranslation } from "react-i18next";
 
 const userService = new UserService();
 
 export default function ForgotPasswordLayout() {
     const { updateState } = useMessageBox();
+    const { t } = useTranslation();
 
     const { register, handleSubmit, formState: {errors} } = useForm<ForgotPassowrd>({
         mode: 'onChange',
@@ -67,7 +69,7 @@ export default function ForgotPasswordLayout() {
                 <InputField 
                     placeholder="example@example.com"
                     type="email"
-                    title="Email"
+                    title={t('forms.ForgotPassoword.field')}
                     isRequired={true}
                     isError={!!errors.email}
                     errorText={typeof errors.email?.message === 'string' ? errors.email.message : ''}
@@ -80,7 +82,11 @@ export default function ForgotPasswordLayout() {
                     type='submit'
                     disabled={isPending}
                 >
-                    <span style={{fontSize:'1.15rem', color:"#FFFFFF"}}>Send Key</span>
+                    <span style={{fontSize:'1.15rem', color:"#FFFFFF"}}>
+                        {
+                            t("buttons.SendKey")
+                        }
+                    </span>
                 </Button>
             </form>
         </>

@@ -2,19 +2,22 @@ import { createFileRoute, Link } from '@tanstack/react-router'
 import AuthLayout from '../../../layouts/Auth/Auth.layout'
 import styles from "../../../layouts/Auth/style.module.scss";
 import ForgotPasswordLayout from '../../../layouts/Auth/ForgotPassword.layout';
+import { useTranslation } from 'react-i18next';
 
 export const Route = createFileRoute('/auth/forgot-password/')({
   component: RouteComponent,
 })
 
 function RouteComponent() {
+  const { t } = useTranslation();
+
   return (
     <>
       <AuthLayout
         authType='ForgotPassoword'
         desc={
           <div className={styles['desc-text']}>
-            Don`t worry! We will send you an email to your mail, just write your mail down!
+            {t('forms.ForgotPassoword.desc')}
           </div>
         }
       >

@@ -27,31 +27,29 @@ export default function HomeLayout() {
     }
     , []);
 
-    const OmmaCards = useMemo(()=>{
-      return [
+    const OmmaCards = [
         {
           iconPath: "/icons/TeamIcon.png",
-          title: "Work in team",
-          desc: "Join or create teams, easily manage tasks, and keep track of your progress with insightful statistics!",
-          buttonText: "Create team",
+          title: t("omma_desc.cards.workInTeam.title"),
+          desc: t("omma_desc.cards.workInTeam.desc"),
+          buttonText: t("buttons.createTeam"),
           link: `${!userProfileState.status.isAuth ? "/auth/signup" : ''}`
         },
         {
           iconPath: "/icons/ChatIcon.png",
-          title: "Team Chat",
-          desc: "Engage in quick, clear, and seamless conversations with your teammates in the team chat!",
-          buttonText: "Let’s work",
+          title: t("omma_desc.cards.teamChat.title"),
+          desc: t("omma_desc.cards.teamChat.desc"),
+          buttonText: t("buttons.letWork"),
           link: `${!userProfileState.status.isAuth ? "/auth/signup" : ''}`
         },
         {
           iconPath: "/icons/GraphIcon.png",
-          title: "Task Management Made Simple",
-          desc: "Assign tasks, track progress, and collaborate with your team. Manage deadlines, priorities, and subtasks effortlessly!",
-          buttonText: "Get Started",
+          title: t("omma_desc.cards.taskMMSimple.title"),
+          desc: t("omma_desc.cards.taskMMSimple.desc"),
+          buttonText: t("buttons.getStarted"),
           link: `${!userProfileState.status.isAuth ? "/auth/signup" : ''}`
         }
       ]
-    }, [])
   
     const handleClick = () => {
       if(userProfileState.status.isAuth) {
@@ -75,7 +73,7 @@ export default function HomeLayout() {
             </header>
             <div className={styles['homelayout__first-desc']}>
               <h4>
-                <strong>{t('omma_desc.desc')}</strong>
+                <strong>{t("omma_desc.desc")}</strong>
               </h4>
             </div>
             <div className={styles['homelayout__first-button']}>
@@ -85,7 +83,9 @@ export default function HomeLayout() {
                 height={8} 
                 animation={true} 
                 onClick={handleClick}>
-                <span className={styles['homelayout__first-button-text']}>Get Started</span>
+                <span className={styles['homelayout__first-button-text']}>
+                  {t("buttons.getStarted")}
+                </span>
               </Button>
             </div>
           </div>
@@ -94,7 +94,7 @@ export default function HomeLayout() {
         <section className={styles['homelayout__second']}>
           <header className={styles['homelayout__second-header']}>
             <img src="/icons/OmmaTeam.png" alt="OmmaTeam Logo" />
-            <h3>OmmaTeam - Fast and convenient</h3>
+            <h3>{t("omma_desc.small_desc")}</h3>
           </header>
           <div className={styles['homelayout__second-cards']}>
             {

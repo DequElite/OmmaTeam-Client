@@ -13,6 +13,7 @@ import { getUserProfile } from "../../store/services/userProfile.service";
 import { useAppDispatch } from "../../store/store";
 import PasswordInput from "../../components/Input/PasswordInput.component";
 import { useMessageBox } from "../../contexts/MessageBoxContext/useMessageBox";
+import { useTranslation } from "react-i18next";
 
 const userService = new UserService();
 
@@ -20,6 +21,8 @@ export default function LogInLayout() {
     const navigate = useNavigate();
     const dispatch = useAppDispatch();
     const { updateState } = useMessageBox();
+    const { t } = useTranslation();
+    const fields = t('forms.LogIn.fields', { returnObjects: true }) as string[];
 
     const { register, handleSubmit, formState: {errors} } = useForm<LogIn>({
         mode: 'onChange',
@@ -83,7 +86,7 @@ export default function LogInLayout() {
                 <InputField 
                     placeholder="example@example.com"
                     type="email"
-                    title="Email"
+                    title={fields[0]}
                     isRequired={true}
                     isError={!!errors.email}
                     errorText={typeof errors.email?.message === 'string' ? errors.email.message : ''}
@@ -100,7 +103,7 @@ export default function LogInLayout() {
                 /> */}
                 <PasswordInput 
                     placeholder="Strong Password"
-                    title="Password"
+                    title={fields[1]}
                     isRequired={true}
                     isError={!!errors.password}
                     errorText={typeof errors.password?.message === 'string' ? errors.password.message : ''}
@@ -109,7 +112,7 @@ export default function LogInLayout() {
 
                 <div className={styles['form-shell__forgot-password']}>
                   <Link to="../forgot-password">
-                    Forgot Passoword?
+                    {t('forms.ForgotPassoword.title')}
                   </Link>
                 </div>
 
@@ -120,7 +123,11 @@ export default function LogInLayout() {
                     type='submit'
                     disabled={isPending}
                 >
-                    <span style={{fontSize:'1.15rem', color:"#FFFFFF"}}>Log In</span>
+                    <span style={{fontSize:'1.15rem', color:"#FFFFFF"}}>
+                        {
+                            t('buttons.LogIn')
+                        }
+                    </span>
                 </Button>
                 <div className={styles['form-shell__or']}>
                     <div className={styles['or-line']}></div>
@@ -134,7 +141,11 @@ export default function LogInLayout() {
                 >
                     <div className={styles['button-google']}>
                         <img src="/icons/GoogleIcon.png" alt="Google logo Icon"/>
-                        <span style={{fontSize:'1.15rem', color:"#FFFFFF"}}>Log In by Google</span>
+                        <span style={{fontSize:'1.15rem', color:"#FFFFFF"}}>
+                            {
+                                t('buttons.GoogleSign')
+                            }
+                        </span>
                     </div>
                 </Button>
             </form>

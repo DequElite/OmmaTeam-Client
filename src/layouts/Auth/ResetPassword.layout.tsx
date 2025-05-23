@@ -9,6 +9,7 @@ import { useMutation } from '@tanstack/react-query';
 import { UserService } from '../../api/services/UserRegister.service';
 import { useNavigate } from '@tanstack/react-router';
 import { useMessageBox } from '../../contexts/MessageBoxContext/useMessageBox';
+import { useTranslation } from 'react-i18next';
 
 const userService = new UserService();
 
@@ -17,6 +18,7 @@ export default function ResetPasswordLayout({
 }: {keyQuery: string}) {
     const navigate = useNavigate();
     const { updateState } = useMessageBox();
+    const { t } = useTranslation();
 
     const {register, handleSubmit, formState: {errors}} = useForm<ResetPassword>({
         mode: 'onChange',
@@ -82,7 +84,7 @@ export default function ResetPasswordLayout({
             >
                 <PasswordInput 
                     placeholder="Strong Password"
-                    title="New Password"
+                    title={t("forms.ResetPassword.field")}
                     isRequired={true}
                     isError={!!errors.password}
                     errorText={typeof errors.password?.message === 'string' ? errors.password.message : ''}
@@ -95,7 +97,11 @@ export default function ResetPasswordLayout({
                     height={6}
                     type='submit'
                 >
-                    <span style={{fontSize:'1.15rem', color:"#FFFFFF"}}>Confirm</span>
+                    <span style={{fontSize:'1.15rem', color:"#FFFFFF"}}>
+                        {
+                            t("buttons.Confirm")
+                        }
+                    </span>
                 </Button>
             </form>
         </>

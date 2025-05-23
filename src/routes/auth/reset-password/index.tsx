@@ -3,12 +3,14 @@ import AuthLayout from '../../../layouts/Auth/Auth.layout'
 import styles from "../../../layouts/Auth/style.module.scss";
 import ResetPasswordLayout from '../../../layouts/Auth/ResetPassword.layout';
 import { useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 
 export const Route = createFileRoute('/auth/reset-password/')({
   component: RouteComponent,
 })
 
 function RouteComponent() {
+  const { t } = useTranslation();
 
   const { key } = Route.useSearch();
 
@@ -18,7 +20,7 @@ function RouteComponent() {
         authType='ResetPassword'
         desc={
           <div className={styles['desc-text']}>
-            So, you can now change your old password to a new one!
+            {t('forms.ResetPassword.desc')}
           </div>
         }
       >

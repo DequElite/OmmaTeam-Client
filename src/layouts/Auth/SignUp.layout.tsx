@@ -13,6 +13,7 @@ import { useAppDispatch } from "../../store/store";
 import { getUserProfile } from "../../store/services/userProfile.service";
 import PasswordInput from "../../components/Input/PasswordInput.component";
 import { useMessageBox } from "../../contexts/MessageBoxContext/useMessageBox";
+import { useTranslation } from "react-i18next";
 
 const userService = new UserService();
 
@@ -20,6 +21,8 @@ export default function SignUpLayout() {
     const navigate = useNavigate();
     const dispatch = useAppDispatch();
     const { updateState } = useMessageBox();
+    const { t } = useTranslation();
+    const fields = t('forms.SignUp.fields', { returnObjects: true }) as string[];
 
     const { register, handleSubmit, formState: {errors} } = useForm<SignUp>({
         mode:'onChange',
@@ -83,7 +86,7 @@ export default function SignUpLayout() {
                 <InputField 
                     placeholder="example@example.com"
                     type="email"
-                    title="Email"
+                    title={fields[0]}
                     isRequired={true}
                     isError={!!errors.email}
                     errorText={typeof errors.email?.message === 'string' ? errors.email.message : ''}
@@ -93,7 +96,7 @@ export default function SignUpLayout() {
                 <InputField 
                     placeholder="Your username"
                     type="text"
-                    title="Username"
+                    title={fields[1]}
                     isRequired={true}
                     isError={!!errors.username}
                     errorText={typeof errors.username?.message === 'string' ? errors.username.message : ''}
@@ -102,7 +105,7 @@ export default function SignUpLayout() {
 
                 <PasswordInput 
                     placeholder="Strong Password"
-                    title="Password"
+                    title={fields[2]}
                     isRequired={true}
                     isError={!!errors.password}
                     errorText={typeof errors.password?.message === 'string' ? errors.password.message : ''}
@@ -116,7 +119,11 @@ export default function SignUpLayout() {
                     type='submit'
                     disabled={isPending}
                 >
-                    <span style={{fontSize:'1.15rem', color:"#FFFFFF"}}>Sign Up</span>
+                    <span style={{fontSize:'1.15rem', color:"#FFFFFF"}}>
+                        {
+                            t("buttons.SignUp")
+                        }
+                    </span>
                 </Button>
                 <div className={styles['form-shell__or']}>
                     <div className={styles['or-line']}></div>
@@ -130,7 +137,11 @@ export default function SignUpLayout() {
                 >
                     <div className={styles['button-google']}>
                         <img src="/icons/GoogleIcon.png" alt="Google logo Icon"/>
-                        <span style={{fontSize:'1.15rem', color:"#FFFFFF"}}>Log In by Google</span>
+                        <span style={{fontSize:'1.15rem', color:"#FFFFFF"}}>
+                            {
+                                t("buttons.GoogleSign")
+                            }
+                        </span>
                     </div>
                 </Button>
             </form>
