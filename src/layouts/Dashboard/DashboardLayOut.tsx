@@ -18,9 +18,13 @@ export default function DashboardLayout(props: DashboardLayoutProps) {
                         title="OmmaTeam"
                         primaryLinks={[
                             {
-                                link: '',
+                                link: '/dashboard',
                                 name: 'Dashboard'
-                            }
+                            },
+                            {
+                                link: '/dashboard/settings',
+                                name: 'team'
+                            },
                         ]}
                     />
                 </section>

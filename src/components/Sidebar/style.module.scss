@@ -17,6 +17,65 @@
 
     &__title {
         margin-top: 1%;
+        margin-bottom: 0;
         text-shadow: 0 0 10px rgba(0, 0, 0, 0.521);
+    }
+
+    &__main {
+        height: 100%;
+        width: 100%;
+        @include mixs.centeredColumn;
+        justify-content: start;
+    }
+}
+
+.sidebar__main {
+    &-primarylinks {
+        width: 100%;
+        height: 50%;
+        padding: 15px;
+        box-sizing: border-box;
+        @include mixs.centeredColumn;
+        justify-content: start;
+        gap: 20px;
+    }
+
+    &-secondarylinks {
+        width: 100%;
+        height: 45%;
+    }
+}
+
+.link{
+    width: 100%;
+    height: 10%;
+    position: relative;
+    @include mixs.centeredRow;
+    justify-content: start;
+    padding: 10px;
+    box-sizing: border-box;
+    border-radius: 10px;
+    font-size: 0.95rem;
+    color: #FFFFFF;
+    text-decoration: none;
+
+    &.non-activated {
+        background-color: rgba($color: #000000, $alpha: 0.3);
+    }
+
+    &.activated {
+        background-color: rgba($color: #000000, $alpha: 0.6);
+
+        &::after {
+            content: '';
+            position: absolute;
+            width: 7%;
+            aspect-ratio: 1 / 1;
+            border-radius: 100%;
+            background-color: #F15D33;
+            top: 50%;
+            left: 90%;
+            transform: translate(-50%, -50%);
+        }
     }
 }
