@@ -33,27 +33,27 @@ export default function HomeLayout() {
           title: t("omma_desc.cards.workInTeam.title"),
           desc: t("omma_desc.cards.workInTeam.desc"),
           buttonText: t("buttons.createTeam"),
-          link: `${!userProfileState.status.isAuth ? "/auth/signup" : ''}`
+          link: `${!userProfileState.status.isAuth ? "/auth/signup" : '/dashboard'}`
         },
         {
           iconPath: "/icons/ChatIcon.png",
           title: t("omma_desc.cards.teamChat.title"),
           desc: t("omma_desc.cards.teamChat.desc"),
           buttonText: t("buttons.letWork"),
-          link: `${!userProfileState.status.isAuth ? "/auth/signup" : ''}`
+          link: `${!userProfileState.status.isAuth ? "/auth/signup" : '/dashboard'}`
         },
         {
           iconPath: "/icons/GraphIcon.png",
           title: t("omma_desc.cards.taskMMSimple.title"),
           desc: t("omma_desc.cards.taskMMSimple.desc"),
           buttonText: t("buttons.getStarted"),
-          link: `${!userProfileState.status.isAuth ? "/auth/signup" : ''}`
+          link: `${!userProfileState.status.isAuth ? "/auth/signup" : '/dashboard'}`
         }
       ]
   
     const handleClick = () => {
       if(userProfileState.status.isAuth) {
-        navigate({ to: '' });
+        navigate({ to: '/dashboard' });
         updateState({
           isOpened: true,
           type: 'success',
@@ -102,7 +102,7 @@ export default function HomeLayout() {
               ? (
                 OmmaCards.map((card: OmmaCardsProps) => (
                   <OmmaCard
-                    key={card.link}
+                    key={card.buttonText}
                     {...card}
                     width={100} 
                     height={100}

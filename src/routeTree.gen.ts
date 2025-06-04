@@ -12,6 +12,9 @@
 
 import { Route as rootRoute } from './routes/__root'
 import { Route as IndexImport } from './routes/index'
+import { Route as DashboardIndexImport } from './routes/dashboard/index'
+import { Route as DashboardTeamsIndexImport } from './routes/dashboard/teams/index'
+import { Route as DashboardSettingsIndexImport } from './routes/dashboard/settings/index'
 import { Route as AuthSignupIndexImport } from './routes/auth/signup/index'
 import { Route as AuthResetPasswordIndexImport } from './routes/auth/reset-password/index'
 import { Route as AuthLoginIndexImport } from './routes/auth/login/index'
@@ -23,6 +26,24 @@ import { Route as AuthForgotPasswordIndexImport } from './routes/auth/forgot-pas
 const IndexRoute = IndexImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const DashboardIndexRoute = DashboardIndexImport.update({
+  id: '/dashboard/',
+  path: '/dashboard/',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const DashboardTeamsIndexRoute = DashboardTeamsIndexImport.update({
+  id: '/dashboard/teams/',
+  path: '/dashboard/teams/',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const DashboardSettingsIndexRoute = DashboardSettingsIndexImport.update({
+  id: '/dashboard/settings/',
+  path: '/dashboard/settings/',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -67,6 +88,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexImport
       parentRoute: typeof rootRoute
     }
+    '/dashboard/': {
+      id: '/dashboard/'
+      path: '/dashboard'
+      fullPath: '/dashboard'
+      preLoaderRoute: typeof DashboardIndexImport
+      parentRoute: typeof rootRoute
+    }
     '/auth/forgot-password/': {
       id: '/auth/forgot-password/'
       path: '/auth/forgot-password'
@@ -102,6 +130,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthSignupIndexImport
       parentRoute: typeof rootRoute
     }
+    '/dashboard/settings/': {
+      id: '/dashboard/settings/'
+      path: '/dashboard/settings'
+      fullPath: '/dashboard/settings'
+      preLoaderRoute: typeof DashboardSettingsIndexImport
+      parentRoute: typeof rootRoute
+    }
+    '/dashboard/teams/': {
+      id: '/dashboard/teams/'
+      path: '/dashboard/teams'
+      fullPath: '/dashboard/teams'
+      preLoaderRoute: typeof DashboardTeamsIndexImport
+      parentRoute: typeof rootRoute
+    }
   }
 }
 
@@ -109,76 +151,100 @@ declare module '@tanstack/react-router' {
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/dashboard': typeof DashboardIndexRoute
   '/auth/forgot-password': typeof AuthForgotPasswordIndexRoute
   '/auth/google': typeof AuthGoogleIndexRoute
   '/auth/login': typeof AuthLoginIndexRoute
   '/auth/reset-password': typeof AuthResetPasswordIndexRoute
   '/auth/signup': typeof AuthSignupIndexRoute
+  '/dashboard/settings': typeof DashboardSettingsIndexRoute
+  '/dashboard/teams': typeof DashboardTeamsIndexRoute
 }
 
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/dashboard': typeof DashboardIndexRoute
   '/auth/forgot-password': typeof AuthForgotPasswordIndexRoute
   '/auth/google': typeof AuthGoogleIndexRoute
   '/auth/login': typeof AuthLoginIndexRoute
   '/auth/reset-password': typeof AuthResetPasswordIndexRoute
   '/auth/signup': typeof AuthSignupIndexRoute
+  '/dashboard/settings': typeof DashboardSettingsIndexRoute
+  '/dashboard/teams': typeof DashboardTeamsIndexRoute
 }
 
 export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexRoute
+  '/dashboard/': typeof DashboardIndexRoute
   '/auth/forgot-password/': typeof AuthForgotPasswordIndexRoute
   '/auth/google/': typeof AuthGoogleIndexRoute
   '/auth/login/': typeof AuthLoginIndexRoute
   '/auth/reset-password/': typeof AuthResetPasswordIndexRoute
   '/auth/signup/': typeof AuthSignupIndexRoute
+  '/dashboard/settings/': typeof DashboardSettingsIndexRoute
+  '/dashboard/teams/': typeof DashboardTeamsIndexRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/dashboard'
     | '/auth/forgot-password'
     | '/auth/google'
     | '/auth/login'
     | '/auth/reset-password'
     | '/auth/signup'
+    | '/dashboard/settings'
+    | '/dashboard/teams'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/dashboard'
     | '/auth/forgot-password'
     | '/auth/google'
     | '/auth/login'
     | '/auth/reset-password'
     | '/auth/signup'
+    | '/dashboard/settings'
+    | '/dashboard/teams'
   id:
     | '__root__'
     | '/'
+    | '/dashboard/'
     | '/auth/forgot-password/'
     | '/auth/google/'
     | '/auth/login/'
     | '/auth/reset-password/'
     | '/auth/signup/'
+    | '/dashboard/settings/'
+    | '/dashboard/teams/'
   fileRoutesById: FileRoutesById
 }
 
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  DashboardIndexRoute: typeof DashboardIndexRoute
   AuthForgotPasswordIndexRoute: typeof AuthForgotPasswordIndexRoute
   AuthGoogleIndexRoute: typeof AuthGoogleIndexRoute
   AuthLoginIndexRoute: typeof AuthLoginIndexRoute
   AuthResetPasswordIndexRoute: typeof AuthResetPasswordIndexRoute
   AuthSignupIndexRoute: typeof AuthSignupIndexRoute
+  DashboardSettingsIndexRoute: typeof DashboardSettingsIndexRoute
+  DashboardTeamsIndexRoute: typeof DashboardTeamsIndexRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  DashboardIndexRoute: DashboardIndexRoute,
   AuthForgotPasswordIndexRoute: AuthForgotPasswordIndexRoute,
   AuthGoogleIndexRoute: AuthGoogleIndexRoute,
   AuthLoginIndexRoute: AuthLoginIndexRoute,
   AuthResetPasswordIndexRoute: AuthResetPasswordIndexRoute,
   AuthSignupIndexRoute: AuthSignupIndexRoute,
+  DashboardSettingsIndexRoute: DashboardSettingsIndexRoute,
+  DashboardTeamsIndexRoute: DashboardTeamsIndexRoute,
 }
 
 export const routeTree = rootRoute
@@ -192,15 +258,21 @@ export const routeTree = rootRoute
       "filePath": "__root.tsx",
       "children": [
         "/",
+        "/dashboard/",
         "/auth/forgot-password/",
         "/auth/google/",
         "/auth/login/",
         "/auth/reset-password/",
-        "/auth/signup/"
+        "/auth/signup/",
+        "/dashboard/settings/",
+        "/dashboard/teams/"
       ]
     },
     "/": {
       "filePath": "index.tsx"
+    },
+    "/dashboard/": {
+      "filePath": "dashboard/index.tsx"
     },
     "/auth/forgot-password/": {
       "filePath": "auth/forgot-password/index.tsx"
@@ -216,6 +288,12 @@ export const routeTree = rootRoute
     },
     "/auth/signup/": {
       "filePath": "auth/signup/index.tsx"
+    },
+    "/dashboard/settings/": {
+      "filePath": "dashboard/settings/index.tsx"
+    },
+    "/dashboard/teams/": {
+      "filePath": "dashboard/teams/index.tsx"
     }
   }
 }
