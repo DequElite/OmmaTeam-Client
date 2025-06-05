@@ -11,6 +11,7 @@
     &__header {
         @include mixs.centeredRow;
         width: 100%;
+        height: 7%;
         font-family: vars.$secondary_font;
         font-size: 2.35rem;
     }
@@ -32,7 +33,7 @@
 .sidebar__main {
     &-primarylinks {
         width: 100%;
-        height: 50%;
+        height: 46.5%;
         padding: 15px;
         box-sizing: border-box;
         @include mixs.centeredColumn;
@@ -42,7 +43,63 @@
 
     &-secondarylinks {
         width: 100%;
-        height: 45%;
+        height: 46.5%;
+    }
+}
+
+.sidebar__main-secondarylinks{
+    .secondarylinks__container{
+        width: 100%;
+        height: 82%;
+        padding: 15px;
+        box-sizing: border-box;
+        gap: 20px;
+        @include mixs.centeredColumn;
+        justify-content: end;
+
+        .link{
+            width: 100%;
+            height: 15%;
+        }
+    }
+
+    .secondarylinks__profile{
+        width: 100%;
+        height: 18%;
+        background-color: rgba($color: #000000, $alpha: 0.6);
+        @include mixs.centeredRow;
+        padding: 10px;
+        box-sizing: border-box;
+
+        img {
+            width: 25%;
+        }
+
+        &-data{
+            width: 80%;
+            height: 100%;
+            max-height: 100%;
+            @include mixs.centeredColumn;
+            align-items: start;
+            padding-left: 10px;
+
+            h3, p {
+                margin: 0; 
+                padding: 0;
+            }
+
+            h3{
+                color: #FFFFFF;
+                font-weight: 500;
+                font-size: 1.1rem;
+            }
+
+            p {
+                color: #FFE0E0;
+                font-size: 0.8rem;
+            }
+
+        }
     }
 }
 
@@ -58,6 +115,7 @@
     font-size: 0.95rem;
     color: #FFFFFF;
     text-decoration: none;
+    gap: 10px;
 
     &.non-activated {
         background-color: rgba($color: #000000, $alpha: 0.3);
@@ -77,5 +135,10 @@
             left: 90%;
             transform: translate(-50%, -50%);
         }
+    }
+
+    img{
+        width: 9%;
+        aspect-ratio: 1 / 1;
     }
 }

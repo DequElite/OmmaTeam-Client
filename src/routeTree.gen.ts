@@ -20,6 +20,7 @@ import { Route as AuthResetPasswordIndexImport } from './routes/auth/reset-passw
 import { Route as AuthLoginIndexImport } from './routes/auth/login/index'
 import { Route as AuthGoogleIndexImport } from './routes/auth/google/index'
 import { Route as AuthForgotPasswordIndexImport } from './routes/auth/forgot-password/index'
+import { Route as DashboardTasksCalendarIndexImport } from './routes/dashboard/tasks/calendar/index'
 
 // Create/Update Routes
 
@@ -76,6 +77,13 @@ const AuthForgotPasswordIndexRoute = AuthForgotPasswordIndexImport.update({
   path: '/auth/forgot-password/',
   getParentRoute: () => rootRoute,
 } as any)
+
+const DashboardTasksCalendarIndexRoute =
+  DashboardTasksCalendarIndexImport.update({
+    id: '/dashboard/tasks/calendar/',
+    path: '/dashboard/tasks/calendar/',
+    getParentRoute: () => rootRoute,
+  } as any)
 
 // Populate the FileRoutesByPath interface
 
@@ -144,6 +152,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DashboardTeamsIndexImport
       parentRoute: typeof rootRoute
     }
+    '/dashboard/tasks/calendar/': {
+      id: '/dashboard/tasks/calendar/'
+      path: '/dashboard/tasks/calendar'
+      fullPath: '/dashboard/tasks/calendar'
+      preLoaderRoute: typeof DashboardTasksCalendarIndexImport
+      parentRoute: typeof rootRoute
+    }
   }
 }
 
@@ -159,6 +174,7 @@ export interface FileRoutesByFullPath {
   '/auth/signup': typeof AuthSignupIndexRoute
   '/dashboard/settings': typeof DashboardSettingsIndexRoute
   '/dashboard/teams': typeof DashboardTeamsIndexRoute
+  '/dashboard/tasks/calendar': typeof DashboardTasksCalendarIndexRoute
 }
 
 export interface FileRoutesByTo {
@@ -171,6 +187,7 @@ export interface FileRoutesByTo {
   '/auth/signup': typeof AuthSignupIndexRoute
   '/dashboard/settings': typeof DashboardSettingsIndexRoute
   '/dashboard/teams': typeof DashboardTeamsIndexRoute
+  '/dashboard/tasks/calendar': typeof DashboardTasksCalendarIndexRoute
 }
 
 export interface FileRoutesById {
@@ -184,6 +201,7 @@ export interface FileRoutesById {
   '/auth/signup/': typeof AuthSignupIndexRoute
   '/dashboard/settings/': typeof DashboardSettingsIndexRoute
   '/dashboard/teams/': typeof DashboardTeamsIndexRoute
+  '/dashboard/tasks/calendar/': typeof DashboardTasksCalendarIndexRoute
 }
 
 export interface FileRouteTypes {
@@ -198,6 +216,7 @@ export interface FileRouteTypes {
     | '/auth/signup'
     | '/dashboard/settings'
     | '/dashboard/teams'
+    | '/dashboard/tasks/calendar'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -209,6 +228,7 @@ export interface FileRouteTypes {
     | '/auth/signup'
     | '/dashboard/settings'
     | '/dashboard/teams'
+    | '/dashboard/tasks/calendar'
   id:
     | '__root__'
     | '/'
@@ -220,6 +240,7 @@ export interface FileRouteTypes {
     | '/auth/signup/'
     | '/dashboard/settings/'
     | '/dashboard/teams/'
+    | '/dashboard/tasks/calendar/'
   fileRoutesById: FileRoutesById
 }
 
@@ -233,6 +254,7 @@ export interface RootRouteChildren {
   AuthSignupIndexRoute: typeof AuthSignupIndexRoute
   DashboardSettingsIndexRoute: typeof DashboardSettingsIndexRoute
   DashboardTeamsIndexRoute: typeof DashboardTeamsIndexRoute
+  DashboardTasksCalendarIndexRoute: typeof DashboardTasksCalendarIndexRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
@@ -245,6 +267,7 @@ const rootRouteChildren: RootRouteChildren = {
   AuthSignupIndexRoute: AuthSignupIndexRoute,
   DashboardSettingsIndexRoute: DashboardSettingsIndexRoute,
   DashboardTeamsIndexRoute: DashboardTeamsIndexRoute,
+  DashboardTasksCalendarIndexRoute: DashboardTasksCalendarIndexRoute,
 }
 
 export const routeTree = rootRoute
@@ -265,7 +288,8 @@ export const routeTree = rootRoute
         "/auth/reset-password/",
         "/auth/signup/",
         "/dashboard/settings/",
-        "/dashboard/teams/"
+        "/dashboard/teams/",
+        "/dashboard/tasks/calendar/"
       ]
     },
     "/": {
@@ -294,6 +318,9 @@ export const routeTree = rootRoute
     },
     "/dashboard/teams/": {
       "filePath": "dashboard/teams/index.tsx"
+    },
+    "/dashboard/tasks/calendar/": {
+      "filePath": "dashboard/tasks/calendar/index.tsx"
     }
   }
 }

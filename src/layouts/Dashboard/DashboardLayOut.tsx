@@ -18,14 +18,29 @@ export default function DashboardLayout(props: DashboardLayoutProps) {
                         title="OmmaTeam"
                         primaryLinks={[
                             {
-                                link: '/dashboard',
-                                name: 'Dashboard'
+                                link: '/dashboard/teams',
+                                name: 'Teams',
+                                icon: '/svg/Team.svg'
                             },
                             {
-                                link: '/dashboard/settings',
-                                name: 'team'
+                                link: '/dashboard/tasks/calendar',
+                                name: 'Calendar',
+                                icon: '/svg/Calendar.svg'
                             },
                         ]}
+                        secondaryLinks={[
+                            {
+                                link: '/dashboard/settings',
+                                name: 'Settings',
+                                icon: '/svg/Settings.svg'
+                            },
+                        ]}
+                        profileData={{
+                            showProfileData: true,
+                            username: 'fsaf',
+                            email: 'sfsf@@@',
+                            icon: '/icons/UserIcon.png'
+                        }}
                     />
                 </section>
                 <section className={styles["layout__content"]}>

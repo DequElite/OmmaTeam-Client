@@ -76,7 +76,9 @@ export default function Sidebar(props: SidebarProps){
                         {primaryLinksRender}
                     </section>
                     <section className={styles["sidebar__main-secondarylinks"]}>
-                        {secondaryLinksRender}
+                        <div className={styles["secondarylinks__container"]}>
+                            {secondaryLinksRender}
+                        </div>
                         {
                             props.profileData?.showProfileData && 
                             <div className={styles["secondarylinks__profile"]}>
