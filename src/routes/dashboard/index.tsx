@@ -1,16 +1,18 @@
 import { createFileRoute } from '@tanstack/react-router'
-import DashboardLayout from '../../layouts/Dashboard/DashboardLayOut'
+import CabinetLayout from '../../layouts/CabinetLayout/Cabinet.layout'
+import DashboardLayout from '../../layouts/Dashboard/Dashboard.layout'
 
 export const Route = createFileRoute('/dashboard/')({
   component: RouteComponent,
 })
 
 function RouteComponent() {
+
   return (
-    <DashboardLayout
+    <CabinetLayout
       title={"Dashboard"}
     >
-      Dashboard
-    </DashboardLayout>
+      <DashboardLayout />
+    </CabinetLayout>
   )
 }
