@@ -1,5 +1,6 @@
 import { createFileRoute } from '@tanstack/react-router'
 import DashboardLayout from '../../../layouts/CabinetLayout/Cabinet.layout'
+import SettingsLayout from '../../../layouts/Settings/Settings.layout'
 
 export const Route = createFileRoute('/dashboard/settings/')({
   component: RouteComponent,
@@ -7,8 +8,9 @@ export const Route = createFileRoute('/dashboard/settings/')({
 
 function RouteComponent() {
   return <DashboardLayout
-        title={"Dashboard"}
+        title={"Settings"}
+        icon='/svg/Dark/Settings.svg'
       >
-        Dashboard
+        <SettingsLayout />
       </DashboardLayout>
 }
