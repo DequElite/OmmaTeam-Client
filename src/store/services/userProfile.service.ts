@@ -14,7 +14,7 @@ export const getUserProfile = createAsyncThunk<UserProfileResponse, void, {
     'user/getProfile',
     async (_: any, {extra, rejectWithValue}) => {
         try {
-            const response = await extra.userService.getProfile();
+            const response = await extra.profileService.getProfile();
             console.log("asss: ", ReturnAccessToken())
             return response.data.user;
         } catch (err: unknown) {
@@ -29,7 +29,7 @@ export const getUserProfile = createAsyncThunk<UserProfileResponse, void, {
                     if (response.status === 200) {
                         SetAccessToken(response.data.accessToken);
 
-                        const retryResponse = await extra.userService.getProfile();
+                        const retryResponse = await extra.profileService.getProfile();
                         return retryResponse.data.user;
                     } else {
                         return rejectWithValue({ message: "Failed to refresh token", status: response.status });

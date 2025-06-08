@@ -1,5 +1,6 @@
 import { z } from "zod";
 import { ForgotPassowrdSchema, logInSchema, ResetPassowrdSchema, signUpSchema } from "../schemas-validate/register.schema";
+import { changeProfileDataSchema, newPasswordSchema } from "../schemas-validate/profile.schema";
 
 export enum UsersRoles {
 	User = 'USER',
@@ -41,18 +42,5 @@ export type ResetPasswordShared = z.infer<typeof ResetPassowrdSchema> & {
 };
 export type ResetPassword = z.infer<typeof ResetPassowrdSchema>;
 
-export interface ChangeProfileDto {
-	username: string;
-	email: string;
-	oldPassword: string;
-	password: string;
-}
-
-export type TPasswordChangeDto = Partial<
-	Pick<ChangeProfileDto, 'email' | 'username'>
-> &
-	Required<Omit<ChangeProfileDto, 'email' | 'username'>>;
-
-export type TPartialChangeDto = Partial<
-	Omit<ChangeProfileDto, 'oldPassword' | 'password'>
->;
+export type NewPassword = z.infer<typeof newPasswordSchema>;
+export type ChangeProfileData = z.infer<typeof changeProfileDataSchema>;

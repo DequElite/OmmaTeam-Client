@@ -1,10 +1,9 @@
 import { handleResponse } from "../../utils/handleResponse.util";
 import { validateSchemas } from "../../utils/validate.util";
 import registerClient, { BaseRegisterUrl } from "../clients/register-service.client";
+import { passwordField } from "../schemas-validate/global.schemas";
 import { 
-    changeProfileSchema, 
     logInSchema, 
-    passwordField, 
     signUpSchema 
 } from "../schemas-validate/register.schema";
 import { 
@@ -13,8 +12,6 @@ import {
     ResetPassword, 
     ResetPasswordShared, 
     SignUp, 
-    TPartialChangeDto, 
-    TPasswordChangeDto, 
     User
 } from "../types/user.types";
 
@@ -28,20 +25,6 @@ export class UserService {
     public async logIn(body: LogIn){
         validateSchemas(logInSchema, body);
         return handleResponse(registerClient.post('/sign/log-in', body));
-    }
-
-    public async getProfile(){
-        return handleResponse(registerClient.get('/auth/profile'));
-    }
-
-    public async changePassword(body: TPasswordChangeDto){
-        validateSchemas(passwordField, body.password);
-        return handleResponse(registerClient.patch('/auth/profile/change-password', body));
-    }
-
-    public async changeProfile(body: TPartialChangeDto){
-        validateSchemas(changeProfileSchema, body);
-        return handleResponse(registerClient.patch('/auth/profile/change-profile', body));
     }
 
     public async refreshToken(){

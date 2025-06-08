@@ -1,24 +1,10 @@
 import { z } from "zod";
 import { UsersRoles } from "../types/user.types";
-
-export const emailField = z.string().email("Incorrect mail format!");
+import { emailField, passwordField, roleField, usernameField } from "./global.schemas";
 
 export const ForgotPassowrdSchema = z.object({
   email: emailField,
 });
-
-export const usernameField = z
-  .string()
-  .max(25, "Username must not be longer than 25 characters!")
-  .min(6, "The username must contain at least 6 characters!");
-
-export const passwordField = z
-  .string()
-  .min(8, "The password must contain at least 8 characters!")
-  .regex(/[a-z]/, "The password must contain lowercase letters!")
-  .regex(/[A-Z]/, "The password must contain uppercase letters!")
-  .regex(/[0-9]/, "The password must contain numbers!")
-  .regex(/[!@#$%^&*(),.?":{}|<>]/, "The password must contain special characters!")
 
 export const ResetPassowrdSchema = z.object({
   password: passwordField,
@@ -27,9 +13,6 @@ export const ResetPassowrdSchema = z.object({
 export const passwordFieldLogin = z
   .string()
   .min(1, "Password is required!");
-
-
-export const roleField = z.enum(Object.values(UsersRoles) as [UsersRoles, ...UsersRoles[]]);
 
 export const signUpSchema = z.object({
   email: emailField,
@@ -41,9 +24,4 @@ export const signUpSchema = z.object({
 export const logInSchema = z.object({
   email: emailField,
   password: passwordFieldLogin,
-});
-
-export const changeProfileSchema = z.object({
-    email: emailField.optional(),
-    username: usernameField.optional(),
 });

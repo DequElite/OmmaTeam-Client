@@ -9,16 +9,20 @@ import { useMutation } from "@tanstack/react-query";
 import { UserService } from "../../api/services/UserRegister.service";
 import { useMessageBox } from "../../contexts/MessageBoxContext/useMessageBox";
 import { useTranslation } from "react-i18next";
+import { useEffect } from "react";
 
 const userService = new UserService();
 
-export default function ForgotPasswordLayout() {
+export default function ForgotPasswordLayout({email}:{email: string | null}) {
     const { updateState } = useMessageBox();
     const { t } = useTranslation();
 
     const { register, handleSubmit, formState: {errors} } = useForm<ForgotPassowrd>({
         mode: 'onChange',
-        resolver: zodResolver(ForgotPassowrdSchema)
+        resolver: zodResolver(ForgotPassowrdSchema),
+        defaultValues: {
+            email: email ?? ''
+        }
     });
 
     const { mutate, isPending } = useMutation({

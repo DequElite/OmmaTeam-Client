@@ -3,10 +3,13 @@ import { TypedUseSelectorHook, useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import userProfileSlice from "./slices/userProfile.slice";
 import { UserService } from "../api/services/UserRegister.service";
+import { ProfileService } from "../api/services/Profile.service";
 
 const userService = new UserService();
+const profileService = new ProfileService();
 export const extraArgument = {
-    userService
+    userService,
+    profileService
 };
 
 const store = configureStore({

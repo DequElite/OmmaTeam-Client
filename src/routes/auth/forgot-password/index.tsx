@@ -10,6 +10,8 @@ export const Route = createFileRoute('/auth/forgot-password/')({
 
 function RouteComponent() {
   const { t } = useTranslation();
+  
+  const { email } = Route.useSearch();
 
   return (
     <>
@@ -21,7 +23,7 @@ function RouteComponent() {
           </div>
         }
       >
-        <ForgotPasswordLayout></ForgotPasswordLayout>
+        <ForgotPasswordLayout email={email}></ForgotPasswordLayout>
       </AuthLayout>
     </>
   )
