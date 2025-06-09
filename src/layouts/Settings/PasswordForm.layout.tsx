@@ -43,7 +43,7 @@ export default function PasswordFormLayout() {
                     updateState({
                         isOpened: true,
                         type: 'error',
-                        desc: 'Missign passwordfields'
+                        desc: 'Missign password fields'
                     });
                     break;
                 case 401:
@@ -106,7 +106,7 @@ export default function PasswordFormLayout() {
                     width={100}
                     height={6}
                     type='submit'
-                    disabled={false}
+                    disabled={isPending}
                 >
                     <span style={{fontSize:'1.15rem', color:"#FFFFFF", display:'flex', justifyContent:'center', alignItems: 'center', gap:'10px'}}>
                         <img src="/svg/Change.svg" alt="" /> 
