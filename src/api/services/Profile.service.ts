@@ -18,4 +18,8 @@ export class ProfileService {
     public async getProfile(){
         return handleResponse(registerClient.get('/auth/profile'));
     }
+
+    public async getUserTeams(){
+        return handleResponse(registerClient.get('/auth/profile/teams'));
+    }
 }

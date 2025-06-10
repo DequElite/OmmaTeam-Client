@@ -6,6 +6,7 @@ import { useEffect } from "react";
 import { getUserProfile } from "./store/services/userProfile.service";
 import { MessageBox } from "./components/MessageBox/MessageBox.component";
 import { LanguageBox } from "./components/LanguageBox/LanguageBox.component";
+import { getUserTeamsShortData } from "./store/services/userTeams.service";
 
 const router = createRouter({
   routeTree,
@@ -17,6 +18,9 @@ function App() {
   useEffect(()=>{
     dispatch(
       getUserProfile()
+    );
+    dispatch(
+      getUserTeamsShortData()
     );
   },[])
 

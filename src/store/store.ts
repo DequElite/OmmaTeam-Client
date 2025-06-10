@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import userProfileSlice from "./slices/userProfile.slice";
 import { UserService } from "../api/services/UserRegister.service";
 import { ProfileService } from "../api/services/Profile.service";
+import userTeamsSlice from "./slices/userTeams.slice";
 
 const userService = new UserService();
 const profileService = new ProfileService();
@@ -14,7 +15,8 @@ export const extraArgument = {
 
 const store = configureStore({
     reducer: {
-        userProfile: userProfileSlice
+        userProfile: userProfileSlice,
+        userTeams: userTeamsSlice
     },
     middleware: (getDefaultMiddleware) =>
         getDefaultMiddleware({
