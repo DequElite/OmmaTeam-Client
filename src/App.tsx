@@ -7,6 +7,7 @@ import { getUserProfile } from "./store/services/userProfile.service";
 import { MessageBox } from "./components/MessageBox/MessageBox.component";
 import { LanguageBox } from "./components/LanguageBox/LanguageBox.component";
 import { getUserTeamsShortData } from "./store/services/userTeams.service";
+import ConfirmBox from "./components/ConfirmBox/ConfirmBox.component";
 
 const router = createRouter({
   routeTree,
@@ -26,6 +27,7 @@ function App() {
 
   return (
     <>
+      <ConfirmBox />
       <LanguageBox />
       <MessageBox />
       <RouterProvider router={router} />
