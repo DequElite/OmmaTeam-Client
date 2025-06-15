@@ -11,11 +11,17 @@ import { useMutation } from "@tanstack/react-query";
 import { ProfileService } from "../../api/services/Profile.service";
 import { SetAccessToken } from "../../utils/getTokenFromLocalStorage.util";
 import { getUserProfile } from "../../store/services/userProfile.service";
+import useConfirmBox from "../../contexts/ConfirmBoxContext/useConfirmBox";
+import { useTranslation } from "react-i18next";
 
 const profileService = new ProfileService();
 
 export default function ProfileFormLayout() {
     const { updateState } = useMessageBox();
+    const { confirm } = useConfirmBox();
+
+    const { t } = useTranslation();
+
     const dispatch = useAppDispatch();
 
     const userProfileData = useAppSelector(state => state.userProfile);
@@ -73,10 +79,21 @@ export default function ProfileFormLayout() {
         },
     })
 
-    const onSubmit: SubmitHandler<ChangeProfileData> = (data:ChangeProfileData) => {
+    const onSubmit: SubmitHandler<ChangeProfileData> = async (data:ChangeProfileData) => {
         console.debug('DATA ON  SUBMIT: ', data);
     
-        mutate(data);
+        if(confirm){
+            const result = await confirm("You are going to change your profile data");
+            if(result){
+                mutate(data);
+            } else {
+                updateState({
+                    isOpened: true,
+                    type: 'info',
+                    desc: 'Nothing has been changed'
+                });
+            }
+        }
     }
 
     return (
@@ -109,7 +126,7 @@ export default function ProfileFormLayout() {
                 >
                     <span style={{fontSize:'1.15rem', color:"#FFFFFF", display:'flex', justifyContent:'center', alignItems: 'center', gap:'10px'}}>
                         <img src="/svg/Save.svg" alt="" /> 
-                        Save
+                        {t('buttons.Save')}
                     </span>
                 </Button>
             </form>

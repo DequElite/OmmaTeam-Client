@@ -2,6 +2,7 @@ import React from "react";
 import Sidebar from "../../components/Sidebar/Sidebar";
 import styles from "./style.module.scss";
 import { useAppSelector } from "../../store/store";
+import { useTranslation } from "react-i18next";
 
 interface DashboardLayoutProps {
     children: React.ReactNode;
@@ -13,6 +14,8 @@ interface DashboardLayoutProps {
 export default function CabinetLayout(props: DashboardLayoutProps) {
     const user = useAppSelector(state => state.userProfile);
 
+    const { t } = useTranslation(); 
+
     return (
         <>
             <main className={styles["layout"]}>
@@ -22,24 +25,24 @@ export default function CabinetLayout(props: DashboardLayoutProps) {
                         primaryLinks={[
                             {
                                 link: '/dashboard',
-                                name: 'Dashboard',
+                                name: t("cabinet.sidebar.dashboard"),
                                 icon: '/svg/Dashboard.svg'
                             },
                             {
                                 link: '/dashboard/teams',
-                                name: 'Teams',
+                                name: t("cabinet.sidebar.teams"),
                                 icon: '/svg/Team.svg'
                             },
                             {
                                 link: '/dashboard/tasks/calendar',
-                                name: 'Calendar',
+                                name: t("cabinet.sidebar.calendar"),
                                 icon: '/svg/Calendar.svg'
                             },
                         ]}
                         secondaryLinks={[
                             {
                                 link: '/dashboard/settings',
-                                name: 'Settings',
+                                name: t("cabinet.sidebar.settings"),
                                 icon: '/svg/Settings.svg'
                             },
                         ]}

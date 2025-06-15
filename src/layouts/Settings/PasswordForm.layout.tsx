@@ -11,11 +11,16 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { newPasswordSchema } from "../../api/schemas-validate/profile.schema";
 import { useMutation } from "@tanstack/react-query";
 import { ProfileService } from "../../api/services/Profile.service";
+import useConfirmBox from "../../contexts/ConfirmBoxContext/useConfirmBox";
+import { useTranslation } from "react-i18next";
 
 const profileService = new ProfileService();
 
 export default function PasswordFormLayout() {
     const { updateState } = useMessageBox();
+    const { confirm } = useConfirmBox();
+
+    const { t } = useTranslation();
 
     const userProfileData = useAppSelector(state => state.userProfile);
     
@@ -71,10 +76,22 @@ export default function PasswordFormLayout() {
         },
     });
 
-    const onSubmit: SubmitHandler<NewPassword> = (data: NewPassword) => {
+    const onSubmit: SubmitHandler<NewPassword> = async (data: NewPassword) => {
         console.debug('DATA ON SUBMIT: ', data);
 
-        mutate(data);
+        if(confirm){
+            const result = await confirm("You are going to change your password");
+            if(result){
+                mutate(data);
+            } else {
+                updateState({
+                    isOpened: true,
+                    type: 'info',
+                    desc: 'Nothing has been changed'
+                });
+            }
+        }
+        // mutate(data);
     }
 
     return (
@@ -110,7 +127,7 @@ export default function PasswordFormLayout() {
                 >
                     <span style={{fontSize:'1.15rem', color:"#FFFFFF", display:'flex', justifyContent:'center', alignItems: 'center', gap:'10px'}}>
                         <img src="/svg/Change.svg" alt="" /> 
-                        Change password
+                        {t('buttons.ChangePassword')}
                     </span>
                 </Button>
             </form>

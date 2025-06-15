@@ -1,6 +1,7 @@
 import { Link, useLocation } from "@tanstack/react-router";
 import styles from "./style.module.scss";
-import { useEffect, useMemo } from "react";
+import { useEffect, useMemo, useState } from "react";
+import { useTranslation } from "react-i18next";
 
 interface ISidebarLink {
     link: string;
@@ -44,6 +45,9 @@ function SidebarLink(props: ISidebarLink) {
 }
 
 export default function Sidebar(props: SidebarProps){
+    const { i18n } = useTranslation();
+
+    const [lang, setLang] = useState(i18n.language);
 
     const primaryLinksRender = useMemo(() => 
         props.primaryLinks.map((link) => (
@@ -52,7 +56,16 @@ export default function Sidebar(props: SidebarProps){
                 {...link}
             />
         ))
-    , [props.primaryLinks]);
+    , [props.primaryLinks, lang]);
+
+    useEffect(() => {
+        const onLangChange = (lng: string) => setLang(lng);
+        i18n.on('languageChanged', onLangChange);
+
+        return () => {
+            i18n.off('languageChanged', onLangChange);
+        };
+    }, [i18n]);
 
     const secondaryLinksRender = useMemo(() =>
         props.secondaryLinks?.map((link) => (
@@ -61,7 +74,7 @@ export default function Sidebar(props: SidebarProps){
                 {...link}
             />
         )) || null
-    , [props.secondaryLinks]);
+    , [props.secondaryLinks, lang]);
 
     return (
         <>

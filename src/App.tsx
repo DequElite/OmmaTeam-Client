@@ -21,10 +21,10 @@ function App() {
 
   useEffect(()=>{
     dispatch(
-      getUserProfile()
+      getUserTeamsShortData()
     );
     dispatch(
-      getUserTeamsShortData()
+      getUserProfile()
     );
   },[])
 

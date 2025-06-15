@@ -19,8 +19,6 @@ export default function HomeLayout() {
     const { updateState } = useMessageBox();
     const { t } = useTranslation(); 
 
-    const {confirm} = useConfirmBox();
-
     useEffect(()=>{
       const interval = setInterval(()=>{
         setCurrentCardSlide(prevState => (prevState + 1) % OmmaCards.length);

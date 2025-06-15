@@ -8,7 +8,7 @@ export const getUserTeamsShortData = createAsyncThunk<TeamShortDataType[], void,
     extra: typeof extraArgument;
     rejectValue: unknown;
   }>(
-    'user/getProfile',
+    'userTeams/getUserTeamsShortData',
     async (_: any, {extra, rejectWithValue}) => {
         try {
             const response = await extra.profileService.getUserTeams();

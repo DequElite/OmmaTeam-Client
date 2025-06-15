@@ -25,7 +25,10 @@
         "LogIn": "Log In",
         "GoogleSign": "Log In by Google",
         "SendKey": "Send Key",
-        "Confirm": "Confirm"
+        "Confirm": "Confirm",
+        "CreateTeam": "Create team",
+        "Save": "Save",
+        "ChangePassword": "Change Password"
     },
     "forms": {
         "SignUp": {
@@ -58,5 +61,19 @@
         "GoogleSign": {
             "title": "We are registering you via Google..."
         }
+    },
+    "cabinet":{
+        "sidebar": {
+            "dashboard": "Dashboard",
+            "teams": "Teams",
+            "calendar": "Calendar",
+            "settings": "Settings"
+        }
+    },
+    "other": {
+        "owner": "Owner",
+        "tasks": "tasks",
+        "profile": "Profile",
+        "password": "Password"
     }
 }

@@ -1,16 +1,34 @@
 import { createFileRoute } from '@tanstack/react-router'
 import CabinetLayout from '../../../layouts/CabinetLayout/Cabinet.layout'
 import TeamsLayout from '../../../layouts/Teams/Teams.layout'
+import Button from '../../../components/Button/Button.component'
+import { useTranslation } from 'react-i18next'
 
 export const Route = createFileRoute('/dashboard/teams/')({
   component: RouteComponent,
 })
 
 function RouteComponent() {
+  const { t } = useTranslation(); 
+
   return (
     <CabinetLayout
-      title='Teams'
+      title={t('cabinet.sidebar.teams')}
       icon='/svg/Dark/Team.svg'
+      headerSecondaryChildren={
+        <Button
+          variant='branded'
+          width={24}
+          height={5}
+        >
+          <span style={{color:"#FFFFFF", display:'flex', justifyContent:'center', alignItems: 'center', gap:'3px'}}>
+            <img src="/svg/Create.svg" alt="" width={20} /> 
+            {
+              t('buttons.CreateTeam')
+            }
+          </span>
+        </Button>
+      }
     >
       <TeamsLayout />
     </CabinetLayout>
