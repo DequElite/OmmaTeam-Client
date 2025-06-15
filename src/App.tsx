@@ -8,12 +8,15 @@ import { MessageBox } from "./components/MessageBox/MessageBox.component";
 import { LanguageBox } from "./components/LanguageBox/LanguageBox.component";
 import { getUserTeamsShortData } from "./store/services/userTeams.service";
 import ConfirmBox from "./components/ConfirmBox/ConfirmBox.component";
+import useConfirmBox from "./contexts/ConfirmBoxContext/useConfirmBox";
 
 const router = createRouter({
   routeTree,
 })
 
 function App() {
+  const { isOpened } = useConfirmBox();
+
   const dispatch = useAppDispatch();
 
   useEffect(()=>{
@@ -27,7 +30,11 @@ function App() {
 
   return (
     <>
-      <ConfirmBox />
+      {
+        isOpened && (
+          <ConfirmBox />
+        )
+      }
       <LanguageBox />
       <MessageBox />
       <RouterProvider router={router} />

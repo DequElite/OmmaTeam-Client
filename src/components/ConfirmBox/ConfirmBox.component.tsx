@@ -1,13 +1,10 @@
+import useConfirmBox from "../../contexts/ConfirmBoxContext/useConfirmBox";
 import Button from "../Button/Button.component";
 import styles from "./style.module.scss";
 
-interface ConfirmBoxProps {
-    title?: string;
-    desc?: string;
-    onConfirm?: (result: boolean) => boolean;
-}
+export default function ConfirmBox() {
+    const { message, handleConfirm } = useConfirmBox();
 
-export default function ConfirmBox(props: ConfirmBoxProps) {
     return (
         <div className={styles['layout']}>
             <div className={styles['box']}>
@@ -16,13 +13,14 @@ export default function ConfirmBox(props: ConfirmBoxProps) {
                         Are you sure about that?
                     </h3>
                     <p>
-                        You wanted to delete a command, are you sure about your actions?
+                        {message}
                     </p>
                     <div className={styles['content__buttons']}>
                         <Button
                             variant='branded'
                             width={43}
                             height={5}
+                            onClick={() => handleConfirm(true)}
                         >
                             <span style={{fontSize:'1rem'}}>
                                 Yes
@@ -32,6 +30,7 @@ export default function ConfirmBox(props: ConfirmBoxProps) {
                             variant='dark'
                             width={43}
                             height={5}
+                            onClick={() => handleConfirm(false)}
                         >
                             <span style={{fontSize:'1rem'}}>
                                 No
