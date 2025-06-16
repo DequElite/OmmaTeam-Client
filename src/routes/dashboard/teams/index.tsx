@@ -1,4 +1,4 @@
-import { createFileRoute } from '@tanstack/react-router'
+import { createFileRoute, useNavigate } from '@tanstack/react-router'
 import CabinetLayout from '../../../layouts/CabinetLayout/Cabinet.layout'
 import TeamsLayout from '../../../layouts/Teams/Teams.layout'
 import Button from '../../../components/Button/Button.component'
@@ -10,6 +10,7 @@ export const Route = createFileRoute('/dashboard/teams/')({
 
 function RouteComponent() {
   const { t } = useTranslation(); 
+  const navigate = useNavigate();
 
   return (
     <CabinetLayout
@@ -20,6 +21,7 @@ function RouteComponent() {
           variant='branded'
           width={24}
           height={5}
+          onClick={()=>navigate({to:'create'})}
         >
           <span style={{color:"#FFFFFF", display:'flex', justifyContent:'center', alignItems: 'center', gap:'3px'}}>
             <img src="/svg/Create.svg" alt="" width={20} /> 

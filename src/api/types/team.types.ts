@@ -1,3 +1,6 @@
+import { z } from "zod";
+import { CreateTeamSchema } from "../schemas-validate/team.schema";
+
 export interface TeamShortDataType {
     team: {
         id: string;
@@ -10,3 +13,5 @@ export interface TeamShortDataType {
         id: string;
     }[];
 }
+
+export type CreateTeamType = z.infer<typeof CreateTeamSchema>
