@@ -1,0 +1,79 @@
+{
+    "omma_desc": {
+        "desc": "Perform team tasks conveniently and quickly",
+        "small_desc": "OmmaTeam - Fast and convenient",
+        "cards": {
+            "workInTeam": {
+                "title": "Work in team",
+                "desc": "Join or create teams, easily manage tasks, and keep track of your progress with insightful statistics!"
+            },
+            "teamChat": {
+                "title": "Team Chat",
+                "desc": "Engage in quick, clear, and seamless conversations with your teammates in the team chat!"
+            },
+            "taskMMSimple": {
+                "title": "Task Management Made Simple",
+                "desc": "Assign tasks, track progress, and collaborate with your team. Manage deadlines, priorities, and subtasks effortlessly!"
+            }
+        }
+    },
+    "buttons": {
+        "getStarted": "Get Started",
+        "createTeam": "Create team",
+        "letWork": "Let`s work",
+        "SignUp": "Sign Up",
+        "LogIn": "Log In",
+        "GoogleSign": "Log In by Google",
+        "SendKey": "Send Key",
+        "Confirm": "Confirm",
+        "CreateTeam": "Create team",
+        "Save": "Save",
+        "ChangePassword": "Change Password"
+    },
+    "forms": {
+        "SignUp": {
+            "title": "Get Started",
+            "desc": "Welcome to OmmaTeam - Create your account or",
+            "fields": [
+                "Email",
+                "Username",
+                "Password"
+            ]
+        },
+        "LogIn": {
+            "title": "Welcome back",
+            "desc": "Welcome to OmmaTeam - Log In in your account or",
+            "fields": [
+                "Email",
+                "Password"
+            ]
+        },
+        "ForgotPassoword": {
+            "title": "Forgot Password?",
+            "desc": "Don`t worry! We will send you an email to your mail, just write your mail down!",
+            "field": "Email"
+        },
+        "ResetPassword": {
+            "title": "Reset to new password",
+            "desc": "So, you can now change your old password to a new one!",
+            "field": "New Password"
+        },
+        "GoogleSign": {
+            "title": "We are registering you via Google..."
+        }
+    },
+    "cabinet":{
+        "sidebar": {
+            "dashboard": "Dashboard",
+            "teams": "Teams",
+            "calendar": "Calendar",
+            "settings": "Settings"
+        }
+    },
+    "other": {
+        "owner": "Owner",
+        "tasks": "tasks",
+        "profile": "Profile",
+        "password": "Password"
+    }
+}

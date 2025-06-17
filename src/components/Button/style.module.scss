@@ -1,0 +1,55 @@
+@use "@/styles/variables.style.scss" as vars;
+@use "@/styles/mixins.style.scss" as mixs;
+
+.button {
+    border-radius: 15px;
+    color: #FFECEA;
+    font-weight: bold;
+    outline: none;
+    border: none;
+    transition: 0.5s;
+    cursor: pointer;
+        
+    &:hover{
+        scale: 0.9;
+        box-shadow: 0 0 10px #424242;
+    }
+
+    &:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+        box-shadow: none;
+        transform: none;
+        scale: 1 !important;
+        pointer-events: none;
+    }
+    
+}
+
+.dark {
+    background-color: #424242;
+}
+
+.branded {
+    background: linear-gradient(90deg, vars.$light_orange, vars.$light_purple);
+}
+  
+.branded-reverese {
+    background: linear-gradient(90deg, vars.$light_purple, vars.$light_orange);
+}
+
+.animated {
+    animation: wiggle 2s infinite ease-in-out;
+}
+
+@keyframes wiggle {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(0.95);
+    }
+    100% {
+        transform: scale(1);
+    }
+}

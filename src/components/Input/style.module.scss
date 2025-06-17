@@ -1,0 +1,64 @@
+@use "@/styles/variables.style.scss" as vars;
+@use "@/styles/mixins.style.scss" as mixs;
+
+.field {
+    width: 100%;
+
+    .title{
+        font-weight: 450;
+        font-size: 1.1rem;
+        margin-top: 0;
+        margin-bottom: 15px;
+
+        .requiredField{
+            color: #F21313;
+        }
+    }
+    
+    .input{
+        width: 100%;
+        padding: 13px;
+        box-sizing: border-box;
+        border-radius: 10px;
+        outline: none;
+        border: 2px solid vars.$light_link_font;
+        transition: 0.4s;
+        font-size: 1.1rem;
+
+        &:focus{
+            border: none;
+            border-bottom: 2px solid vars.$light_link_font;
+            border-image: linear-gradient(220deg, vars.$light_orange, vars.$light_purple) 1;      
+
+        }
+    }
+
+    .error{
+        margin-top: 0;
+        font-size: 0.9rem;
+        color: #F21313;
+    }
+}
+
+.password-field {
+  width: 100%;
+  @include mixs.centeredRow;
+  position: relative;
+
+  .eye {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: transparent;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #666;
+    @include mixs.centeredRow;
+
+    &:hover {
+      color: #333;
+    }
+  }
+}

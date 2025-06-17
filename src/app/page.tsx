@@ -1,95 +1,132 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+'use client'
+
+import styles from "./page.module.scss";
+import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
+import { useMessageBox } from "@/contexts/MessageBoxContext/useMessageBox";
+import useIsScreenWidth from "@/hooks/useIsScreenWidth";
+import { useRouter } from "next/navigation";
+import { useAppSelector } from "@/store/store";
+import OmmaCard from "@/components/OmmaCards/OmmaCards.component";
+import { OmmaCardsProps } from "@/api/types/props.types";
+import Button from "@/components/Button/Button.component";
 
 export default function Home() {
-  return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol>
-          <li>
-            Get started by editing <code>src/app/page.tsx</code>.
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+  const userProfileState = useAppSelector(state => state.userProfile);
+  const router = useRouter();
+  const [currentCardSlide, setCurrentCardSlide] = useState(0);
+  const { isSmallScreen } = useIsScreenWidth({ minScreenWidth: 600 });
 
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles.secondary}
-          >
-            Read our docs
-          </a>
-        </div>
+  const { updateState } = useMessageBox();
+  const { t } = useTranslation(); 
+
+  useEffect(()=>{
+    const interval = setInterval(()=>{
+      setCurrentCardSlide((prevState: number) => (prevState + 1) % OmmaCards.length);
+    },5000);
+
+    return () => clearInterval(interval);
+  }, []);
+
+  const OmmaCards = [
+        {
+          iconPath: "/icons/TeamIcon.png",
+          title: t("omma_desc.cards.workInTeam.title"),
+          desc: t("omma_desc.cards.workInTeam.desc"),
+          buttonText: t("buttons.createTeam"),
+          link: `${!userProfileState.status.isAuth ? "/auth/signup" : '/dashboard'}`
+        },
+        {
+          iconPath: "/icons/ChatIcon.png",
+          title: t("omma_desc.cards.teamChat.title"),
+          desc: t("omma_desc.cards.teamChat.desc"),
+          buttonText: t("buttons.letWork"),
+          link: `${!userProfileState.status.isAuth ? "/auth/signup" : '/dashboard'}`
+        },
+        {
+          iconPath: "/icons/GraphIcon.png",
+          title: t("omma_desc.cards.taskMMSimple.title"),
+          desc: t("omma_desc.cards.taskMMSimple.desc"),
+          buttonText: t("buttons.getStarted"),
+          link: `${!userProfileState.status.isAuth ? "/auth/signup" : '/dashboard'}`
+        }
+      ]
+  
+    const handleClick = async () => {
+      if(userProfileState.status.isAuth) {
+        router.push('/dashboard');
+        updateState({
+          isOpened: true,
+          type: 'success',
+          desc: `Welcome back, ${userProfileState.username}`
+        })
+      } else if (!userProfileState.status.isAuth) {
+        router.push('/auth/signup');
+      }
+    }
+
+  return (
+    <main className={styles['homelayout']}>
+        <section className={styles['homelayout__first']}>
+          <div className={styles['homelayout__first-container']}>
+            <header className={styles['homelayout__first-header']}>
+              <h1>OmmaTeam</h1>
+            </header>
+            <div className={styles['homelayout__first-desc']}>
+              <h4>
+                <strong>{t("omma_desc.desc")}</strong>
+              </h4>
+            </div>
+            <div className={styles['homelayout__first-button']}>
+              <Button 
+                variant="dark" 
+                width={100} 
+                height={8} 
+                animation={true} 
+                onClick={handleClick}>
+                <span className={styles['homelayout__first-button-text']}>
+                  {t("buttons.getStarted")}
+                </span>
+              </Button>
+            </div>
+          </div>
+        </section>
+  
+        <section className={styles['homelayout__second']}>
+          <header className={styles['homelayout__second-header']}>
+            <img src="/icons/OmmaTeam.png" alt="OmmaTeam Logo" />
+            <h3>{t("omma_desc.small_desc")}</h3>
+          </header>
+          <div className={styles['homelayout__second-cards']}>
+            {
+              isSmallScreen
+              ? (
+                OmmaCards.map((card: OmmaCardsProps) => (
+                  <OmmaCard
+                    key={card.buttonText}
+                    {...card}
+                    width={100} 
+                    height={100}
+                    style={{
+                      transform: `translateX(-${currentCardSlide * 100 + (currentCardSlide * 10)}%)`,
+                      transition: 'transform 0.5s ease-in-out',
+                    }}
+                  />
+                ))
+              ) 
+              : (
+                OmmaCards.map((card: OmmaCardsProps, index: number) => (
+                  <OmmaCard
+                    key={index}
+                    {...card}
+                    width={isSmallScreen ? 100 : 100 / 3.5} 
+                    height={100}
+                  />
+                ))
+              )
+            }
+          </div>
+        </section>
       </main>
-      <footer className={styles.footer}>
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
   );
 }
