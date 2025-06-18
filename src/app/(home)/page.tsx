@@ -61,7 +61,7 @@ export default function Home() {
           desc: `Welcome back, ${userProfileState.username}`
         })
       } else if (!userProfileState.status.isAuth) {
-        router.push('/auth/signup');
+        router.push('/signup');
       }
     }
 

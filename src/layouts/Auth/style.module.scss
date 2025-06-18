@@ -1,0 +1,216 @@
+@use "@/styles/variables.style.scss" as vars;
+@use "@/styles/mixins.style.scss" as mixs;
+
+.authlayout{
+    width: 100%;
+    height: 100vh;
+    @include mixs.centeredRow;
+    font-family: vars.$primary_font;
+
+    &__form, &__preview {
+        height: 100%;
+        @include mixs.centeredColumn;
+        padding: 20px;
+        box-sizing: border-box;
+    }
+}
+
+.authlayout__form{
+    width: 50%;
+
+    &-container{
+        width: 60%;
+        height: 100%;
+    }
+
+    &-header {
+        width: 100%;
+
+        &-img{
+          width: 15%;
+        }
+
+        &-title {
+          margin-top: 0px;
+        }
+
+        &-desc{
+          margin-top: -5px;
+        }
+
+        .desc-text{
+          font-size: 1.15rem;
+          color: vars.$darker_font;
+          font-weight: 400;
+        }
+
+        .desc-link {
+          font-weight: 700;
+          color: vars.$light_link_font;
+          text-decoration: none;
+        }
+    }
+
+    &-line {
+      color: vars.$darker_font;
+    }
+} 
+
+.authlayout__form-container{
+  .form-shell {
+    @include mixs.centeredColumn;
+    gap: 20px;
+    padding-top: 15px;
+
+    &__or{
+      width: 100%;
+      @include mixs.centeredRow;
+      position: relative;
+    }
+
+    .or-line {
+      width: 100%;
+      height: 2px;
+      background: linear-gradient(220deg, vars.$light_orange, vars.$light_purple);
+      position: absolute;
+      top: 50%;
+      left: 0%;
+      transform: translate(0%, 0%);
+      z-index: 0;
+      transition: 1s;
+    }
+
+    .or-text{
+      background-color: #FFFFFF;
+      color: vars.$light_purple;      
+      position: relative;
+      padding: 2px;
+      font-weight: bold;
+      font-size: 0.9rem;
+      padding: 5px;
+    }
+    .button-google{
+        @include mixs.centeredRow;
+        gap: 7px;
+        img {
+            width: 6%;
+        }
+    }
+
+    &__forgot-password{
+      width: 100%;
+      @include mixs.centeredRow;
+      justify-content: end;
+
+      a{
+        font-weight: 700;
+          color: vars.$light_link_font;
+          text-decoration: none;
+      }
+    }
+  }
+}
+
+.authlayout__preview{
+    width: 50%;
+    margin-left: auto;
+
+    &-container{
+        padding: 150px;
+        box-sizing: border-box;
+        color: vars.$light_font;
+        @include mixs.centeredColumn;
+        width: 100%;
+        height: 100%;
+        border-radius: 20px;
+        background: linear-gradient(220deg, vars.$light_orange, vars.$light_purple);
+    
+        h1 {
+            font-size: 3.5rem;
+            text-shadow: 0 0 10px rgba(0, 0, 0, 0.521);
+            font-family: vars.$secondary_font;
+        }
+
+        h4 {
+            font-size: 2.5rem;
+            line-height: 3rem;
+            text-shadow: 0 0 10px rgba(0, 0, 0, 0.521);
+            text-align: center;
+            font-weight:900;
+            margin-top: -5%;
+            margin-bottom: 30%;
+            font-family: vars.$primary_font;
+        }
+
+        &::after{
+            content: '';
+            position: absolute;
+            background-image: url('../../../public/images/Kapybaryk.png');
+            background-repeat: no-repeat;
+            background-size: contain; 
+            width: 10vh;
+            height: 10vh;
+            top: 25%;
+            left: 85%;
+            animation: flying 5s infinite ease-in-out;
+            @include mixs.centeredRow;
+        }
+    }
+}
+
+@keyframes flying {
+    0% {
+      top: 25%;
+      transform: rotate(0deg);
+    }
+    25% {
+      top: 20%;
+      transform: rotate(0deg);
+    }
+    35% {
+      top: 25%;
+      transform: rotate(0deg);
+    }
+    50% {
+      top: 25%;
+      transform: rotate(90deg);
+    }
+    75% {
+      transform: rotate(270deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+  @media (max-width: 600px) {
+    .authlayout {
+        &__preview {
+          display: none;
+        }
+  
+        &__form {
+          width: 100%;
+          &-container{
+            width: 100%;
+          }
+        }
+    }
+  }
+  
+@media (max-width: 1200px) and (min-width: 600px) {
+  .authlayout {
+      &__preview {
+          display: none;
+      }
+    
+      &__form {
+        width: 80%;
+
+        &-container{
+          width: 80%;
+        }
+      }
+  }
+}
+  
