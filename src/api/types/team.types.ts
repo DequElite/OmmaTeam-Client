@@ -1,5 +1,14 @@
 import { z } from "zod";
-import { CreateTeamSchema } from "../schemas-validate/team.schema";
+import { CreateTeamSchema, SomeTeamByID } from "../schemas-validate/team.schema";
+
+export interface TeammateDataType {
+    id: string;
+    userId: string | null;
+    inviteToken: string | null;
+    inviteExpiresAt: Date | null;
+    isAccepted: boolean;
+    teamId: string;
+}
 
 export interface TeamShortDataType {
     team: {
@@ -14,4 +23,15 @@ export interface TeamShortDataType {
     }[];
 }
 
-export type CreateTeamType = z.infer<typeof CreateTeamSchema>
+export interface TeamDataType {
+    name: string;
+    id: string;
+    leaderId: string;
+    createdAt: Date;
+    isLeader: string;
+    teammates: TeammateDataType[];
+}
+
+export type CreateTeamType = z.infer<typeof CreateTeamSchema>;
+
+export type SomeTeamByID = z.infer<typeof SomeTeamByID>

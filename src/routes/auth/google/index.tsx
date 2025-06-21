@@ -26,11 +26,11 @@ function RouteComponent() {
           await dispatch(getUserProfile());
 
           console.log("token: ", ReturnAccessToken())
-          navigate({ to: '/' })
+          navigate({ to: '/', replace: true  })
         }
       } else {
         console.error("Google login failed");
-        navigate({ to: '/auth/login' })
+        navigate({ to: '/auth/login', replace: true  })
       }
     }
 

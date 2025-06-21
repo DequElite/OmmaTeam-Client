@@ -3,9 +3,11 @@ import CabinetLayout from '../../../layouts/CabinetLayout/Cabinet.layout'
 import TeamsLayout from '../../../layouts/Teams/Teams.layout'
 import Button from '../../../components/Button/Button.component'
 import { useTranslation } from 'react-i18next'
+import { protectedLoader } from '../../../loaders/protectedLoader'
 
 export const Route = createFileRoute('/dashboard/teams/')({
   component: RouteComponent,
+  loader: protectedLoader
 })
 
 function RouteComponent() {

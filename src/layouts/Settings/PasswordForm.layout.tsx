@@ -107,7 +107,7 @@ export default function PasswordFormLayout() {
                 />
                 <PasswordInput 
                     placeholder="New password"
-                    title={'Email'}
+                    title={'New Password'}
                     isRequired={true}
                     isError={!!errors.password}
                     errorText={typeof errors.password?.message === 'string' ? errors.password.message : ''}

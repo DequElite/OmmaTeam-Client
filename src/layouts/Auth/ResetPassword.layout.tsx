@@ -34,7 +34,7 @@ export default function ResetPasswordLayout({
                 desc: 'Your password was reset successfully!'
             });
 
-            navigate({ to:'/auth/login' })
+            navigate({ to:'/auth/login', replace: true })
         },
         onError: (err: any) => {
             console.error('error: ', err);

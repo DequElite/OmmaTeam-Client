@@ -8,175 +8,89 @@
 // You should NOT make any changes in this file as it will be overwritten.
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
-// Import Routes
+import { Route as rootRouteImport } from './routes/__root'
+import { Route as IndexRouteImport } from './routes/index'
+import { Route as DashboardIndexRouteImport } from './routes/dashboard/index'
+import { Route as DashboardTeamsIndexRouteImport } from './routes/dashboard/teams/index'
+import { Route as DashboardSettingsIndexRouteImport } from './routes/dashboard/settings/index'
+import { Route as AuthSignupIndexRouteImport } from './routes/auth/signup/index'
+import { Route as AuthResetPasswordIndexRouteImport } from './routes/auth/reset-password/index'
+import { Route as AuthLoginIndexRouteImport } from './routes/auth/login/index'
+import { Route as AuthGoogleIndexRouteImport } from './routes/auth/google/index'
+import { Route as AuthForgotPasswordIndexRouteImport } from './routes/auth/forgot-password/index'
+import { Route as TeamTeamIdTasksIndexRouteImport } from './routes/team/$teamId/tasks/index'
+import { Route as DashboardTeamsCreateIndexRouteImport } from './routes/dashboard/teams/create/index'
+import { Route as DashboardTasksCalendarIndexRouteImport } from './routes/dashboard/tasks/calendar/index'
+import { Route as TeamTeamIdLeaderSettingsIndexRouteImport } from './routes/team/$teamId/leader/settings/index'
 
-import { Route as rootRoute } from './routes/__root'
-import { Route as IndexImport } from './routes/index'
-import { Route as DashboardIndexImport } from './routes/dashboard/index'
-import { Route as DashboardTeamsIndexImport } from './routes/dashboard/teams/index'
-import { Route as DashboardSettingsIndexImport } from './routes/dashboard/settings/index'
-import { Route as AuthSignupIndexImport } from './routes/auth/signup/index'
-import { Route as AuthResetPasswordIndexImport } from './routes/auth/reset-password/index'
-import { Route as AuthLoginIndexImport } from './routes/auth/login/index'
-import { Route as AuthGoogleIndexImport } from './routes/auth/google/index'
-import { Route as AuthForgotPasswordIndexImport } from './routes/auth/forgot-password/index'
-import { Route as DashboardTeamsCreateIndexImport } from './routes/dashboard/teams/create/index'
-import { Route as DashboardTasksCalendarIndexImport } from './routes/dashboard/tasks/calendar/index'
-
-// Create/Update Routes
-
-const IndexRoute = IndexImport.update({
+const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
-  getParentRoute: () => rootRoute,
+  getParentRoute: () => rootRouteImport,
 } as any)
-
-const DashboardIndexRoute = DashboardIndexImport.update({
+const DashboardIndexRoute = DashboardIndexRouteImport.update({
   id: '/dashboard/',
   path: '/dashboard/',
-  getParentRoute: () => rootRoute,
+  getParentRoute: () => rootRouteImport,
 } as any)
-
-const DashboardTeamsIndexRoute = DashboardTeamsIndexImport.update({
+const DashboardTeamsIndexRoute = DashboardTeamsIndexRouteImport.update({
   id: '/dashboard/teams/',
   path: '/dashboard/teams/',
-  getParentRoute: () => rootRoute,
+  getParentRoute: () => rootRouteImport,
 } as any)
-
-const DashboardSettingsIndexRoute = DashboardSettingsIndexImport.update({
+const DashboardSettingsIndexRoute = DashboardSettingsIndexRouteImport.update({
   id: '/dashboard/settings/',
   path: '/dashboard/settings/',
-  getParentRoute: () => rootRoute,
+  getParentRoute: () => rootRouteImport,
 } as any)
-
-const AuthSignupIndexRoute = AuthSignupIndexImport.update({
+const AuthSignupIndexRoute = AuthSignupIndexRouteImport.update({
   id: '/auth/signup/',
   path: '/auth/signup/',
-  getParentRoute: () => rootRoute,
+  getParentRoute: () => rootRouteImport,
 } as any)
-
-const AuthResetPasswordIndexRoute = AuthResetPasswordIndexImport.update({
+const AuthResetPasswordIndexRoute = AuthResetPasswordIndexRouteImport.update({
   id: '/auth/reset-password/',
   path: '/auth/reset-password/',
-  getParentRoute: () => rootRoute,
+  getParentRoute: () => rootRouteImport,
 } as any)
-
-const AuthLoginIndexRoute = AuthLoginIndexImport.update({
+const AuthLoginIndexRoute = AuthLoginIndexRouteImport.update({
   id: '/auth/login/',
   path: '/auth/login/',
-  getParentRoute: () => rootRoute,
+  getParentRoute: () => rootRouteImport,
 } as any)
-
-const AuthGoogleIndexRoute = AuthGoogleIndexImport.update({
+const AuthGoogleIndexRoute = AuthGoogleIndexRouteImport.update({
   id: '/auth/google/',
   path: '/auth/google/',
-  getParentRoute: () => rootRoute,
+  getParentRoute: () => rootRouteImport,
 } as any)
-
-const AuthForgotPasswordIndexRoute = AuthForgotPasswordIndexImport.update({
+const AuthForgotPasswordIndexRoute = AuthForgotPasswordIndexRouteImport.update({
   id: '/auth/forgot-password/',
   path: '/auth/forgot-password/',
-  getParentRoute: () => rootRoute,
+  getParentRoute: () => rootRouteImport,
 } as any)
-
-const DashboardTeamsCreateIndexRoute = DashboardTeamsCreateIndexImport.update({
-  id: '/dashboard/teams/create/',
-  path: '/dashboard/teams/create/',
-  getParentRoute: () => rootRoute,
+const TeamTeamIdTasksIndexRoute = TeamTeamIdTasksIndexRouteImport.update({
+  id: '/team/$teamId/tasks/',
+  path: '/team/$teamId/tasks/',
+  getParentRoute: () => rootRouteImport,
 } as any)
-
+const DashboardTeamsCreateIndexRoute =
+  DashboardTeamsCreateIndexRouteImport.update({
+    id: '/dashboard/teams/create/',
+    path: '/dashboard/teams/create/',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const DashboardTasksCalendarIndexRoute =
-  DashboardTasksCalendarIndexImport.update({
+  DashboardTasksCalendarIndexRouteImport.update({
     id: '/dashboard/tasks/calendar/',
     path: '/dashboard/tasks/calendar/',
-    getParentRoute: () => rootRoute,
+    getParentRoute: () => rootRouteImport,
   } as any)
-
-// Populate the FileRoutesByPath interface
-
-declare module '@tanstack/react-router' {
-  interface FileRoutesByPath {
-    '/': {
-      id: '/'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof IndexImport
-      parentRoute: typeof rootRoute
-    }
-    '/dashboard/': {
-      id: '/dashboard/'
-      path: '/dashboard'
-      fullPath: '/dashboard'
-      preLoaderRoute: typeof DashboardIndexImport
-      parentRoute: typeof rootRoute
-    }
-    '/auth/forgot-password/': {
-      id: '/auth/forgot-password/'
-      path: '/auth/forgot-password'
-      fullPath: '/auth/forgot-password'
-      preLoaderRoute: typeof AuthForgotPasswordIndexImport
-      parentRoute: typeof rootRoute
-    }
-    '/auth/google/': {
-      id: '/auth/google/'
-      path: '/auth/google'
-      fullPath: '/auth/google'
-      preLoaderRoute: typeof AuthGoogleIndexImport
-      parentRoute: typeof rootRoute
-    }
-    '/auth/login/': {
-      id: '/auth/login/'
-      path: '/auth/login'
-      fullPath: '/auth/login'
-      preLoaderRoute: typeof AuthLoginIndexImport
-      parentRoute: typeof rootRoute
-    }
-    '/auth/reset-password/': {
-      id: '/auth/reset-password/'
-      path: '/auth/reset-password'
-      fullPath: '/auth/reset-password'
-      preLoaderRoute: typeof AuthResetPasswordIndexImport
-      parentRoute: typeof rootRoute
-    }
-    '/auth/signup/': {
-      id: '/auth/signup/'
-      path: '/auth/signup'
-      fullPath: '/auth/signup'
-      preLoaderRoute: typeof AuthSignupIndexImport
-      parentRoute: typeof rootRoute
-    }
-    '/dashboard/settings/': {
-      id: '/dashboard/settings/'
-      path: '/dashboard/settings'
-      fullPath: '/dashboard/settings'
-      preLoaderRoute: typeof DashboardSettingsIndexImport
-      parentRoute: typeof rootRoute
-    }
-    '/dashboard/teams/': {
-      id: '/dashboard/teams/'
-      path: '/dashboard/teams'
-      fullPath: '/dashboard/teams'
-      preLoaderRoute: typeof DashboardTeamsIndexImport
-      parentRoute: typeof rootRoute
-    }
-    '/dashboard/tasks/calendar/': {
-      id: '/dashboard/tasks/calendar/'
-      path: '/dashboard/tasks/calendar'
-      fullPath: '/dashboard/tasks/calendar'
-      preLoaderRoute: typeof DashboardTasksCalendarIndexImport
-      parentRoute: typeof rootRoute
-    }
-    '/dashboard/teams/create/': {
-      id: '/dashboard/teams/create/'
-      path: '/dashboard/teams/create'
-      fullPath: '/dashboard/teams/create'
-      preLoaderRoute: typeof DashboardTeamsCreateIndexImport
-      parentRoute: typeof rootRoute
-    }
-  }
-}
-
-// Create and export the route tree
+const TeamTeamIdLeaderSettingsIndexRoute =
+  TeamTeamIdLeaderSettingsIndexRouteImport.update({
+    id: '/team/$teamId/leader/settings/',
+    path: '/team/$teamId/leader/settings/',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -190,8 +104,9 @@ export interface FileRoutesByFullPath {
   '/dashboard/teams': typeof DashboardTeamsIndexRoute
   '/dashboard/tasks/calendar': typeof DashboardTasksCalendarIndexRoute
   '/dashboard/teams/create': typeof DashboardTeamsCreateIndexRoute
+  '/team/$teamId/tasks': typeof TeamTeamIdTasksIndexRoute
+  '/team/$teamId/leader/settings': typeof TeamTeamIdLeaderSettingsIndexRoute
 }
-
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/dashboard': typeof DashboardIndexRoute
@@ -204,10 +119,11 @@ export interface FileRoutesByTo {
   '/dashboard/teams': typeof DashboardTeamsIndexRoute
   '/dashboard/tasks/calendar': typeof DashboardTasksCalendarIndexRoute
   '/dashboard/teams/create': typeof DashboardTeamsCreateIndexRoute
+  '/team/$teamId/tasks': typeof TeamTeamIdTasksIndexRoute
+  '/team/$teamId/leader/settings': typeof TeamTeamIdLeaderSettingsIndexRoute
 }
-
 export interface FileRoutesById {
-  __root__: typeof rootRoute
+  __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/dashboard/': typeof DashboardIndexRoute
   '/auth/forgot-password/': typeof AuthForgotPasswordIndexRoute
@@ -219,8 +135,9 @@ export interface FileRoutesById {
   '/dashboard/teams/': typeof DashboardTeamsIndexRoute
   '/dashboard/tasks/calendar/': typeof DashboardTasksCalendarIndexRoute
   '/dashboard/teams/create/': typeof DashboardTeamsCreateIndexRoute
+  '/team/$teamId/tasks/': typeof TeamTeamIdTasksIndexRoute
+  '/team/$teamId/leader/settings/': typeof TeamTeamIdLeaderSettingsIndexRoute
 }
-
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
@@ -235,6 +152,8 @@ export interface FileRouteTypes {
     | '/dashboard/teams'
     | '/dashboard/tasks/calendar'
     | '/dashboard/teams/create'
+    | '/team/$teamId/tasks'
+    | '/team/$teamId/leader/settings'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -248,6 +167,8 @@ export interface FileRouteTypes {
     | '/dashboard/teams'
     | '/dashboard/tasks/calendar'
     | '/dashboard/teams/create'
+    | '/team/$teamId/tasks'
+    | '/team/$teamId/leader/settings'
   id:
     | '__root__'
     | '/'
@@ -261,9 +182,10 @@ export interface FileRouteTypes {
     | '/dashboard/teams/'
     | '/dashboard/tasks/calendar/'
     | '/dashboard/teams/create/'
+    | '/team/$teamId/tasks/'
+    | '/team/$teamId/leader/settings/'
   fileRoutesById: FileRoutesById
 }
-
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   DashboardIndexRoute: typeof DashboardIndexRoute
@@ -276,6 +198,104 @@ export interface RootRouteChildren {
   DashboardTeamsIndexRoute: typeof DashboardTeamsIndexRoute
   DashboardTasksCalendarIndexRoute: typeof DashboardTasksCalendarIndexRoute
   DashboardTeamsCreateIndexRoute: typeof DashboardTeamsCreateIndexRoute
+  TeamTeamIdTasksIndexRoute: typeof TeamTeamIdTasksIndexRoute
+  TeamTeamIdLeaderSettingsIndexRoute: typeof TeamTeamIdLeaderSettingsIndexRoute
+}
+
+declare module '@tanstack/react-router' {
+  interface FileRoutesByPath {
+    '/': {
+      id: '/'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/dashboard/': {
+      id: '/dashboard/'
+      path: '/dashboard'
+      fullPath: '/dashboard'
+      preLoaderRoute: typeof DashboardIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/dashboard/teams/': {
+      id: '/dashboard/teams/'
+      path: '/dashboard/teams'
+      fullPath: '/dashboard/teams'
+      preLoaderRoute: typeof DashboardTeamsIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/dashboard/settings/': {
+      id: '/dashboard/settings/'
+      path: '/dashboard/settings'
+      fullPath: '/dashboard/settings'
+      preLoaderRoute: typeof DashboardSettingsIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/auth/signup/': {
+      id: '/auth/signup/'
+      path: '/auth/signup'
+      fullPath: '/auth/signup'
+      preLoaderRoute: typeof AuthSignupIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/auth/reset-password/': {
+      id: '/auth/reset-password/'
+      path: '/auth/reset-password'
+      fullPath: '/auth/reset-password'
+      preLoaderRoute: typeof AuthResetPasswordIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/auth/login/': {
+      id: '/auth/login/'
+      path: '/auth/login'
+      fullPath: '/auth/login'
+      preLoaderRoute: typeof AuthLoginIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/auth/google/': {
+      id: '/auth/google/'
+      path: '/auth/google'
+      fullPath: '/auth/google'
+      preLoaderRoute: typeof AuthGoogleIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/auth/forgot-password/': {
+      id: '/auth/forgot-password/'
+      path: '/auth/forgot-password'
+      fullPath: '/auth/forgot-password'
+      preLoaderRoute: typeof AuthForgotPasswordIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/team/$teamId/tasks/': {
+      id: '/team/$teamId/tasks/'
+      path: '/team/$teamId/tasks'
+      fullPath: '/team/$teamId/tasks'
+      preLoaderRoute: typeof TeamTeamIdTasksIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/dashboard/teams/create/': {
+      id: '/dashboard/teams/create/'
+      path: '/dashboard/teams/create'
+      fullPath: '/dashboard/teams/create'
+      preLoaderRoute: typeof DashboardTeamsCreateIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/dashboard/tasks/calendar/': {
+      id: '/dashboard/tasks/calendar/'
+      path: '/dashboard/tasks/calendar'
+      fullPath: '/dashboard/tasks/calendar'
+      preLoaderRoute: typeof DashboardTasksCalendarIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/team/$teamId/leader/settings/': {
+      id: '/team/$teamId/leader/settings/'
+      path: '/team/$teamId/leader/settings'
+      fullPath: '/team/$teamId/leader/settings'
+      preLoaderRoute: typeof TeamTeamIdLeaderSettingsIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+  }
 }
 
 const rootRouteChildren: RootRouteChildren = {
@@ -290,64 +310,9 @@ const rootRouteChildren: RootRouteChildren = {
   DashboardTeamsIndexRoute: DashboardTeamsIndexRoute,
   DashboardTasksCalendarIndexRoute: DashboardTasksCalendarIndexRoute,
   DashboardTeamsCreateIndexRoute: DashboardTeamsCreateIndexRoute,
+  TeamTeamIdTasksIndexRoute: TeamTeamIdTasksIndexRoute,
+  TeamTeamIdLeaderSettingsIndexRoute: TeamTeamIdLeaderSettingsIndexRoute,
 }
-
-export const routeTree = rootRoute
+export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-/* ROUTE_MANIFEST_START
-{
-  "routes": {
-    "__root__": {
-      "filePath": "__root.tsx",
-      "children": [
-        "/",
-        "/dashboard/",
-        "/auth/forgot-password/",
-        "/auth/google/",
-        "/auth/login/",
-        "/auth/reset-password/",
-        "/auth/signup/",
-        "/dashboard/settings/",
-        "/dashboard/teams/",
-        "/dashboard/tasks/calendar/",
-        "/dashboard/teams/create/"
-      ]
-    },
-    "/": {
-      "filePath": "index.tsx"
-    },
-    "/dashboard/": {
-      "filePath": "dashboard/index.tsx"
-    },
-    "/auth/forgot-password/": {
-      "filePath": "auth/forgot-password/index.tsx"
-    },
-    "/auth/google/": {
-      "filePath": "auth/google/index.tsx"
-    },
-    "/auth/login/": {
-      "filePath": "auth/login/index.tsx"
-    },
-    "/auth/reset-password/": {
-      "filePath": "auth/reset-password/index.tsx"
-    },
-    "/auth/signup/": {
-      "filePath": "auth/signup/index.tsx"
-    },
-    "/dashboard/settings/": {
-      "filePath": "dashboard/settings/index.tsx"
-    },
-    "/dashboard/teams/": {
-      "filePath": "dashboard/teams/index.tsx"
-    },
-    "/dashboard/tasks/calendar/": {
-      "filePath": "dashboard/tasks/calendar/index.tsx"
-    },
-    "/dashboard/teams/create/": {
-      "filePath": "dashboard/teams/create/index.tsx"
-    }
-  }
-}
-ROUTE_MANIFEST_END */

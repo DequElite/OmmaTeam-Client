@@ -1,4 +1,11 @@
 @use "@/styles/variables.style.scss" as vars;
+@use "@/styles/mixins.style.scss" as mixs;
+
+main {
+  width: 100%;
+  height: 100vh;
+  @include mixs.centeredRow;
+}
 
 .loader {
   width: 80px;

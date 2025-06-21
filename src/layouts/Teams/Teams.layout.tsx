@@ -20,7 +20,7 @@ export default function TeamsLayout(){
                                     <img src="/icons/UserIcon.png" alt="ownericon" className={styles['info__ownericon']} />
                                     <div className={styles['info__data']}>
                                         <h3 className={styles['info__data-teamname']}>
-                                            <Link to=''>
+                                            <Link to={`/team/${team.team.id}/tasks`}>
                                                 {team.team.name}
                                             </Link>
                                         </h3>

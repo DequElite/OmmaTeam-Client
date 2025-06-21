@@ -13,7 +13,7 @@ import { MessageBoxProvider } from './contexts/MessageBoxContext/MessageBox.prov
 import './i18n/i18n.ts';
 import ConfirmBoxProvider from './contexts/ConfirmBoxContext/ConfirmBox.provider.tsx'
 
-const queryClient = new QueryClient()
+export const queryClient = new QueryClient()
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
@@ -24,7 +24,7 @@ createRoot(document.getElementById('root')!).render(
             <App />
           </ConfirmBoxProvider>
         </MessageBoxProvider>
-        {/* <ReactQueryDevtools initialIsOpen={false} /> */}
+        <ReactQueryDevtools initialIsOpen={false} />
       </QueryClientProvider>
     </Provider>
   </StrictMode>,

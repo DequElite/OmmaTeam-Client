@@ -42,7 +42,7 @@ export default function LogInLayout() {
                 desc: 'LogIn successful!'
             });
 
-            navigate({ to: '/' });
+            navigate({ to: '/', replace: true });
         },
         onError: (err: any) => {
             console.error('error: ', err);

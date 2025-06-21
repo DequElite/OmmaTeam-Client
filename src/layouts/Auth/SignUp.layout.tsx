@@ -42,7 +42,7 @@ export default function SignUpLayout() {
                 desc: 'Registration successful!'
             });
 
-            navigate({ to:'/' })
+            navigate({ to:'/', replace: true  })
         },
         onError: (err: any) => {
             console.error('error: ', err);
