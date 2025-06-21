@@ -1,0 +1,32 @@
+@use "@/styles/mixins.style.scss" as mixs;
+@use "@/styles/variables.style.scss" as vars;
+
+
+.layout {
+    width: 100%;
+    height: 100%;
+    @include mixs.centeredRow;
+    // justify-content: start;
+    // align-items: start;
+    font-family: vars.$primary_font;
+    justify-content: space-around;
+}
+
+.form {
+    width: 25%;
+    height: 50%;
+    max-height: 100%;
+    @include mixs.centeredColumn;
+    justify-content: start;
+    align-items: start;
+    gap: 25px;
+
+    .title{
+        width: 100%;
+        height: 7%;
+
+        h3 {
+            font-size: 1.2rem;
+        }
+    }
+}

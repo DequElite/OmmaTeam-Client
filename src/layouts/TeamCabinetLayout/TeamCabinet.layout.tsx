@@ -30,37 +30,37 @@ export default function TeamCabinetLayout(props: DashboardLayoutProps) {
                             {
                                 link: '/dashboard',
                                 name: 'Home',
-                                icon: '/svg/Dashboard.svg'
+                                icon: '/svg/Home.svg'
                             },
                             {
-                                link: '/dashboard/teams',
+                                link:  `/team/${props.teamId}/tasks`,
                                 name: 'Tasks',
-                                icon: '/svg/Team.svg'
+                                icon: '/svg/Tasks.svg'
                             },
                             {
-                                link: '/dashboard/tasks/calendar',
+                                link: `/team/${props.teamId}/chat`,
                                 name: 'Chat',
-                                icon: '/svg/Calendar.svg'
+                                icon: '/svg/Chat.svg'
                             },
                             {
-                                link: '/dashboard/tasks/calendar',
+                                link: `/team/${props.teamId}/calendar`,
                                 name: 'Calendar',
                                 icon: '/svg/Calendar.svg'
                             },
                             {
-                                link: '/dashboard/tasks/calendar',
+                                link: `/team/${props.teamId}/teammates`,
                                 name: 'Teammates',
                                 icon: '/svg/Team.svg'
                             },
                         ]}
                         secondaryLinks={isLeader ? [
                             {
-                                link: '/dashboard/settings',
+                                link: `/team/${props.teamId}/leader/task`,
                                 name: 'Task',
-                                icon: '/svg/Settings.svg'
+                                icon: '/svg/Task.svg'
                             },
                             {
-                                link: '/dashboard/settings',
+                                link: `/team/${props.teamId}/leader/settings`,
                                 name: 'Settings',
                                 icon: '/svg/Settings.svg'
                             },

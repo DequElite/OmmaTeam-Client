@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { CreateTeamSchema, SomeTeamByID } from "../schemas-validate/team.schema";
+import { CreateTeamSchema, InviteTeammate, SomeTeamByID } from "../schemas-validate/team.schema";
 
 export interface TeammateDataType {
     id: string;
@@ -33,5 +33,6 @@ export interface TeamDataType {
 }
 
 export type CreateTeamType = z.infer<typeof CreateTeamSchema>;
-
 export type SomeTeamByID = z.infer<typeof SomeTeamByID>
+
+export type InviteTeammateType = z.infer<typeof InviteTeammate>;

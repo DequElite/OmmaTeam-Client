@@ -7,7 +7,7 @@ import WindowLoading from '../../../../components/Loading/WindowLoading.componen
 
 export const Route = createFileRoute('/team/$teamId/tasks/')({
   component: RouteComponent,
-  // loader: protectedLoader
+  loader: protectedLoader
 })
 
 function RouteComponent() {

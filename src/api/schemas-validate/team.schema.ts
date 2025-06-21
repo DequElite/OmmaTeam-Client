@@ -13,7 +13,7 @@ export const SomeTeamByID = z.object({
 //     name: usernameField
 // });
 
-// export const InviteTeammate = z.object({
-//     teamId: z.string().uuid(),
-//     email: emailField
-// });
+export const InviteTeammate = z.object({
+    teamId: z.string().uuid(),
+    email: emailField
+});

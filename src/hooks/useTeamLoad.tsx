@@ -65,13 +65,7 @@ export default function useTeamLoad(teamId: string) {
                 })
                 navigate({ to: "/", replace: true });
             } 
-        } else if(isSuccess) {
-            updateState({
-                isOpened: true,
-                desc: "Success",
-                type: 'success'
-            })
-        }
+        } 
     }, [isError, error, navigate, updateState]);
 
     return {data, isLoading, isSuccess, isError}
