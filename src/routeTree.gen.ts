@@ -19,6 +19,7 @@ import { Route as AuthLoginIndexRouteImport } from './routes/auth/login/index'
 import { Route as AuthGoogleIndexRouteImport } from './routes/auth/google/index'
 import { Route as AuthForgotPasswordIndexRouteImport } from './routes/auth/forgot-password/index'
 import { Route as TeamTeamIdTasksIndexRouteImport } from './routes/team/$teamId/tasks/index'
+import { Route as TeamTeamIdAcceptinvationIndexRouteImport } from './routes/team/$teamId/acceptinvation/index'
 import { Route as DashboardTeamsCreateIndexRouteImport } from './routes/dashboard/teams/create/index'
 import { Route as DashboardTasksCalendarIndexRouteImport } from './routes/dashboard/tasks/calendar/index'
 import { Route as TeamTeamIdLeaderSettingsIndexRouteImport } from './routes/team/$teamId/leader/settings/index'
@@ -73,6 +74,12 @@ const TeamTeamIdTasksIndexRoute = TeamTeamIdTasksIndexRouteImport.update({
   path: '/team/$teamId/tasks/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const TeamTeamIdAcceptinvationIndexRoute =
+  TeamTeamIdAcceptinvationIndexRouteImport.update({
+    id: '/team/$teamId/acceptinvation/',
+    path: '/team/$teamId/acceptinvation/',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const DashboardTeamsCreateIndexRoute =
   DashboardTeamsCreateIndexRouteImport.update({
     id: '/dashboard/teams/create/',
@@ -104,6 +111,7 @@ export interface FileRoutesByFullPath {
   '/dashboard/teams': typeof DashboardTeamsIndexRoute
   '/dashboard/tasks/calendar': typeof DashboardTasksCalendarIndexRoute
   '/dashboard/teams/create': typeof DashboardTeamsCreateIndexRoute
+  '/team/$teamId/acceptinvation': typeof TeamTeamIdAcceptinvationIndexRoute
   '/team/$teamId/tasks': typeof TeamTeamIdTasksIndexRoute
   '/team/$teamId/leader/settings': typeof TeamTeamIdLeaderSettingsIndexRoute
 }
@@ -119,6 +127,7 @@ export interface FileRoutesByTo {
   '/dashboard/teams': typeof DashboardTeamsIndexRoute
   '/dashboard/tasks/calendar': typeof DashboardTasksCalendarIndexRoute
   '/dashboard/teams/create': typeof DashboardTeamsCreateIndexRoute
+  '/team/$teamId/acceptinvation': typeof TeamTeamIdAcceptinvationIndexRoute
   '/team/$teamId/tasks': typeof TeamTeamIdTasksIndexRoute
   '/team/$teamId/leader/settings': typeof TeamTeamIdLeaderSettingsIndexRoute
 }
@@ -135,6 +144,7 @@ export interface FileRoutesById {
   '/dashboard/teams/': typeof DashboardTeamsIndexRoute
   '/dashboard/tasks/calendar/': typeof DashboardTasksCalendarIndexRoute
   '/dashboard/teams/create/': typeof DashboardTeamsCreateIndexRoute
+  '/team/$teamId/acceptinvation/': typeof TeamTeamIdAcceptinvationIndexRoute
   '/team/$teamId/tasks/': typeof TeamTeamIdTasksIndexRoute
   '/team/$teamId/leader/settings/': typeof TeamTeamIdLeaderSettingsIndexRoute
 }
@@ -152,6 +162,7 @@ export interface FileRouteTypes {
     | '/dashboard/teams'
     | '/dashboard/tasks/calendar'
     | '/dashboard/teams/create'
+    | '/team/$teamId/acceptinvation'
     | '/team/$teamId/tasks'
     | '/team/$teamId/leader/settings'
   fileRoutesByTo: FileRoutesByTo
@@ -167,6 +178,7 @@ export interface FileRouteTypes {
     | '/dashboard/teams'
     | '/dashboard/tasks/calendar'
     | '/dashboard/teams/create'
+    | '/team/$teamId/acceptinvation'
     | '/team/$teamId/tasks'
     | '/team/$teamId/leader/settings'
   id:
@@ -182,6 +194,7 @@ export interface FileRouteTypes {
     | '/dashboard/teams/'
     | '/dashboard/tasks/calendar/'
     | '/dashboard/teams/create/'
+    | '/team/$teamId/acceptinvation/'
     | '/team/$teamId/tasks/'
     | '/team/$teamId/leader/settings/'
   fileRoutesById: FileRoutesById
@@ -198,6 +211,7 @@ export interface RootRouteChildren {
   DashboardTeamsIndexRoute: typeof DashboardTeamsIndexRoute
   DashboardTasksCalendarIndexRoute: typeof DashboardTasksCalendarIndexRoute
   DashboardTeamsCreateIndexRoute: typeof DashboardTeamsCreateIndexRoute
+  TeamTeamIdAcceptinvationIndexRoute: typeof TeamTeamIdAcceptinvationIndexRoute
   TeamTeamIdTasksIndexRoute: typeof TeamTeamIdTasksIndexRoute
   TeamTeamIdLeaderSettingsIndexRoute: typeof TeamTeamIdLeaderSettingsIndexRoute
 }
@@ -274,6 +288,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof TeamTeamIdTasksIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/team/$teamId/acceptinvation/': {
+      id: '/team/$teamId/acceptinvation/'
+      path: '/team/$teamId/acceptinvation'
+      fullPath: '/team/$teamId/acceptinvation'
+      preLoaderRoute: typeof TeamTeamIdAcceptinvationIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/dashboard/teams/create/': {
       id: '/dashboard/teams/create/'
       path: '/dashboard/teams/create'
@@ -310,6 +331,7 @@ const rootRouteChildren: RootRouteChildren = {
   DashboardTeamsIndexRoute: DashboardTeamsIndexRoute,
   DashboardTasksCalendarIndexRoute: DashboardTasksCalendarIndexRoute,
   DashboardTeamsCreateIndexRoute: DashboardTeamsCreateIndexRoute,
+  TeamTeamIdAcceptinvationIndexRoute: TeamTeamIdAcceptinvationIndexRoute,
   TeamTeamIdTasksIndexRoute: TeamTeamIdTasksIndexRoute,
   TeamTeamIdLeaderSettingsIndexRoute: TeamTeamIdLeaderSettingsIndexRoute,
 }

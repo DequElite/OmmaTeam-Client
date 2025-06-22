@@ -1,8 +1,11 @@
 import { createFileRoute, Link } from '@tanstack/react-router'
 import AuthLayout from '../../../layouts/Auth/Auth.layout'
-import SignUpLayout from '../../../layouts/Auth/SignUp.layout'
 import styles from "../../../layouts/Auth/style.module.scss";
 import { useTranslation } from 'react-i18next';
+import { lazy, Suspense } from 'react';
+import WindowLoading from '../../../components/Loading/WindowLoading.component';
+
+const SignUpLayout = lazy(() => import('../../../layouts/Auth/SignUp.layout'));
 
 export const Route = createFileRoute('/auth/signup/')({
   component: RouteComponent,
@@ -21,7 +24,9 @@ function RouteComponent() {
           </div>
         }
       >
-        <SignUpLayout></SignUpLayout>
+        <Suspense fallback={<WindowLoading />}>
+          <SignUpLayout />
+        </Suspense>
       </AuthLayout>
     </>
   )

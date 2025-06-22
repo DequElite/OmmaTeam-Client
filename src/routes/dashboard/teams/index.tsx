@@ -1,9 +1,13 @@
 import { createFileRoute, useNavigate } from '@tanstack/react-router'
 import CabinetLayout from '../../../layouts/CabinetLayout/Cabinet.layout'
-import TeamsLayout from '../../../layouts/Teams/Teams.layout'
+// import TeamsLayout from '../../../layouts/Teams/Teams.layout'
 import Button from '../../../components/Button/Button.component'
 import { useTranslation } from 'react-i18next'
 import { protectedLoader } from '../../../loaders/protectedLoader'
+import { lazy, Suspense } from 'react'
+import WindowLoading from '../../../components/Loading/WindowLoading.component'
+
+const TeamsLayout = lazy(() => import('../../../layouts/Teams/Teams.layout'))
 
 export const Route = createFileRoute('/dashboard/teams/')({
   component: RouteComponent,
@@ -34,7 +38,9 @@ function RouteComponent() {
         </Button>
       }
     >
-      <TeamsLayout />
+      <Suspense fallback={<WindowLoading />}>
+        <TeamsLayout />
+      </Suspense>
     </CabinetLayout>
   )
 }
