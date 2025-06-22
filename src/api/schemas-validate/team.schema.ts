@@ -17,3 +17,8 @@ export const InviteTeammate = z.object({
     teamId: z.string().uuid(),
     email: emailField
 });
+
+export const AcceptInvitationSchema = z.object({
+    email: emailField,
+    inviteToken: z.string().uuid(),
+})

@@ -1,8 +1,8 @@
 import { handleResponse } from "../../utils/handleResponse.util";
 import { validateSchemas } from "../../utils/validate.util";
 import teamClient from "../clients/team-service.client";
-import { CreateTeamSchema, InviteTeammate, SomeTeamByID } from "../schemas-validate/team.schema";
-import { CreateTeamType, InviteTeammateType, type SomeTeamByID as SomeTeamByIDType } from "../types/team.types";
+import { AcceptInvitationSchema, CreateTeamSchema, InviteTeammate, SomeTeamByID } from "../schemas-validate/team.schema";
+import { AcceptInvitationType, CreateTeamType, InviteTeammateType, type SomeTeamByID as SomeTeamByIDType } from "../types/team.types";
 
 //todo: дописать все 
 export class TeamService {
@@ -19,5 +19,10 @@ export class TeamService {
     public async inviteTeammate(body: InviteTeammateType){
         validateSchemas(InviteTeammate, body);
         return handleResponse(teamClient.post(`/teammates/invite/${body.teamId}`, body))
+    }
+
+    public async acceptInvitation(body: AcceptInvitationType){
+        validateSchemas(AcceptInvitationSchema, body);
+        return handleResponse(teamClient.post('/teammates/acceptinvitation', body));
     }
 }    

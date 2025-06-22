@@ -1,9 +1,9 @@
-import { createFileRoute } from '@tanstack/react-router'
+import { createFileRoute, useNavigate } from '@tanstack/react-router'
 import { protectedLoader } from '../../../../../loaders/protectedLoader'
 import useTeamLoad from '../../../../../hooks/useTeamLoad'
 import WindowLoading from '../../../../../components/Loading/WindowLoading.component'
 import TeamCabinetLayout from '../../../../../layouts/TeamCabinetLayout/TeamCabinet.layout'
-import { lazy, Suspense } from 'react'
+import { lazy, Suspense, useEffect } from 'react'
 
 const TeamSettingsLayout = lazy(() => import('../../../../../layouts/TeamSettings/TeamSettings.layout'))
 
@@ -14,10 +14,18 @@ export const Route = createFileRoute('/team/$teamId/leader/settings/')({
 
 function RouteComponent() {
   const { teamId } = Route.useParams()
-  const { isLoading } = useTeamLoad(teamId)
+  const { data, isLoading, isSuccess } = useTeamLoad(teamId)
 
-  if (isLoading) {
-    return <WindowLoading />
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (isSuccess && !data?.isLeader) {
+      navigate({ to: '/', replace: true });
+    }
+  }, [isSuccess, data, navigate]);
+
+  if (isLoading || !data) {
+    return <WindowLoading />;
   }
 
   return (

@@ -4,6 +4,7 @@ import styles from "./style.module.scss";
 import { useAppSelector } from "../../store/store";
 import { useTranslation } from "react-i18next";
 import { queryClient } from "../../main";
+import useTeamLoad from "../../hooks/useTeamLoad";
 
 interface DashboardLayoutProps {
     children: React.ReactNode;
@@ -18,14 +19,17 @@ export default function TeamCabinetLayout(props: DashboardLayoutProps) {
 
     const { t } = useTranslation(); 
 
-    const isLeader = queryClient.getQueryData(['team', props.teamId]);
+    const { data: teamData, isLoading } = useTeamLoad(props.teamId);
+    const isLeader = teamData?.isLeader;
+
+    console.log('sfdf', teamData)
 
     return (
         <>
             <main className={styles["layout"]}>
                 <section className={styles["layout__sidebar"]}>
                     <Sidebar 
-                        title="OmmaTeam"
+                        title={teamData?.name || 'OmmaTeam'}
                         primaryLinks={[
                             {
                                 link: '/dashboard',

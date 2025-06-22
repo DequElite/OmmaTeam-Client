@@ -1,7 +1,7 @@
 @use "@/styles/variables.style.scss" as vars;
 @use "@/styles/mixins.style.scss" as mixs;
 
-.authlayout{
+.layout{
     width: 100%;
     height: 100vh;
     @include mixs.centeredRow;
@@ -15,12 +15,18 @@
     }
 }
 
-.authlayout__form{
+.layout__form{
     width: 50%;
 
     &-container{
         width: 60%;
         height: 100%;
+
+        .layout__form-box {
+          height: 80%;
+          width: 100%;
+          @include mixs.centeredColumn;
+        }
     }
 
     &-header {
@@ -56,9 +62,31 @@
     }
 } 
 
+.layout__form-window{
+  width: 90%;
+  height: 30vh;
+  background-color: aqua;
+  padding: 10px;
+  box-sizing: border-box;
+  border-radius: 10px;
+  background-color: #F5F5F5;
+  @include mixs.centeredColumn;
 
+  h3{
+    margin: 0;
+    padding: 0;
+  }
 
-.authlayout__preview{
+  &-buttons{
+    width: 80%;
+    height: 70%;
+    @include mixs.centeredRow;
+    justify-content: space-between;
+    align-items: end;
+  }
+}
+
+.layout__preview{
     width: 50%;
     margin-left: auto;
 

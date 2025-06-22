@@ -24,7 +24,7 @@ export default function useTeamLoad(teamId: string) {
 
     const { data, isLoading, isSuccess, isError, error } = useQuery<TeamDataType, AxiosError>({
         queryKey: ['team', teamId],
-        queryFn: () => teamService.getTeamData({ id: teamId }).then(res => res.data),
+        queryFn: () => teamService.getTeamData({ id: teamId }).then(res => res.data.team),
         enabled: Boolean(teamId),
         staleTime: 1000 * 60 * 10,
     });
