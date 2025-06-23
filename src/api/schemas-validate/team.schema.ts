@@ -9,9 +9,10 @@ export const SomeTeamByID = z.object({
     id: z.string().uuid()
 });
 
-// export const ChangeTeamName = z.object({
-//     name: usernameField
-// });
+export const ChangeTeamNameSchema = z.object({
+    name: usernameField,
+    teamId: z.string().uuid(),
+});
 
 export const DeleteTeammateSchema = z.object({
     teamId: z.string().uuid(),
