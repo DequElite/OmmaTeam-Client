@@ -1,6 +1,5 @@
 import { Link } from "@tanstack/react-router";
 import Button from "../../components/Button/Button.component";
-import InputField from "../../components/Input/Input.component";
 import PasswordInput from "../../components/Input/PasswordInput.component";
 import styles from "./style.module.scss";
 import { useAppSelector } from "../../store/store";

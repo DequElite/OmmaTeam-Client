@@ -6,6 +6,11 @@ import { AcceptInvitationType, CreateTeamType, InviteTeammateType, type SomeTeam
 
 //todo: дописать все 
 export class TeamService {
+    public async deleteTeam(params: SomeTeamByIDType){
+        validateSchemas(SomeTeamByID, params);
+        return handleResponse(teamClient.delete(`/team/${params.id}`))
+    }
+
     public async createTeam(body: CreateTeamType) {
         validateSchemas(CreateTeamSchema, body);
         return handleResponse(teamClient.post('/team', body));

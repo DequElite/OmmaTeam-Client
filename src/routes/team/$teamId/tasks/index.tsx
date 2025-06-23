@@ -1,7 +1,7 @@
 import { createFileRoute } from '@tanstack/react-router'
 import TeamCabinetLayout from '../../../../layouts/TeamCabinetLayout/TeamCabinet.layout'
 import { protectedLoader } from '../../../../loaders/protectedLoader'
-import useTeamLoad from '../../../../hooks/useTeamLoad'
+import useTeamLoad from '../../../../hooks/team/useTeamLoad'
 import Loading from '../../../../components/Loading/Loading.component'
 import WindowLoading from '../../../../components/Loading/WindowLoading.component'
 

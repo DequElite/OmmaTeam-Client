@@ -4,7 +4,7 @@ import styles from "./style.module.scss";
 import { useAppSelector } from "../../store/store";
 import { useTranslation } from "react-i18next";
 import { queryClient } from "../../main";
-import useTeamLoad from "../../hooks/useTeamLoad";
+import useTeamLoad from "../../hooks/team/useTeamLoad";
 
 interface DashboardLayoutProps {
     children: React.ReactNode;

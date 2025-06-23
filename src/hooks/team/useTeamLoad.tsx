@@ -1,11 +1,11 @@
 import { useQuery } from "@tanstack/react-query";
-import { TeamService } from "../api/services/Team.service";
-import { useAppSelector } from "../store/store";
-import { useMessageBox } from "../contexts/MessageBoxContext/useMessageBox";
+import { TeamService } from "../../api/services/Team.service";
+import { useAppSelector } from "../../store/store";
+import { useMessageBox } from "../../contexts/MessageBoxContext/useMessageBox";
 import { useNavigate } from "@tanstack/react-router";
 import { useEffect } from "react";
 import { AxiosError } from "axios";
-import { TeamDataType } from "../api/types/team.types";
+import { TeamDataType } from "../../api/types/team.types";
 
 const teamService = new TeamService();
 
