@@ -26,7 +26,7 @@ export default function CreateTeamLayout(){
         resolver: zodResolver(CreateTeamSchema)
     });
 
-    const { mutate } = useMutation({
+    const { mutate, isPending } = useMutation({
         mutationFn: (data: CreateTeamType) => teamService.createTeam(data),
         onSuccess: async (data: any) => {
             console.debug('SUCCESS SENDED');
@@ -100,6 +100,7 @@ export default function CreateTeamLayout(){
                         variant='branded'
                         width={100}
                         height={6}
+                        disabled={isPending}
                         type='submit'
                     >
                         <span style={{fontSize:'1.15rem', color:"#FFFFFF", display:'flex', justifyContent:'center', alignItems: 'center', gap:'10px'}}>

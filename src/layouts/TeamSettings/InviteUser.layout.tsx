@@ -4,8 +4,6 @@ import Button from "../../components/Button/Button.component";
 import InputField from "../../components/Input/Input.component";
 import { useMessageBox } from "../../contexts/MessageBoxContext/useMessageBox";
 import styles from "./style.module.scss";
-import { useNavigate } from "@tanstack/react-router";
-import { useAppDispatch } from "../../store/store";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { emailField } from "../../api/schemas-validate/global.schemas";
@@ -16,17 +14,13 @@ const teamService = new TeamService();
 
 export default function InviteUserLayout({teamId}:{teamId: string}){
     const { updateState } = useMessageBox();
-
-    const dispatch = useAppDispatch();
-    
-    const navigate = useNavigate();
     
     const { register, handleSubmit, formState: {errors} } = useForm({
         mode: 'onChange',
         resolver: zodResolver(z.object({email:emailField}))
     });
 
-    const { mutate } = useMutation({
+    const { mutate, isPending } = useMutation({
         mutationFn: (data: InviteTeammateType) => teamService.inviteTeammate(data),
         onSuccess: async (data: any) => {
             console.debug('SUCCESS SENDED');
@@ -84,8 +78,8 @@ export default function InviteUserLayout({teamId}:{teamId: string}){
                 type="email"
                 title='User email'
                 isRequired={true}
-                isError={false}
-                errorText={''}
+                isError={!!errors.email}
+                errorText={errors.email?.message?.toString() ?? ''}
                 {...register('email')}
             />
             <Button 
@@ -93,6 +87,7 @@ export default function InviteUserLayout({teamId}:{teamId: string}){
                 width={100}
                 height={6}
                 type='submit'
+                disabled={isPending}
             >
                 <span style={{fontSize:'1.15rem', color:"#FFFFFF", display:'flex', justifyContent:'center', alignItems: 'center', gap:'10px'}}>
                     <img src="/svg/Invite.svg" alt="" /> 
