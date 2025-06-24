@@ -22,8 +22,6 @@ export default function TeamCabinetLayout(props: DashboardLayoutProps) {
     const { data: teamData, isLoading } = useTeamLoad(props.teamId);
     const isLeader = teamData?.isLeader;
 
-    console.log('sfdf', teamData)
-
     return (
         <>
             <main className={styles["layout"]}>

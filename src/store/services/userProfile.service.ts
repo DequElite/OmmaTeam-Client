@@ -15,7 +15,6 @@ export const getUserProfile = createAsyncThunk<UserProfileResponse, void, {
     async (_: any, {extra, rejectWithValue}) => {
         try {
             const response = await extra.profileService.getProfile();
-            console.log("asss: ", ReturnAccessToken())
             return response.data.user;
         } catch (err: unknown) {
             console.error("Error at getUserProfile thunk: ", err);

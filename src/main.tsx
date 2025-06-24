@@ -24,7 +24,7 @@ createRoot(document.getElementById('root')!).render(
             <App />
           </ConfirmBoxProvider>
         </MessageBoxProvider>
-        <ReactQueryDevtools initialIsOpen={false} />
+        {/* <ReactQueryDevtools initialIsOpen={false} /> */}
       </QueryClientProvider>
     </Provider>
   </StrictMode>,

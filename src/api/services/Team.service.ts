@@ -40,4 +40,9 @@ export class TeamService {
         validateSchemas(AcceptInvitationSchema, body);
         return handleResponse(teamClient.post('/teammates/acceptinvitation', body));
     }
+
+    public async getTeammatesData(params: SomeTeamByIDType){
+        validateSchemas(SomeTeamByID, params);
+        return handleResponse(teamClient.get(`/teammates/${params.id}`));
+    }
 }    

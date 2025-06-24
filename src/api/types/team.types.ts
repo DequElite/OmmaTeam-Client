@@ -1,5 +1,6 @@
 import { z } from "zod";
 import { AcceptInvitationSchema, ChangeTeamNameSchema, CreateTeamSchema, DeleteTeammateSchema, InviteTeammate, SomeTeamByID } from "../schemas-validate/team.schema";
+import { User } from "./user.types";
 
 export interface TeammateDataType {
     id: string;
@@ -8,6 +9,7 @@ export interface TeammateDataType {
     inviteExpiresAt: Date | null;
     isAccepted: boolean;
     teamId: string;
+    user?: User;
 }
 
 export interface TeamShortDataType {
@@ -28,7 +30,8 @@ export interface TeamDataType {
     id: string;
     leaderId: string;
     createdAt: Date;
-    isLeader: string;
+    isLeader: boolean;
+    isTeammate: boolean;
     teammates: TeammateDataType[];
 }
 

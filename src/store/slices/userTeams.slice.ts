@@ -18,7 +18,6 @@ export const userTeamsSlice = createSlice({
     extraReducers: (builder) => {
         builder.
             addCase(getUserTeamsShortData.fulfilled, (state, action)=>{
-                console.log('getUserTeamsShortData: ', action)
                 state.teams = action.payload;
             })
     },

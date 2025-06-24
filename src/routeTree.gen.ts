@@ -18,6 +18,7 @@ import { Route as AuthResetPasswordIndexRouteImport } from './routes/auth/reset-
 import { Route as AuthLoginIndexRouteImport } from './routes/auth/login/index'
 import { Route as AuthGoogleIndexRouteImport } from './routes/auth/google/index'
 import { Route as AuthForgotPasswordIndexRouteImport } from './routes/auth/forgot-password/index'
+import { Route as TeamTeamIdTeammatesIndexRouteImport } from './routes/team/$teamId/teammates/index'
 import { Route as TeamTeamIdTasksIndexRouteImport } from './routes/team/$teamId/tasks/index'
 import { Route as TeamTeamIdAcceptinvationIndexRouteImport } from './routes/team/$teamId/acceptinvation/index'
 import { Route as DashboardTeamsCreateIndexRouteImport } from './routes/dashboard/teams/create/index'
@@ -69,6 +70,12 @@ const AuthForgotPasswordIndexRoute = AuthForgotPasswordIndexRouteImport.update({
   path: '/auth/forgot-password/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const TeamTeamIdTeammatesIndexRoute =
+  TeamTeamIdTeammatesIndexRouteImport.update({
+    id: '/team/$teamId/teammates/',
+    path: '/team/$teamId/teammates/',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const TeamTeamIdTasksIndexRoute = TeamTeamIdTasksIndexRouteImport.update({
   id: '/team/$teamId/tasks/',
   path: '/team/$teamId/tasks/',
@@ -113,6 +120,7 @@ export interface FileRoutesByFullPath {
   '/dashboard/teams/create': typeof DashboardTeamsCreateIndexRoute
   '/team/$teamId/acceptinvation': typeof TeamTeamIdAcceptinvationIndexRoute
   '/team/$teamId/tasks': typeof TeamTeamIdTasksIndexRoute
+  '/team/$teamId/teammates': typeof TeamTeamIdTeammatesIndexRoute
   '/team/$teamId/leader/settings': typeof TeamTeamIdLeaderSettingsIndexRoute
 }
 export interface FileRoutesByTo {
@@ -129,6 +137,7 @@ export interface FileRoutesByTo {
   '/dashboard/teams/create': typeof DashboardTeamsCreateIndexRoute
   '/team/$teamId/acceptinvation': typeof TeamTeamIdAcceptinvationIndexRoute
   '/team/$teamId/tasks': typeof TeamTeamIdTasksIndexRoute
+  '/team/$teamId/teammates': typeof TeamTeamIdTeammatesIndexRoute
   '/team/$teamId/leader/settings': typeof TeamTeamIdLeaderSettingsIndexRoute
 }
 export interface FileRoutesById {
@@ -146,6 +155,7 @@ export interface FileRoutesById {
   '/dashboard/teams/create/': typeof DashboardTeamsCreateIndexRoute
   '/team/$teamId/acceptinvation/': typeof TeamTeamIdAcceptinvationIndexRoute
   '/team/$teamId/tasks/': typeof TeamTeamIdTasksIndexRoute
+  '/team/$teamId/teammates/': typeof TeamTeamIdTeammatesIndexRoute
   '/team/$teamId/leader/settings/': typeof TeamTeamIdLeaderSettingsIndexRoute
 }
 export interface FileRouteTypes {
@@ -164,6 +174,7 @@ export interface FileRouteTypes {
     | '/dashboard/teams/create'
     | '/team/$teamId/acceptinvation'
     | '/team/$teamId/tasks'
+    | '/team/$teamId/teammates'
     | '/team/$teamId/leader/settings'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -180,6 +191,7 @@ export interface FileRouteTypes {
     | '/dashboard/teams/create'
     | '/team/$teamId/acceptinvation'
     | '/team/$teamId/tasks'
+    | '/team/$teamId/teammates'
     | '/team/$teamId/leader/settings'
   id:
     | '__root__'
@@ -196,6 +208,7 @@ export interface FileRouteTypes {
     | '/dashboard/teams/create/'
     | '/team/$teamId/acceptinvation/'
     | '/team/$teamId/tasks/'
+    | '/team/$teamId/teammates/'
     | '/team/$teamId/leader/settings/'
   fileRoutesById: FileRoutesById
 }
@@ -213,6 +226,7 @@ export interface RootRouteChildren {
   DashboardTeamsCreateIndexRoute: typeof DashboardTeamsCreateIndexRoute
   TeamTeamIdAcceptinvationIndexRoute: typeof TeamTeamIdAcceptinvationIndexRoute
   TeamTeamIdTasksIndexRoute: typeof TeamTeamIdTasksIndexRoute
+  TeamTeamIdTeammatesIndexRoute: typeof TeamTeamIdTeammatesIndexRoute
   TeamTeamIdLeaderSettingsIndexRoute: typeof TeamTeamIdLeaderSettingsIndexRoute
 }
 
@@ -281,6 +295,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthForgotPasswordIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/team/$teamId/teammates/': {
+      id: '/team/$teamId/teammates/'
+      path: '/team/$teamId/teammates'
+      fullPath: '/team/$teamId/teammates'
+      preLoaderRoute: typeof TeamTeamIdTeammatesIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/team/$teamId/tasks/': {
       id: '/team/$teamId/tasks/'
       path: '/team/$teamId/tasks'
@@ -333,6 +354,7 @@ const rootRouteChildren: RootRouteChildren = {
   DashboardTeamsCreateIndexRoute: DashboardTeamsCreateIndexRoute,
   TeamTeamIdAcceptinvationIndexRoute: TeamTeamIdAcceptinvationIndexRoute,
   TeamTeamIdTasksIndexRoute: TeamTeamIdTasksIndexRoute,
+  TeamTeamIdTeammatesIndexRoute: TeamTeamIdTeammatesIndexRoute,
   TeamTeamIdLeaderSettingsIndexRoute: TeamTeamIdLeaderSettingsIndexRoute,
 }
 export const routeTree = rootRouteImport

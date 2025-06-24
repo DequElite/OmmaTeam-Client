@@ -22,4 +22,8 @@ export class ProfileService {
     public async getUserTeams(){
         return handleResponse(registerClient.get('/auth/profile/teams'));
     }
+
+    public async logOut(){
+        return handleResponse(registerClient.post('/auth/profile/logout'));
+    }
 }

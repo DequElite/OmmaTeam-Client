@@ -12,7 +12,6 @@ export const getUserTeamsShortData = createAsyncThunk<TeamShortDataType[], void,
     async (_: any, {extra, rejectWithValue}) => {
         try {
             const response = await extra.profileService.getUserTeams();
-            console.log("ffff: ", response);
             return response.data.teams;
         } catch (err: unknown) {
             console.error("Error at getUserProfile thunk: ", err);

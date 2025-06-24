@@ -9,6 +9,7 @@ export type UserProfileState = {
     status: {
         isSuccess: boolean;
         isAuth: boolean;
+        isLoaded: boolean;
     }
 };
 
@@ -19,6 +20,7 @@ const initialUserProfileState: UserProfileState = {
     status: {
         isSuccess: false,
         isAuth: false,
+        isLoaded: false,
     }
 };
 
@@ -31,6 +33,7 @@ export const userProfileSlice = createSlice({
             .addCase(getUserProfile.fulfilled, (state, action) => {
                 state.status.isSuccess = true;
                 state.status.isAuth = true;
+                state.status.isLoaded = true;
                 state.username = action.payload.username;
                 state.email = action.payload.email;
                 state.role = action.payload.role;
@@ -38,6 +41,7 @@ export const userProfileSlice = createSlice({
             .addCase(getUserProfile.rejected, (state, _) => {
                 state.status.isSuccess = false;
                 state.status.isAuth = false;
+                state.status.isLoaded = false;
                 state.username = 'guest';
                 state.email = 'guest@ommateam.com';
                 state.role = UsersRoles.User;
