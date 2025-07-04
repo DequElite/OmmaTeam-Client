@@ -57,7 +57,7 @@ export default function TeamCabinetLayout(props: DashboardLayoutProps) {
                         ]}
                         secondaryLinks={isLeader ? [
                             {
-                                link: `/team/${props.teamId}/leader/task`,
+                                link: `/team/${props.teamId}/leader/task?type=default`,
                                 name: 'Task',
                                 icon: '/svg/Task.svg'
                             },

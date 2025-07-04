@@ -30,3 +30,10 @@ export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   errorText: string;
   isError: boolean;
 }
+
+export interface TextAreaProps extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
+  title: string;
+  isRequired: boolean;
+  isError: boolean;
+  errorText: string;
+}

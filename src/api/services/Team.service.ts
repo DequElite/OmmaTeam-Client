@@ -4,7 +4,6 @@ import teamClient from "../clients/team-service.client";
 import { AcceptInvitationSchema, ChangeTeamNameSchema, CreateTeamSchema, DeleteTeammateSchema, InviteTeammate, SomeTeamByID } from "../schemas-validate/team.schema";
 import { AcceptInvitationType, ChangeTeamNameType, CreateTeamType, DeleteTeammateType, InviteTeammateType, type SomeTeamByID as SomeTeamByIDType } from "../types/team.types";
 
-//todo: дописать все 
 export class TeamService {
     public async changeTeamName(body: ChangeTeamNameType) {
         validateSchemas(ChangeTeamNameSchema, body);

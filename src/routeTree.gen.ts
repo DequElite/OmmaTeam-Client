@@ -23,6 +23,7 @@ import { Route as TeamTeamIdTasksIndexRouteImport } from './routes/team/$teamId/
 import { Route as TeamTeamIdAcceptinvationIndexRouteImport } from './routes/team/$teamId/acceptinvation/index'
 import { Route as DashboardTeamsCreateIndexRouteImport } from './routes/dashboard/teams/create/index'
 import { Route as DashboardTasksCalendarIndexRouteImport } from './routes/dashboard/tasks/calendar/index'
+import { Route as TeamTeamIdLeaderTaskIndexRouteImport } from './routes/team/$teamId/leader/task/index'
 import { Route as TeamTeamIdLeaderSettingsIndexRouteImport } from './routes/team/$teamId/leader/settings/index'
 
 const IndexRoute = IndexRouteImport.update({
@@ -99,6 +100,12 @@ const DashboardTasksCalendarIndexRoute =
     path: '/dashboard/tasks/calendar/',
     getParentRoute: () => rootRouteImport,
   } as any)
+const TeamTeamIdLeaderTaskIndexRoute =
+  TeamTeamIdLeaderTaskIndexRouteImport.update({
+    id: '/team/$teamId/leader/task/',
+    path: '/team/$teamId/leader/task/',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const TeamTeamIdLeaderSettingsIndexRoute =
   TeamTeamIdLeaderSettingsIndexRouteImport.update({
     id: '/team/$teamId/leader/settings/',
@@ -122,6 +129,7 @@ export interface FileRoutesByFullPath {
   '/team/$teamId/tasks': typeof TeamTeamIdTasksIndexRoute
   '/team/$teamId/teammates': typeof TeamTeamIdTeammatesIndexRoute
   '/team/$teamId/leader/settings': typeof TeamTeamIdLeaderSettingsIndexRoute
+  '/team/$teamId/leader/task': typeof TeamTeamIdLeaderTaskIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -139,6 +147,7 @@ export interface FileRoutesByTo {
   '/team/$teamId/tasks': typeof TeamTeamIdTasksIndexRoute
   '/team/$teamId/teammates': typeof TeamTeamIdTeammatesIndexRoute
   '/team/$teamId/leader/settings': typeof TeamTeamIdLeaderSettingsIndexRoute
+  '/team/$teamId/leader/task': typeof TeamTeamIdLeaderTaskIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -157,6 +166,7 @@ export interface FileRoutesById {
   '/team/$teamId/tasks/': typeof TeamTeamIdTasksIndexRoute
   '/team/$teamId/teammates/': typeof TeamTeamIdTeammatesIndexRoute
   '/team/$teamId/leader/settings/': typeof TeamTeamIdLeaderSettingsIndexRoute
+  '/team/$teamId/leader/task/': typeof TeamTeamIdLeaderTaskIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -176,6 +186,7 @@ export interface FileRouteTypes {
     | '/team/$teamId/tasks'
     | '/team/$teamId/teammates'
     | '/team/$teamId/leader/settings'
+    | '/team/$teamId/leader/task'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -193,6 +204,7 @@ export interface FileRouteTypes {
     | '/team/$teamId/tasks'
     | '/team/$teamId/teammates'
     | '/team/$teamId/leader/settings'
+    | '/team/$teamId/leader/task'
   id:
     | '__root__'
     | '/'
@@ -210,6 +222,7 @@ export interface FileRouteTypes {
     | '/team/$teamId/tasks/'
     | '/team/$teamId/teammates/'
     | '/team/$teamId/leader/settings/'
+    | '/team/$teamId/leader/task/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -228,6 +241,7 @@ export interface RootRouteChildren {
   TeamTeamIdTasksIndexRoute: typeof TeamTeamIdTasksIndexRoute
   TeamTeamIdTeammatesIndexRoute: typeof TeamTeamIdTeammatesIndexRoute
   TeamTeamIdLeaderSettingsIndexRoute: typeof TeamTeamIdLeaderSettingsIndexRoute
+  TeamTeamIdLeaderTaskIndexRoute: typeof TeamTeamIdLeaderTaskIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -330,6 +344,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DashboardTasksCalendarIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/team/$teamId/leader/task/': {
+      id: '/team/$teamId/leader/task/'
+      path: '/team/$teamId/leader/task'
+      fullPath: '/team/$teamId/leader/task'
+      preLoaderRoute: typeof TeamTeamIdLeaderTaskIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/team/$teamId/leader/settings/': {
       id: '/team/$teamId/leader/settings/'
       path: '/team/$teamId/leader/settings'
@@ -356,6 +377,7 @@ const rootRouteChildren: RootRouteChildren = {
   TeamTeamIdTasksIndexRoute: TeamTeamIdTasksIndexRoute,
   TeamTeamIdTeammatesIndexRoute: TeamTeamIdTeammatesIndexRoute,
   TeamTeamIdLeaderSettingsIndexRoute: TeamTeamIdLeaderSettingsIndexRoute,
+  TeamTeamIdLeaderTaskIndexRoute: TeamTeamIdLeaderTaskIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

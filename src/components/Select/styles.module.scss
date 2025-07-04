@@ -1,0 +1,68 @@
+@use "@/styles/mixins.style.scss" as mixs;
+@use "@/styles/variables.style.scss" as vars;
+
+.field {
+    width: 100%;
+
+    .title{
+        font-weight: 450;
+        font-size: 1.1rem;
+        margin-top: 0;
+        margin-bottom: 15px;
+
+        .requiredField{
+            color: #F21313;
+        }
+    }
+    
+    .input{
+        width: 100%;
+        padding: 5px;
+        box-sizing: border-box;
+        border-radius: 10px;
+        outline: none;
+        border: 2px solid vars.$light_link_font;
+        transition: 0.4s;
+        font-size: 1.1rem;
+        position: relative;
+        background-color: #fff;
+
+        &__container {
+            width: 100%;
+            height: 100%;
+            @include mixs.centeredRow;
+            justify-content: space-between;
+        }
+
+        ul {
+            position: absolute;
+            z-index: 999;
+            width: 100%;
+            top: 80%;
+            left: 0%;
+            background-color: #fff;
+            border-radius: 0px 0px 10px 10px;
+            box-sizing: border-box;
+            list-style: none;
+            @include mixs.centeredColumn;
+            justify-content: start;
+            padding: 0;
+            border: 2px solid #9C5FD2;
+            height: 200%;
+            max-height: 200%;
+            overflow-y: auto;
+            transition: 1s;
+
+            li{
+                width: 100%;
+                height: 5vh;
+                background-color: #F5F5F5;
+                border-bottom: 1px solid #9C5FD2;
+                @include mixs.centeredRow;
+                justify-content: start;
+                padding: 10px;
+                box-sizing: border-box;
+            }
+        }
+    }
+}
