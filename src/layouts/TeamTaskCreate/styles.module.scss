@@ -27,6 +27,8 @@
     .editor__info{
         width: 25%;
         height: 100%;
+        @include mixs.centeredColumn;
+        gap: 10px;
     }
 }
 

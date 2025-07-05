@@ -22,8 +22,6 @@ function RouteComponent() {
 
   useIsTeamLeader({ isSuccess, data });
 
-  const formId = "task-create-form";
-  
   if (isLoading || !data) return <WindowLoading />;
 
   return (
@@ -51,7 +49,6 @@ function RouteComponent() {
           teamId={teamId}
           taskType={taskType}
           teamData={data}
-          formId={formId}
         />
       </Suspense>
     </TeamCabinetLayout>

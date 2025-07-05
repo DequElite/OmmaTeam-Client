@@ -79,7 +79,7 @@ export default function TaskSettingsLayout({teamData, form}:{teamData: TeamDataT
                                 value: 'HARD'
                             },
                         ]}
-                        onChange={(value: string)=>handleSelect(value, "hardlevel")}
+                        onChange={(value: string)=>handleSelect(value, "hardLevel")}
                     />
                     <Select 
                         title='Task responsible'

@@ -11,12 +11,10 @@ export default function TaskTaskCreateLayout({
   teamId,
   taskType,
   teamData,
-  formId,
 }: {
   teamId: string;
   taskType: string;
   teamData: TeamDataType | undefined;
-  formId: string;
 }) {    
   if (!teamData) return <WindowLoading />;
 
@@ -29,7 +27,6 @@ export default function TaskTaskCreateLayout({
       {taskType === 'default' && (
         <DefaultTaskForm
           teamData={teamData}
-          formId={formId}
         />
       )}
       {taskType === 'subtasks' && (
