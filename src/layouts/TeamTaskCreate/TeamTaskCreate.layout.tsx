@@ -2,27 +2,38 @@ import { Navigate, useNavigate } from '@tanstack/react-router';
 import styles from './styles.module.scss';
 import DefaultTaskForm from './DefaultTaskForm.form';
 import SubtaskedTaskForm from './SubtaskedTaskForm.form';
+import { TeamDataType } from '../../api/types/team.types';
+import WindowLoading from '../../components/Loading/WindowLoading.component';
+import { SubmitHandler } from 'react-hook-form';
+import { CreateTaskType } from '../../api/types/tasks.types';
 
-export default function TeamTaskCreateLayout({
+export default function TaskTaskCreateLayout({
   teamId,
   taskType,
+  teamData,
+  formId,
 }: {
   teamId: string;
   taskType: string;
+  teamData: TeamDataType | undefined;
+  formId: string;
 }) {    
-    const navigate = useNavigate();
+  if (!teamData) return <WindowLoading />;
 
   if (taskType !== 'default' && taskType !== 'subtasks') {
-    return <Navigate to={'/'}/>;
+    return <Navigate to={`/team/${teamId}/leader/task?type=default`}/>;
   }
 
   return (
     <main className={styles.layout}>
       {taskType === 'default' && (
-        <DefaultTaskForm teamId={teamId} />
+        <DefaultTaskForm
+          teamData={teamData}
+          formId={formId}
+        />
       )}
       {taskType === 'subtasks' && (
-        <SubtaskedTaskForm teamId={teamId}/>
+        <SubtaskedTaskForm teamData={teamData}/>
       )}
     </main>
   );

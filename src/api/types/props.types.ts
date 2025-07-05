@@ -22,6 +22,7 @@ export interface ButtonProps {
     onClick?: () => void;
     type?: 'button' | 'submit' | 'reset';
     disabled?: boolean;
+    form?:string;
 }
 
 export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {

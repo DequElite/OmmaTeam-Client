@@ -1,4 +1,6 @@
-export default function SubtaskedTaskForm({teamId}:{teamId: string}){
+import { TeamDataType } from "../../api/types/team.types";
+
+export default function SubtaskedTaskForm({teamData}:{teamData: TeamDataType}){
     return (
         <>
         SubtaskedTaskForm

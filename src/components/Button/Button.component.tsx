@@ -17,6 +17,7 @@ export default function Button(props: ButtonProps){
                 ${props.animation && styles['animated']}`}
             
             onClick={props.onClick}
+            form={props.form}
         >
             { props.children }
         </button>

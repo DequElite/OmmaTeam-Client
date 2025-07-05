@@ -1,7 +1,7 @@
-import { Control } from "react-hook-form";
+import { Control, useFormContext } from "react-hook-form";
 import styles from './styles.module.scss';
 import Button from "../Button/Button.component";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 interface Option {
     value: string;
@@ -10,7 +10,7 @@ interface Option {
 
 interface SelectProps {
     options: Option[];
-    control?: Control<any>;
+    onChange?: (value: string) => void;
     name: string;
     title: string;
     isRequired: boolean;
@@ -18,13 +18,36 @@ interface SelectProps {
 
 export default function Select(props:SelectProps){
     const [isOpen, setIsOpen] = useState(false);
+    const selectRef = useRef<HTMLDivElement>(null);
+    const [checkedOpt, setCheckedOpt] = useState<Option>(props.options[0]);
+
+    // const { setValue } = useFormContext();
+
+    useEffect(() => {
+        const handleClickOutSelect = (event: MouseEvent) => {
+            if(selectRef.current && !selectRef.current.contains(event.target as Node)) {
+                setIsOpen(false);
+            }
+        }
+
+        document.addEventListener('mousedown', handleClickOutSelect);
+
+        return () => document.removeEventListener('mousedown', handleClickOutSelect); 
+    }, [])
 
     const handleOpen = () => {
         setIsOpen(prevState => !prevState);
     }
 
+    const handleCheck = (index: number) => {
+        setCheckedOpt(props.options[index]);
+        setIsOpen(false);
+        // setValue(props.name, props.options[index].value, {shouldValidate: true});
+        props.onChange?.(props.options[index].value);
+    }
+
     return (
-        <div className={styles.field}>
+        <div className={styles.field} ref={selectRef}>
             <h3 className={styles.title}>
                 {props.title}
                 {props.isRequired && <strong className={styles.requiredField}>*</strong>}
@@ -32,7 +55,7 @@ export default function Select(props:SelectProps){
             <div className={styles.input}>
                 <div className={styles['input__container']}>
                     <strong className={styles['input__label']}>
-                        babel
+                        {checkedOpt.label}
                     </strong>
                     <Button
                         variant='branded'
@@ -49,9 +72,10 @@ export default function Select(props:SelectProps){
                 { 
                     isOpen && <ul>
                         {
-                            props.options.map(opt => (
+                            props.options.map((opt, index) => (
                                 <li
-                                    key={opt.value}
+                                    key={index}
+                                    onClick={()=>handleCheck(index)}
                                 >
                                     {opt.label}
                                 </li>

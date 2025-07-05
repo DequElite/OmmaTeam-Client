@@ -48,10 +48,10 @@
             justify-content: start;
             padding: 0;
             border: 2px solid #9C5FD2;
-            height: 200%;
-            max-height: 200%;
+            max-height: 300%;
             overflow-y: auto;
-            transition: 1s;
+            transition: 0.5s;
+            animation: open-ul 0.4s ease-in-out forwards;
 
             li{
                 width: 100%;
@@ -62,7 +62,17 @@
                 justify-content: start;
                 padding: 10px;
                 box-sizing: border-box;
+                cursor: pointer;
             }
         }
+    }
+}
+
+@keyframes open-ul {
+    from {
+        height: 0%;
+    }
+    to {
+        height: 300%;
     }
 }

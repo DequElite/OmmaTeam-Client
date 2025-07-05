@@ -6,6 +6,7 @@ import useIsTeamLeader from '../../../../../hooks/team/useIsTeamLeader'
 import { lazy, Suspense } from 'react'
 import TeamCabinetLayout from '../../../../../layouts/TeamCabinetLayout/TeamCabinet.layout'
 import Button from '../../../../../components/Button/Button.component'
+import { CreateTaskType } from '../../../../../api/types/tasks.types'
 
 const TeamTaskCreateLayout = lazy(() => import('../../../../../layouts/TeamTaskCreate/TeamTaskCreate.layout'));
 
@@ -20,6 +21,8 @@ function RouteComponent() {
   const { data, isLoading, isSuccess } = useTeamLoad(teamId);
 
   useIsTeamLeader({ isSuccess, data });
+
+  const formId = "task-create-form";
   
   if (isLoading || !data) return <WindowLoading />;
 
@@ -28,22 +31,28 @@ function RouteComponent() {
       title='Task Editor (Leader)'
       icon='/svg/Dark/Task.svg'
       teamId={teamId}
-      headerSecondaryChildren={
-        <Button 
-          variant='branded'
-          width={20}
-          height={6}
-          type='submit'
-        >
-          <span style={{fontSize:'1.1rem', color:"#FFFFFF", display:'flex', justifyContent:'center', alignItems: 'center', gap:'5px'}}>
-            <img src="/svg/Create.svg" alt="" width={20} /> 
-            Create
-          </span>
-        </Button>
-      }
+      // headerSecondaryChildren={
+      //   <Button 
+      //     variant='branded'
+      //     width={20}
+      //     height={6}
+      //     type='submit'
+      //     form={formId}
+      //   >
+      //     <span style={{fontSize:'1.1rem', color:"#FFFFFF", display:'flex', justifyContent:'center', alignItems: 'center', gap:'5px'}}>
+      //       <img src="/svg/Create.svg" alt="" width={20} /> 
+      //       Create
+      //     </span>
+      //   </Button>
+      // }
     >
       <Suspense fallback={<WindowLoading />}>
-        <TeamTaskCreateLayout teamId={teamId} taskType={taskType} />
+        <TeamTaskCreateLayout
+          teamId={teamId}
+          taskType={taskType}
+          teamData={data}
+          formId={formId}
+        />
       </Suspense>
     </TeamCabinetLayout>
   )
