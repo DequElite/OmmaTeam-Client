@@ -1,6 +1,8 @@
 import { z } from "zod";
 import { SubTasksStatus, TaskLevels, TaskTypes } from "../types/tasks.types";
 
+export const MAX_SUBTASKS = 10;
+
 export const SubtaskSchema = z.object({
     id: z.string().uuid().optional(),
     name: z.string().min(1, 'Subtask name is required'),
@@ -16,5 +18,5 @@ export const CreateTaskSchema = z.object({
     hardLevel: z.enum(Object.values(TaskLevels) as [TaskLevels, ...TaskLevels[]]),
     description: z.string().min(3),
     teamId: z.string().uuid(),
-    subtasks: z.array(SubtaskSchema).optional()
+    subtasks: z.array(SubtaskSchema).max(MAX_SUBTASKS).optional()
 })

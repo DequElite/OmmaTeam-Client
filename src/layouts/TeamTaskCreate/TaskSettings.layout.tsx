@@ -9,6 +9,8 @@ import { useForm } from 'react-hook-form';
 export default function TaskSettingsLayout({teamData, form}:{teamData: TeamDataType, form: ReturnType<typeof useForm<CreateTaskType>>}){
     const navigate = useNavigate();
 
+    const selectedTaskType = form.watch('type');
+
     const responsibleOptions = teamData.teammates.map(tm => ({
         value: tm.id,
         label: tm.user?.username || tm.user?.email || 'Unknown User',
@@ -34,7 +36,7 @@ export default function TaskSettingsLayout({teamData, form}:{teamData: TeamDataT
                         isError={!!form.formState.errors.title}
                         errorText={form.formState.errors.title?.message?.toString() ?? ''}
                         placeholder='Enter task name'
-                        {...form.register('title')}
+                        {...form.register('title', {required: true})}
                     />
                     <InputField 
                         type='date'
@@ -43,7 +45,7 @@ export default function TaskSettingsLayout({teamData, form}:{teamData: TeamDataT
                         isError={!!form.formState.errors.deadline}
                         errorText={form.formState.errors.deadline?.message?.toString() ?? ''}
                         placeholder='Enter deadline'
-                        {...form.register('deadline')}
+                        {...form.register('deadline', {required: true})}
                     />
                     <Select 
                         title='Task type'
@@ -60,6 +62,7 @@ export default function TaskSettingsLayout({teamData, form}:{teamData: TeamDataT
                             },
                         ]}
                         onChange={(value: string) => handleChangeTaskType(value as TaskTypes)}
+                        selectedValue={selectedTaskType}
                     />
                     <Select 
                         title='Task difficulty'

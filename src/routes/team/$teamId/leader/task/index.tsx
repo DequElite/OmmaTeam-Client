@@ -3,10 +3,11 @@ import { protectedLoader } from '../../../../../loaders/protectedLoader'
 import useTeamLoad from '../../../../../hooks/team/useTeamLoad'
 import WindowLoading from '../../../../../components/Loading/WindowLoading.component'
 import useIsTeamLeader from '../../../../../hooks/team/useIsTeamLeader'
-import { lazy, Suspense } from 'react'
+import { lazy, Suspense, useEffect } from 'react'
 import TeamCabinetLayout from '../../../../../layouts/TeamCabinetLayout/TeamCabinet.layout'
 import Button from '../../../../../components/Button/Button.component'
 import { CreateTaskType } from '../../../../../api/types/tasks.types'
+import useConfirmBox from '../../../../../contexts/ConfirmBoxContext/useConfirmBox'
 
 const TeamTaskCreateLayout = lazy(() => import('../../../../../layouts/TeamTaskCreate/TeamTaskCreate.layout'));
 
@@ -19,8 +20,21 @@ function RouteComponent() {
   const { type: taskType } = Route.useSearch();
   const { teamId } = Route.useParams()
   const { data, isLoading, isSuccess } = useTeamLoad(teamId);
-
+  
   useIsTeamLeader({ isSuccess, data });
+
+  useEffect(() => {
+    const handleBeforeUnload = (event: BeforeUnloadEvent) => {
+      event.preventDefault();  
+      event.returnValue = ''; 
+    };
+
+    window.addEventListener('beforeunload', handleBeforeUnload);
+
+    return () => {
+      window.removeEventListener('beforeunload', handleBeforeUnload);
+    };
+  }, []);
 
   if (isLoading || !data) return <WindowLoading />;
 

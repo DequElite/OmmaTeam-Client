@@ -6,14 +6,15 @@ export default function InputField({
   isRequired,
   errorText,
   isError,
+  isTitle = true,
   ...rest
 }: InputProps) {
   return (
     <div className={styles.field}>
-      <h3 className={styles.title}>
+      {isTitle && <h3 className={styles.title}>
         {title}
         {isRequired && <strong className={styles.requiredField}>*</strong>}
-      </h3>
+      </h3>}
       <input
         className={`${styles.input} ${isError ? styles.errorInput : ""}`}
         {...rest} 

@@ -89,6 +89,7 @@ export default function DefaultTaskForm({teamData}: {
                     <div className={styles['editor__details-desc']}>
                         <TextArea 
                             title='Task Description'
+                            placeholder="Write a description"
                             isRequired={true}
                             isError={!!form.formState.errors.description}
                             errorText={form.formState.errors.description?.message?.toString() ?? ''}

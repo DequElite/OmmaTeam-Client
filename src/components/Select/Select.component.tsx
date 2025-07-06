@@ -14,14 +14,17 @@ interface SelectProps {
     name: string;
     title: string;
     isRequired: boolean;
+    selectedValue?: string;
 }
 
 export default function Select(props:SelectProps){
     const [isOpen, setIsOpen] = useState(false);
     const selectRef = useRef<HTMLDivElement>(null);
-    const [checkedOpt, setCheckedOpt] = useState<Option>(props.options[0]);
+    const [checkedOpt, setCheckedOpt] = useState<Option>(() => {
+        const found = props.options.find(opt => opt.value === props.selectedValue);
 
-    // const { setValue } = useFormContext();
+        return found || props.options[0];
+    });
 
     useEffect(() => {
         const handleClickOutSelect = (event: MouseEvent) => {
@@ -42,7 +45,6 @@ export default function Select(props:SelectProps){
     const handleCheck = (index: number) => {
         setCheckedOpt(props.options[index]);
         setIsOpen(false);
-        // setValue(props.name, props.options[index].value, {shouldValidate: true});
         props.onChange?.(props.options[index].value);
     }
 

@@ -7,12 +7,12 @@ export function protectedLoader() {
     const isAuthLoaded = isAuthLoadedSelector(state);
 
     if (!isAuthLoaded) {
-        throw new Response('Auth loading', { status: 202 });
+        return { loading: true };
     }
 
     if (!isAuth) {
         throw redirect({ to: '/auth/login', replace: true });
     }
 
-    return null;
+    return { loading: false };
 }

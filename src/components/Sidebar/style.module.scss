@@ -116,6 +116,22 @@
     color: #FFFFFF;
     text-decoration: none;
     gap: 10px;
+    transition: 0.3s;
+
+    &:hover {
+        &.non-activated {
+            transform: scale(0.9);
+        }
+
+        &.activated {
+            background-color: rgba($color: #000000, $alpha: 0.6);
+
+            &::after {
+                content: '';
+                background-color: #f15c3300;
+            }
+        }
+    }
 
     &.non-activated {
         background-color: rgba($color: #000000, $alpha: 0.3);
@@ -125,6 +141,7 @@
         background-color: rgba($color: #000000, $alpha: 0.6);
 
         &::after {
+            transition: 0.3s;
             content: '';
             position: absolute;
             width: 7%;
