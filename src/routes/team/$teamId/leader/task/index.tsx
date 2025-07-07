@@ -5,9 +5,6 @@ import WindowLoading from '../../../../../components/Loading/WindowLoading.compo
 import useIsTeamLeader from '../../../../../hooks/team/useIsTeamLeader'
 import { lazy, Suspense, useEffect } from 'react'
 import TeamCabinetLayout from '../../../../../layouts/TeamCabinetLayout/TeamCabinet.layout'
-import Button from '../../../../../components/Button/Button.component'
-import { CreateTaskType } from '../../../../../api/types/tasks.types'
-import useConfirmBox from '../../../../../contexts/ConfirmBoxContext/useConfirmBox'
 
 const TeamTaskCreateLayout = lazy(() => import('../../../../../layouts/TeamTaskCreate/TeamTaskCreate.layout'));
 

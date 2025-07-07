@@ -1,7 +1,7 @@
 import { SubmitHandler, useFieldArray, useForm } from "react-hook-form";
 import { TeamDataType } from "../../api/types/team.types";
 import styles from "./styles.module.scss";
-import { CreateTaskType } from "../../api/types/tasks.types";
+import { CreateTaskType, TaskType } from "../../api/types/tasks.types";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { CreateTaskSchema, MAX_SUBTASKS } from "../../api/schemas-validate/task.schema";
 import TextArea from "../../components/TextArea/TextArea.component";
@@ -11,11 +11,14 @@ import InputField from "../../components/Input/Input.component";
 import { useMessageBox } from "../../contexts/MessageBoxContext/useMessageBox";
 import { useMutation } from "@tanstack/react-query";
 import { TaskService } from "../../api/services/Task.service";
+import { useNavigate } from "@tanstack/react-router";
 
 const taskService = new TaskService();
 
 export default function SubtaskedTaskForm({teamData}:{teamData: TeamDataType}){
     const { updateState } = useMessageBox();
+
+    const navigate = useNavigate();
 
     const form = useForm<CreateTaskType>({
         mode: 'onChange',
@@ -35,8 +38,8 @@ export default function SubtaskedTaskForm({teamData}:{teamData: TeamDataType}){
     });
 
     const { mutate, isPending } = useMutation({
-        mutationFn: (data: CreateTaskType) => taskService.createTask(data),
-        onSuccess: async (data: any) => {
+        mutationFn: (data: CreateTaskType) => taskService.createTask(data).then(res => res.data),
+        onSuccess: async (data: TaskType) => {
             console.debug('SUCCESS SENDED');
 
             updateState({
@@ -44,6 +47,8 @@ export default function SubtaskedTaskForm({teamData}:{teamData: TeamDataType}){
                 type: 'success',
                 desc: 'Created success'
             });
+
+            navigate({ to: `/team/${teamData.id}/tasks/view/${data.id}` })
         },
         onError: (err: any) => {
             console.error('error: ', err);
@@ -151,6 +156,7 @@ export default function SubtaskedTaskForm({teamData}:{teamData: TeamDataType}){
                         width={100}
                         height={6}
                         type='submit'
+                        disabled={isPending}
                     >
                         <span style={{fontSize:'1.1rem', color:"#FFFFFF", display:'flex', justifyContent:'center', alignItems: 'center', gap:'5px'}}>
                             <img src="/svg/Create.svg" alt="" width={20} /> 

@@ -20,3 +20,8 @@ export const CreateTaskSchema = z.object({
     teamId: z.string().uuid(),
     subtasks: z.array(SubtaskSchema).max(MAX_SUBTASKS).optional()
 })
+
+export const GetTaskSchema = z.object({
+    teamId: z.string().uuid(),
+    taskId: z.string().uuid()
+});

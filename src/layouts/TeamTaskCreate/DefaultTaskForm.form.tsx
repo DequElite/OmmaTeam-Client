@@ -5,17 +5,20 @@ import styles from './styles.module.scss';
 import TaskSettingsLayout from './TaskSettings.layout';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { CreateTaskSchema } from '../../api/schemas-validate/task.schema';
-import { CreateTaskType } from '../../api/types/tasks.types';
+import { CreateTaskType, TaskType } from '../../api/types/tasks.types';
 import Button from '../../components/Button/Button.component';
 import { useMessageBox } from '../../contexts/MessageBoxContext/useMessageBox';
 import { useMutation } from '@tanstack/react-query';
 import { TaskService } from '../../api/services/Task.service';
+import { useNavigate } from '@tanstack/react-router';
 
 const taskService = new TaskService();
 
 export default function DefaultTaskForm({teamData}: {
   teamData: TeamDataType,
 })  {
+    const navigate = useNavigate();
+
     const { updateState } = useMessageBox();
 
     const form = useForm<CreateTaskType>({
@@ -30,8 +33,8 @@ export default function DefaultTaskForm({teamData}: {
     });
 
     const { mutate, isPending } = useMutation({
-        mutationFn: (data: CreateTaskType) => taskService.createTask(data),
-        onSuccess: async (data: any) => {
+        mutationFn: (data: CreateTaskType) => taskService.createTask(data).then(res => res.data.newTask),
+        onSuccess: async (data: TaskType) => {
             console.debug('SUCCESS SENDED');
 
             updateState({
@@ -39,6 +42,9 @@ export default function DefaultTaskForm({teamData}: {
                 type: 'success',
                 desc: 'Created success'
             });
+            console.log(data)
+
+            navigate({ to: `/team/${teamData.id}/tasks/view/${data.id}` })
         },
         onError: (err: any) => {
             console.error('error: ', err);
