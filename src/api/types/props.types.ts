@@ -1,4 +1,4 @@
-import { InputHTMLAttributes } from "react";
+import { ButtonHTMLAttributes, HtmlHTMLAttributes, InputHTMLAttributes } from "react";
 
 export interface OmmaCardsProps {
     iconPath: string;
@@ -12,11 +12,12 @@ export interface OmmaCardsProps {
 }
 
 export type ButtonVariant = 'branded' | 'dark' | 'branded-reverese';
-export interface ButtonProps {
+export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
     children: React.ReactNode;
     variant: ButtonVariant;
     width: number;
     height: number;
+    size_type?: '%-vh' | '%-%';
     className?: any;
     animation?: boolean;
     onClick?: () => void;

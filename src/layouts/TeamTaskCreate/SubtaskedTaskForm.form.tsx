@@ -38,7 +38,7 @@ export default function SubtaskedTaskForm({teamData}:{teamData: TeamDataType}){
     });
 
     const { mutate, isPending } = useMutation({
-        mutationFn: (data: CreateTaskType) => taskService.createTask(data).then(res => res.data),
+        mutationFn: (data: CreateTaskType) => taskService.createTask(data).then(res => res.data.newTask),
         onSuccess: async (data: TaskType) => {
             console.debug('SUCCESS SENDED');
 

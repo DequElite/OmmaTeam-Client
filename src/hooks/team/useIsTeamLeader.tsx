@@ -5,14 +5,19 @@ import { useEffect } from "react";
 interface useIsTeamLeaderProps {
     isSuccess: boolean;
     data: TeamDataType | undefined;
+    redirect?: boolean;
 }
 
-export default function useIsTeamLeader({ isSuccess, data }: useIsTeamLeaderProps){
+export default function useIsTeamLeader({ isSuccess, data, redirect = true }: useIsTeamLeaderProps): boolean {
     const navigate = useNavigate();
 
+    const isNotLeader = isSuccess && !data?.isLeader;
+
     useEffect(() => {
-        if (isSuccess && !data?.isLeader) {
+        if (isNotLeader && redirect) {
             navigate({ to: '/', replace: true });
         }
-    }, [isSuccess, data, navigate]);
+    }, [isNotLeader, redirect, navigate]);
+
+    return !isNotLeader;
 }

@@ -25,3 +25,9 @@ export const GetTaskSchema = z.object({
     teamId: z.string().uuid(),
     taskId: z.string().uuid()
 });
+
+export const CheckSubTaskSchema = z.object({
+    teamId: z.string().uuid(),
+    taskId: z.string().uuid(),
+    subtaskId: z.string().uuid(),
+})

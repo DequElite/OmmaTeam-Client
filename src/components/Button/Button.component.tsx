@@ -1,25 +1,41 @@
 import { ButtonProps } from "../../api/types/props.types";
 import styles from "./style.module.scss";
 
-export default function Button(props: ButtonProps){
+export default function Button(props: ButtonProps) {
+    const {
+        children,
+        variant,
+        width,
+        height,
+        size_type = '%-vh',
+        className,
+        animation,
+        onClick,
+        type = 'button',
+        disabled,
+        form,
+        ...rest
+    } = props;
+
     return (
-        <button 
-            type={props.type || 'button'}
-            disabled={props.disabled}
+        <button
+            type={type}
+            disabled={disabled}
             style={{
-                width: `${props.width}%`,
-                height: `${props.height}vh`
+                width: `${width}%`,
+                height: size_type === '%-vh' ? `${height}vh` : `${height}%`,
             }}
-            className= {`
+            className={`
                 ${styles.button} 
-                ${styles[props.variant]} 
-                ${props.className} 
-                ${props.animation && styles['animated']}`}
-            
-            onClick={props.onClick}
-            form={props.form}
+                ${styles[variant]} 
+                ${className ?? ''} 
+                ${animation ? styles['animated'] : ''}
+            `}
+            onClick={onClick}
+            form={form}
+            {...rest}
         >
-            { props.children }
+            {children}
         </button>
-    )
+    );
 }

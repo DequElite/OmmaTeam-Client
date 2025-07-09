@@ -8,6 +8,7 @@ import Button from '../../../components/Button/Button.component'
 import { useMessageBox } from '../../../contexts/MessageBoxContext/useMessageBox'
 import { useMutation } from '@tanstack/react-query'
 import { ProfileService } from '../../../api/services/Profile.service'
+import useConfirmBox from '../../../contexts/ConfirmBoxContext/useConfirmBox'
 
 const profileService = new ProfileService();
 
@@ -24,6 +25,7 @@ function RouteComponent() {
   const navigate = useNavigate();
 
   const { updateState } = useMessageBox();
+  const { confirm } = useConfirmBox();
 
   const { mutate } = useMutation({
     mutationFn: () => profileService.logOut(),
@@ -40,8 +42,13 @@ function RouteComponent() {
     }
   })
 
-  const handleLogOut = () => {
-    mutate()
+  const handleLogOut = async () => {
+    if(confirm) {
+      const result = await confirm("You are going to log out");
+      if(result) {
+        mutate()
+      }
+    }
   }
 
   return (
