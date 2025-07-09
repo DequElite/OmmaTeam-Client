@@ -1,8 +1,8 @@
 import { handleResponse } from "../../utils/handleResponse.util";
 import { validateSchemas } from "../../utils/validate.util";
 import taskClient from "../clients/task-service.client";
-import { CheckSubTaskSchema, CreateTaskSchema, GetTaskSchema } from "../schemas-validate/task.schema";
-import { CheckSubTaskType, CreateTaskType, GetTaskType } from "../types/tasks.types";
+import { CheckSubTaskSchema, CreateTaskSchema, GetTaskSchema, SomeWithTaskIdSchema } from "../schemas-validate/task.schema";
+import { CheckSubTaskType, CreateTaskType, GetTaskType, SomeWithTaskIdType } from "../types/tasks.types";
 
 export class TaskService{
     public async createTask(body: CreateTaskType) {
@@ -20,5 +20,19 @@ export class TaskService{
     public async checkSubtask(body: CheckSubTaskType) {
         validateSchemas(CheckSubTaskSchema, body);
         return handleResponse(taskClient.patch(`/task-management/subtask/${body.teamId}`, {taskId: body.taskId, subtaskId: body.subtaskId}));
+    }
+
+    public async deleteTask(body: SomeWithTaskIdType){
+        validateSchemas(SomeWithTaskIdSchema, body);
+        return handleResponse(taskClient.delete(`/task-management/delete/${body.teamId}`, {
+            data: { taskId: body.taskId }
+        }));
+    }
+
+    public async completeTask(body: SomeWithTaskIdType){
+        validateSchemas(SomeWithTaskIdSchema, body);
+        return handleResponse(taskClient.patch(`/task-management/complete/${body.teamId}`, 
+            { taskId: body.taskId }
+        ));
     }
 }

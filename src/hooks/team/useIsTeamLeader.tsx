@@ -11,13 +11,17 @@ interface useIsTeamLeaderProps {
 export default function useIsTeamLeader({ isSuccess, data, redirect = true }: useIsTeamLeaderProps): boolean {
     const navigate = useNavigate();
 
-    const isNotLeader = isSuccess && !data?.isLeader;
+    const isLeader = isSuccess && data?.isLeader;
 
     useEffect(() => {
-        if (isNotLeader && redirect) {
+        if (!redirect) return; 
+
+        const isNotLeader = isSuccess && !data?.isLeader;
+        if (isNotLeader) {
+            console.log('redirect')
             navigate({ to: '/', replace: true });
         }
-    }, [isNotLeader, redirect, navigate]);
+    }, [isSuccess, data, redirect, navigate]);
 
-    return !isNotLeader;
+    return Boolean(isLeader);
 }

@@ -17,4 +17,16 @@
         border-color: #008822;
         color: #008822;
     }
+
+    &.medium{
+        background-color: rgba($color: #FFE100, $alpha: 0.25);
+        border-color: #888300;
+        color: #888300;
+    }
+
+    &.hard {
+        background-color: rgba($color: #FF0000, $alpha: 0.25);
+        border-color: #880000;
+        color: #880000;
+    }
 }

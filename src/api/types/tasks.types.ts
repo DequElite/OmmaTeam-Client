@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { CheckSubTaskSchema, CreateTaskSchema, GetTaskSchema } from "../schemas-validate/task.schema";
+import { CheckSubTaskSchema, CreateTaskSchema, GetTaskSchema, SomeWithTaskIdSchema } from "../schemas-validate/task.schema";
 
 export interface TaskType {
   id: string
@@ -47,3 +47,5 @@ export type CreateTaskType = z.infer<typeof CreateTaskSchema>;
 export type GetTaskType = z.infer<typeof GetTaskSchema>;
 
 export type CheckSubTaskType = z.infer<typeof CheckSubTaskSchema>;
+
+export type SomeWithTaskIdType = z.infer<typeof SomeWithTaskIdSchema>;

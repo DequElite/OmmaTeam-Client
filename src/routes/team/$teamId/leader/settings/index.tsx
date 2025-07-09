@@ -95,6 +95,7 @@ function RouteComponent() {
             }
         }
   });
+  //http://localhost:5173/team/53fc3bde-60be-4930-89b0-0f9a72277be2/tasks/view/93da0f36-fefa-4199-9e2a-c19241ef201a
 
   const handleDeleteTeam = async () => {
     if(confirm){
