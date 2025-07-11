@@ -55,22 +55,27 @@
     background-color: #F5F5F5;
 
     .subtasks-list {
-        width: 100%;
-        height: 100%;
-        // @include mixs.centeredRow;
-        // align-items: flex-start;
-        // flex-wrap: wrap;  
-        display: grid; 
-        grid-template-columns: repeat(auto-fit, minmax(48%, 2fr)); 
-        gap: 10px;
+        // width: 100%;
+        // height: 100%;
+        // gap: 10px;
+        // padding: 0;
+        // margin: 0;
+        // list-style: none;
+        // overflow-y: auto;
+        // max-height: 100%;
+        flex: 1;
+        max-height: 100%;
+        overflow-y: auto;
+        display: flex;
+        justify-content: start;
+        flex-wrap: wrap;
+        gap: 12px;
+        list-style: none;
         padding: 0;
         margin: 0;
-        list-style: none;
-        overflow-y: auto;
-        max-height: 100%;
 
         .subtask {
-            width: 100%;
+            width: 49%;
             height: 7vh;
             @include mixs.centeredRow;
             gap: 10px;

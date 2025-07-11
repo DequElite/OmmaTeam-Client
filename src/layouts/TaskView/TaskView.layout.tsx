@@ -158,6 +158,14 @@ export default function TaskViewLayout({data}:{ data: TaskType }){
                         </h3>
                         <Responsible name={data.assignedTo.user.username || ''}/>
                     </div>
+                    <div className={styles['viewer__info-status']}>
+                        <h3>
+                            Task status
+                        </h3>
+                        <h4>
+                            {data.isCompleted ? 'Completed' : 'In the progress'}
+                        </h4>
+                    </div>
                 </section>
             </div>
         </>

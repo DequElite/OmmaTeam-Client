@@ -2,7 +2,9 @@ import { handleResponse } from "../../utils/handleResponse.util";
 import { validateSchemas } from "../../utils/validate.util";
 import taskClient from "../clients/task-service.client";
 import { CheckSubTaskSchema, CreateTaskSchema, GetTaskSchema, SomeWithTaskIdSchema } from "../schemas-validate/task.schema";
+import { SomeTeamByID } from "../schemas-validate/team.schema";
 import { CheckSubTaskType, CreateTaskType, GetTaskType, SomeWithTaskIdType } from "../types/tasks.types";
+import { type SomeTeamByID as SomeTeamByIDType } from "../types/team.types";
 
 export class TaskService{
     public async createTask(body: CreateTaskType) {
@@ -34,5 +36,15 @@ export class TaskService{
         return handleResponse(taskClient.patch(`/task-management/complete/${body.teamId}`, 
             { taskId: body.taskId }
         ));
+    }
+
+    public async getPersonalTeamTasks(body: SomeTeamByIDType) {
+        validateSchemas(SomeTeamByID, body);
+        return handleResponse(taskClient.get(`/data-management/tasks/personal/${body.id}`));
+    }
+
+    public async getAllTeamTask(body: SomeTeamByIDType) {
+        validateSchemas(SomeTeamByID, body);
+        return handleResponse(taskClient.get(`/data-management/tasks/all/${body.id}`))
     }
 }

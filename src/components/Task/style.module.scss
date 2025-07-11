@@ -1,0 +1,60 @@
+@use "@/styles/mixins.style.scss" as mixs;
+@use "@/styles/variables.style.scss" as vars;
+
+.task{
+    width: 100%;
+    height: 100%;
+    background-color: #F5F5F5;
+    border-radius: 10px;
+    padding: 10px;
+    box-sizing: border-box;
+    @include mixs.centeredColumn;
+    align-items: start;
+    justify-content: start;
+    gap: 5px;
+}
+
+.task__header{
+    width: 100%;
+    height: 13%;
+    @include mixs.centeredRow;
+    justify-content: space-between;
+
+    h3 {
+        font-size: 1.2rem;
+        margin: 0;
+        padding: 0;
+    }
+    p {
+        background: linear-gradient(90deg, vars.$light_purple, vars.$light_orange);
+        -webkit-background-clip: text; 
+        -webkit-text-fill-color: transparent; 
+        
+        background-clip: text;
+        color: transparent;
+
+        font-weight: bold;
+        font-size: 0.8rem;
+    }
+}
+
+.task__desc{
+    width: 100%;
+    height: 50%;
+    padding: 0;
+    margin: 0;
+    max-height: 50%;
+    overflow: hidden;
+
+    p{
+        font-size: 1rem;
+        margin: 0;
+        color: #7e7e7e;
+        
+        display: -webkit-box;
+        -webkit-line-clamp: 6;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+}

@@ -167,39 +167,60 @@ function RouteComponent() {
       headerSecondaryChildren={
         <>
           {
-            data.isCompleted ? 
-            <Button 
-                variant='branded'
-                width={25}
-                height={5}
-                disabled={true}
-              >
-                <span style={{fontSize:'1.1rem', color:"#FFFFFF", display:'flex', justifyContent:'center', alignItems: 'center', gap:'5px'}}>
-                  Completed
-                </span>
-            </Button>
-            : (
-              isLeader ?
-              <Button 
-                variant='branded'
-                width={25}
-                height={5}
-                onClick={handleDeleteTask}
-              >
-                <span style={{fontSize:'1.1rem', color:"#FFFFFF", display:'flex', justifyContent:'center', alignItems: 'center', gap:'5px'}}>
-                  Delete
-                </span>
-              </Button>
-              : <Button 
-                variant='branded'
-                width={25}
-                height={5}
-                onClick={handleCompeteTask}
-              >
-                <span style={{fontSize:'1.1rem', color:"#FFFFFF", display:'flex', justifyContent:'center', alignItems: 'center', gap:'5px'}}>
-                  Finish Task
-                </span>
-              </Button>
+            data.isCompleted ? (
+              <>
+                {
+                  !isLeader && (
+                    <Button
+                      variant='branded'
+                      width={25}
+                      height={5}
+                      disabled
+                    >
+                      <span style={{ fontSize: '1.1rem', color: "#FFFFFF", display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '5px' }}>
+                        Completed
+                      </span>
+                    </Button>
+                  )
+                }
+
+                {isLeader && (
+                  <Button
+                    variant='branded'
+                    width={25}
+                    height={5}
+                    onClick={handleDeleteTask}
+                  >
+                    <span style={{ fontSize: '1.1rem', color: "#FFFFFF", display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '5px' }}>
+                      Delete
+                    </span>
+                  </Button>
+                )}
+              </>
+            ) : (
+              isLeader ? (
+                <Button
+                  variant='branded'
+                  width={25}
+                  height={5}
+                  onClick={handleDeleteTask}
+                >
+                  <span style={{ fontSize: '1.1rem', color: "#FFFFFF", display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '5px' }}>
+                    Delete
+                  </span>
+                </Button>
+              ) : (
+                <Button
+                  variant='branded'
+                  width={25}
+                  height={5}
+                  onClick={handleCompeteTask}
+                >
+                  <span style={{ fontSize: '1.1rem', color: "#FFFFFF", display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '5px' }}>
+                    Finish Task
+                  </span>
+                </Button>
+              )
             )
           }
         </>
