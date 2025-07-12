@@ -7,7 +7,8 @@ import useIsTeamLeader from '../../../../hooks/team/useIsTeamLeader'
 import { useQuery } from '@tanstack/react-query'
 import { TaskType } from '../../../../api/types/tasks.types'
 import { TaskService } from '../../../../api/services/Task.service'
-import { lazy, Suspense, useEffect } from 'react'
+import { lazy, Suspense, useEffect, useState } from 'react'
+import ChangeButton, { OptionType } from '../../../../components/ChangeButton/ChangeButton.component'
 
 const TeamTasksLayout = lazy(() => import('../../../../layouts/TeamTasks/TeamTasks.layout'));
 
@@ -38,11 +39,22 @@ function RouteComponent() {
     enabled: !!teamId && isLeader,
   });
 
+  const [allTasks, setAllTasks] = useState<TaskType[]>([]);
+  const [tasks, setTasks] = useState<TaskType[]>([]);
+  const filterTypes: OptionType[] = [
+    {label: 'In the progres', value: 'in_the_progres'}, 
+    {label:'Completed', value:'completed'}
+  ] 
+
   useEffect(() => {
     if ((isError && error) || (UserTasksDataIsError && UserTasksDataError)) {
-      navigate({ to:'/', replace: true })
+      navigate({ to: '/', replace: true });
+    } else if (data && UserTasksData) {
+      const source = isLeader ? data : UserTasksData;
+      setAllTasks(source);
+      setTasks(source.filter(task => !task.isCompleted));
     }
-  }, [isError, error, navigate]);
+  }, [isError, error, UserTasksDataIsError, UserTasksDataError, data, UserTasksData, isLeader, navigate]);
 
   if(isLoading || teamLoading || UserTasksDataLoading) {
     return <WindowLoading />
@@ -52,16 +64,36 @@ function RouteComponent() {
     return null;
   }
 
-  console.log(data)
+  
+  const handleSelectFilter = ({value}: OptionType) => {
+    if (value === filterTypes[0].value) {
+      setTasks(allTasks.filter(task => !task.isCompleted));
+    } else {
+      setTasks(allTasks.filter(task => task.isCompleted));
+    }
+  }
+
+  if(!tasks) {
+    return <WindowLoading />
+  }
 
   return (
     <TeamCabinetLayout
       title='Tasks'
       teamId={teamId}
+      headerSecondaryChildren={
+        <ChangeButton
+          options={filterTypes} 
+          width={30}
+          height={5}
+          size_type={{width:'%', height: 'vh'}}
+          onSelect={handleSelectFilter}
+        />
+      }
     >
-      <Suspense fallback={<WindowLoading />}>
+      <Suspense fallback={<WindowLoading/>}>
         <TeamTasksLayout
-          tasks={data}
+          tasks={tasks}
         />
       </Suspense>
     </TeamCabinetLayout>

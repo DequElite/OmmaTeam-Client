@@ -185,30 +185,23 @@ function RouteComponent() {
                 }
 
                 {isLeader && (
-                  <Button
-                    variant='branded'
-                    width={25}
-                    height={5}
-                    onClick={handleDeleteTask}
-                  >
-                    <span style={{ fontSize: '1.1rem', color: "#FFFFFF", display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '5px' }}>
-                      Delete
-                    </span>
-                  </Button>
+                  <>
+                    <Button variant='branded' width={25} height={5} onClick={handleDeleteTask}>
+                      <span style={{ fontSize: '1.1rem', color: "#FFFFFF" }}>Delete</span>
+                    </Button>
+                  </>
                 )}
               </>
             ) : (
               isLeader ? (
-                <Button
-                  variant='branded'
-                  width={25}
-                  height={5}
-                  onClick={handleDeleteTask}
-                >
-                  <span style={{ fontSize: '1.1rem', color: "#FFFFFF", display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '5px' }}>
-                    Delete
-                  </span>
-                </Button>
+                <div style={{ display: 'flex', gap: '10px', width: '100%', justifyContent: 'end' }}>
+                  <Button variant='branded' width={25} height={5} onClick={handleCompeteTask}>
+                    <span style={{ fontSize: '1.1rem', color: "#FFFFFF" }}>Finish task</span>
+                  </Button>
+                  <Button variant='branded' width={25} height={5} onClick={handleDeleteTask}>
+                    <span style={{ fontSize: '1.1rem', color: "#FFFFFF" }}>Delete</span>
+                  </Button>
+                </div>
               ) : (
                 <Button
                   variant='branded'

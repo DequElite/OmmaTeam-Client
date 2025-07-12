@@ -1,0 +1,80 @@
+@use "@/styles/variables.style.scss" as vars;
+@use "@/styles/mixins.style.scss" as mixs;
+
+// .container {
+//     @include mixs.centeredRow;
+//     gap: 5px;
+//     font-family: vars.$primary_font;
+
+//     &__text {
+//         height: 100%;
+//         width: 50%;
+//         background-color: #F5F5F5;
+//         @include  mixs.centeredRow;
+//         font-size: 0.8rem;
+//         font-weight: bold;
+//         text-align: center;
+//         padding: 5px;
+//         box-sizing: border-box;
+//     }
+
+//     button {
+//         @include mixs.centeredRow;
+//         height: 100%;
+//         width: 30%;
+//     }
+// }
+
+.container {
+    @include mixs.centeredRow;
+    font-family: vars.$primary_font;
+    width: 100%;
+    height: 100%;
+    gap: 2.2%;
+
+    &__btn-left,
+    &__btn-right {
+        width: 21.6%;
+        height: 100%;
+        @include mixs.centeredRow;
+        padding: 0;
+        color: #000000;
+        background-color: #F5F5F5;
+        transition: 0.5s;
+
+        border: none;
+
+        &:hover {
+            background-color: vars.$light_purple;
+            color: #F5F5F5;
+        }
+
+    }
+
+    &__btn-left{
+        border-radius: 10px 0px 0px 10px;
+    }
+
+    &__btn-right {
+        border-radius: 0px 10px 10px 0px;
+    }
+
+    &__text {
+        width: 52.5%;
+        height: 100%;
+        background-color: #F5F5F5;
+        @include mixs.centeredRow;
+        font-size: 0.8rem;
+        font-weight: bold;
+        text-align: center;
+        padding: 0; 
+        box-sizing: border-box;
+        color: #000000;
+        transition: 0.5s;
+
+        &:hover {
+            background-color: vars.$light_orange;
+            color: #F5F5F5;
+        }
+    }
+}
