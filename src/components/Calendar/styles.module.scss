@@ -1,0 +1,82 @@
+@use "@/styles/mixins.style.scss" as mixs;
+@use "@/styles/variables.style.scss" as vars;
+
+.calendar{
+    width: 100%;
+    height: 100%;
+    @include mixs.centeredColumn;
+    gap: 2%;
+
+    &__header{
+        width: 100%;
+        height: 6%;
+        @include mixs.centeredRow;
+        gap: 20px;
+    }
+
+    &__table {
+        width: 100%;
+        height: 92%;
+    }
+
+    &__grid {
+        border-collapse: collapse;
+        table-layout: fixed;
+        width: 100%;
+        border-radius: 10px;
+        overflow: hidden;
+
+        th, td {
+            border: 1px solid #ccc;
+            padding: 0.5rem;
+            text-align: center;
+        }
+
+        thead th {
+            border-top: none;
+            border-left: none;
+            background-color: #f0f0f0;
+
+            &:last-child {
+                border-right: none;
+            }
+        }
+    }
+
+    &__cell-header {
+        background-color: #f0f0f0;
+        font-weight: 600;
+    }
+
+    &__cell-name {
+        background-color: #fafafa;
+        font-weight: 500;
+        text-align: left;
+        padding-left: 0.5rem;
+    }
+
+    &__cell {
+        height: 100px; 
+        vertical-align: top;
+        position: relative;
+        overflow: hidden;
+        padding: 4px;
+        box-sizing: border-box;
+
+        &--other{
+            color: #959595;
+        }
+
+        &.today {
+            background-color: rgba($color: #FFE100, $alpha: 0.2);
+        }
+
+        strong {
+            position: absolute;
+            top: 0%;
+            left: 100%;
+            transform: translate(-150%, 20%);
+            font-size: 0.7rem;
+        }
+    }
+}

@@ -7,7 +7,11 @@ export default function DashboardLayout() {
         <>
             <main className={styles["main"]}>
                 <h3>Coming soon...</h3>
-                <p>This loading will take longer than usual...</p>
+                <p>
+                    It will be released after the first demo version.
+                    <br />
+                    The demo is planned for 01/08/2025.
+                </p>
                 <Loading />
             </main>
         </>

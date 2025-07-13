@@ -15,7 +15,7 @@ interface ChangeButtonProps {
         height: '%' | 'vh';
     };
     className?: any;
-    onSelect?: ({label, value}: OptionType) => void;
+    onSelect?: ({label, value}: OptionType, type:'right' | 'left') => void;
 }
 
 export default function ChangeButton(props: ChangeButtonProps){
@@ -32,7 +32,7 @@ export default function ChangeButton(props: ChangeButtonProps){
         }
 
         setSelectedIndex(newIndex);
-        props.onSelect?.(props.options[newIndex]);
+        props.onSelect?.(props.options[newIndex], type);
     };
 
 

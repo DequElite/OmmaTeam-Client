@@ -65,7 +65,7 @@ function RouteComponent() {
   }
 
   
-  const handleSelectFilter = ({value}: OptionType) => {
+  const handleSelectFilter = ({value}: OptionType, type: 'right' | 'left') => {
     if (value === filterTypes[0].value) {
       setTasks(allTasks.filter(task => !task.isCompleted));
     } else {

@@ -44,11 +44,11 @@ export default function TeamCabinetLayout(props: DashboardLayoutProps) {
                                 name: 'Chat',
                                 icon: '/svg/Chat.svg'
                             },
-                            {
-                                link: `/team/${props.teamId}/calendar`,
-                                name: 'Calendar',
-                                icon: '/svg/Calendar.svg'
-                            },
+                            // {
+                            //     link: `/team/${props.teamId}/calendar`,
+                            //     name: 'Calendar',
+                            //     icon: '/svg/Calendar.svg'
+                            // },
                             {
                                 link: `/team/${props.teamId}/teammates`,
                                 name: 'Teammates',
