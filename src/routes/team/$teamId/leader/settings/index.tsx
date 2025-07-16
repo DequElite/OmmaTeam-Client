@@ -36,8 +36,6 @@ function RouteComponent() {
 
   useIsTeamLeader({ isSuccess, data });
 
-  if (isLoading || !data) return <WindowLoading />;
-
   const { mutate, isPending } = useMutation({
     mutationFn: (data: SomeTeamByID) => teamService.deleteTeam({id:data.id}),
     onSuccess: () => {
@@ -115,6 +113,8 @@ function RouteComponent() {
   if(isPending) {
     return <WindowLoading />
   }
+
+  if (isLoading || !data) return <WindowLoading />;
 
   return (
     <TeamCabinetLayout

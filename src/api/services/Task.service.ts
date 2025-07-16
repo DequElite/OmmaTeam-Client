@@ -47,4 +47,8 @@ export class TaskService{
         validateSchemas(SomeTeamByID, body);
         return handleResponse(taskClient.get(`/data-management/tasks/all/${body.id}`))
     }
+
+    public async getAllUserTasks(){
+        return handleResponse(taskClient.get('/data-management/tasks/personal/all'));
+    }
 }

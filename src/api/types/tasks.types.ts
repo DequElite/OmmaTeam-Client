@@ -16,6 +16,16 @@ export interface TaskType {
   subtasks: SubtaskType[]
 }
 
+export interface TinyTaskType {
+  id: string
+  title: string
+  deadline: Date
+  type: TaskTypes
+  hardLevel: TaskLevels
+  isCompleted: boolean
+  teamId: string
+}
+
 export interface SubtaskType {
   id: string
   name: string

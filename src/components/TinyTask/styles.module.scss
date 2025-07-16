@@ -1,0 +1,36 @@
+@use "@/styles/mixins.style.scss" as mixs;
+@use "@/styles/variables.style.scss" as vars;
+
+.task{
+    width: 100%;
+    height: 4vh;
+    padding: 10px;
+    box-sizing: border-box;
+    border-left: 5px solid transparent;
+    border-radius: 4px;
+    font-weight: bold;
+    text-transform: capitalize;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    font-size: 0.8rem; 
+    cursor: pointer;
+
+    &.easy {
+        background-color: rgba($color: #00FF04, $alpha: 0.25);
+        border-color: #008822;
+        color: #008822;
+    }
+
+    &.medium{
+        background-color: rgba($color: #FFE100, $alpha: 0.25);
+        border-color: #888300;
+        color: #888300;
+    }
+
+    &.hard {
+        background-color: rgba($color: #FF0000, $alpha: 0.25);
+        border-color: #880000;
+        color: #880000;
+    }
+}

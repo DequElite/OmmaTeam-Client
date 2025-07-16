@@ -10,7 +10,14 @@ const monthNames = [
   'July', 'August', 'September', 'October', 'November', 'December',
 ];
 
-export default function Calendar() {
+interface CalendarProps {
+  childrens: {
+    element: React.ReactNode;
+    date: Date;
+  }[];
+}
+
+export default function Calendar({ childrens }: CalendarProps) {
     const today = new Date();
     const [year, setYear] = useState(today.getFullYear());
     const [month, setMonth] = useState(today.getMonth());
@@ -84,6 +91,11 @@ export default function Calendar() {
                                                 } ${isToday ? styles['today'] : ''}`}
                                             >
                                                 <strong>{isToday && 'Today'} {day.date.getDate()}</strong>
+                                                <div className={styles['calendar__cell-inner']}>
+                                                    {
+                                                        childrens.filter(child => isSameDay(child.date, day.date)).map((child, index) => <div key={index}>{child.element}</div>)
+                                                    }
+                                                </div>
                                             </td>
                                         );
                                     })}
