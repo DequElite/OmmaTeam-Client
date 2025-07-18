@@ -2,8 +2,7 @@ import React from "react";
 import Sidebar from "../../components/Sidebar/Sidebar";
 import styles from "./style.module.scss";
 import { useAppSelector } from "../../store/store";
-import { useTranslation } from "react-i18next";
-import { queryClient } from "../../main";
+// import { useTranslation } from "react-i18next";
 import useTeamLoad from "../../hooks/team/useTeamLoad";
 
 interface DashboardLayoutProps {
@@ -17,9 +16,9 @@ interface DashboardLayoutProps {
 export default function TeamCabinetLayout(props: DashboardLayoutProps) {
     const user = useAppSelector(state => state.userProfile);
 
-    const { t } = useTranslation(); 
+    // const { t } = useTranslation(); 
 
-    const { data: teamData, isLoading } = useTeamLoad(props.teamId);
+    const { data: teamData } = useTeamLoad(props.teamId);
     const isLeader = teamData?.isLeader;
 
     return (

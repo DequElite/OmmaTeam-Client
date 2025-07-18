@@ -9,13 +9,13 @@ interface AuthProps {
     desc?: React.ReactNode;
 }
 
-const AUTH_TITLES: Record<AuthType, string> = {
-    SignUp: 'Get Started',
-    LogIn: 'Welcome back',
-    ForgotPassoword: 'Forgot Password?',
-    ResetPassword: 'Reset to new password',
-    GoogleSign: 'We are registering you via Google...'
-}
+// const AUTH_TITLES: Record<AuthType, string> = {
+//     SignUp: 'Get Started',
+//     LogIn: 'Welcome back',
+//     ForgotPassoword: 'Forgot Password?',
+//     ResetPassword: 'Reset to new password',
+//     GoogleSign: 'We are registering you via Google...'
+// }
 
 export default function AuthLayout(props: AuthProps) {
     const { t } = useTranslation();

@@ -1,4 +1,4 @@
-import { configureStore, createAsyncThunk, createSelector } from "@reduxjs/toolkit";
+import { configureStore, createSelector } from "@reduxjs/toolkit";
 import { TypedUseSelectorHook, useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import userProfileSlice from "./slices/userProfile.slice";

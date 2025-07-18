@@ -1,4 +1,4 @@
-import { SubmitHandler, useForm, useWatch } from 'react-hook-form';
+import { SubmitHandler, useForm } from 'react-hook-form';
 import { TeamDataType } from '../../api/types/team.types';
 import TextArea from '../../components/TextArea/TextArea.component';
 import styles from './styles.module.scss';

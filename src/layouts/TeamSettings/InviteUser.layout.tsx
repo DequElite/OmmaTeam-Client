@@ -22,7 +22,7 @@ export default function InviteUserLayout({teamId}:{teamId: string}){
 
     const { mutate, isPending } = useMutation({
         mutationFn: (data: InviteTeammateType) => teamService.inviteTeammate(data),
-        onSuccess: async (data: any) => {
+        onSuccess: async () => {
             console.debug('SUCCESS SENDED');
 
             updateState({

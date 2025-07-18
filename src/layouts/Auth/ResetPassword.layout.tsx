@@ -25,7 +25,7 @@ export default function ResetPasswordLayout({
         resolver: zodResolver(ResetPassowrdSchema)
     });
 
-    const {mutate, isPending} = useMutation({
+    const {mutate} = useMutation({
         mutationFn: (data: ResetPasswordShared) => userService.resetPassoword(data),
         onSuccess: () => {
             updateState({

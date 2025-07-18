@@ -1,4 +1,4 @@
-import { ButtonHTMLAttributes, HtmlHTMLAttributes, InputHTMLAttributes } from "react";
+import { ButtonHTMLAttributes, InputHTMLAttributes } from "react";
 
 export interface OmmaCardsProps {
     iconPath: string;

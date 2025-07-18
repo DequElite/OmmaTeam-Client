@@ -1,7 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { UserProfileResponse } from "../../api/types/user.types";
 import { AppDispatch, AppState, extraArgument } from "../store";
-import { ReturnAccessToken, SetAccessToken } from "../../utils/getTokenFromLocalStorage.util";
+import { SetAccessToken } from "../../utils/getTokenFromLocalStorage.util";
 import registerClient from "../../api/clients/register-service.client";
 import { AxiosError } from "axios";
 
@@ -35,6 +35,7 @@ export const getUserProfile = createAsyncThunk<UserProfileResponse, void, {
                     }
                 } catch (refreshError) {
                     console.error("Token refresh error: ", refreshError);
+                    //@ts-ignore
                     return rejectWithValue({ message: refreshError.message || "Token refresh failed", status: 500 });
                 }
             }

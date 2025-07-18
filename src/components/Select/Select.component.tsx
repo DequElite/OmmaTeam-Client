@@ -1,4 +1,3 @@
-import { Control, useFormContext } from "react-hook-form";
 import styles from './styles.module.scss';
 import Button from "../Button/Button.component";
 import { useEffect, useRef, useState } from "react";

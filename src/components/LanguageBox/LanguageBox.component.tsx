@@ -3,7 +3,7 @@ import styles from "./style.module.scss";
 import { useState } from "react";
 
 export function LanguageBox(){
-    const { t, i18n } = useTranslation();
+    const { i18n } = useTranslation();
     const [lang , setLang] = useState<'en' | 'uk'>('en');
 
     const handleChangeLang = () => {

@@ -22,14 +22,14 @@ export default function Calendar({ childrens }: CalendarProps) {
     const [year, setYear] = useState(today.getFullYear());
     const [month, setMonth] = useState(today.getMonth());
 
-    const monthOptions = monthNames.map((m, index) => ({
+    const monthOptions = monthNames.map((m) => ({
         label: m,
         value: m.toLowerCase().slice(0, 3),
     }));
 
     const dates = generateMonthGrid(year, month);
 
-    const handleChangeMonth = ({ value, label }: OptionType, type: 'right' | 'left') => {
+    const handleChangeMonth = ({ label }: OptionType, type: 'right' | 'left') => {
         const selectedIndex = monthNames.findIndex(month => month === label);
         let newMonth = selectedIndex;
         let newYear = year;

@@ -5,7 +5,7 @@ import { lazy, Suspense } from 'react'
 import WindowLoading from '../../../../components/Loading/WindowLoading.component'
 import { TaskService } from '../../../../api/services/Task.service'
 import { useQuery } from '@tanstack/react-query'
-import { TaskType, TinyTaskType } from '../../../../api/types/tasks.types'
+import { TinyTaskType } from '../../../../api/types/tasks.types'
 
 const CalendarLayout = lazy(() => import('../../../../layouts/Calendar/Calendar.layout'));
 

@@ -1,11 +1,9 @@
-import { Navigate, useNavigate } from '@tanstack/react-router';
+import { Navigate } from '@tanstack/react-router';
 import styles from './styles.module.scss';
 import DefaultTaskForm from './DefaultTaskForm.form';
 import SubtaskedTaskForm from './SubtaskedTaskForm.form';
 import { TeamDataType } from '../../api/types/team.types';
 import WindowLoading from '../../components/Loading/WindowLoading.component';
-import { SubmitHandler } from 'react-hook-form';
-import { CreateTaskType } from '../../api/types/tasks.types';
 
 export default function TaskTaskCreateLayout({
   teamId,

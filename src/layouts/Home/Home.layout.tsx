@@ -2,13 +2,12 @@ import { useNavigate } from "@tanstack/react-router";
 import Button from "../../components/Button/Button.component";
 import OmmaCard from "../../components/OmmaCards/OmmaCards.component";
 import styles from './style.module.scss';
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import { OmmaCardsProps } from "../../api/types/props.types";
 import useIsScreenWidth from "../../hooks/useIsScreenWidth";
 import { useAppSelector } from "../../store/store";
 import { useMessageBox } from "../../contexts/MessageBoxContext/useMessageBox";
 import { useTranslation } from "react-i18next";
-import useConfirmBox from "../../contexts/ConfirmBoxContext/useConfirmBox";
 
 export default function HomeLayout() {
     const userProfileState = useAppSelector(state => state.userProfile);

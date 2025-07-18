@@ -22,7 +22,7 @@ export default function DeleteUserLayout({teamId}:{teamId: string}){
 
     const { mutate, isPending } = useMutation({
         mutationFn: (data: DeleteTeammateType) => teamService.deleteTeammate(data),
-        onSuccess: async (data: any) => {
+        onSuccess: async () => {
             console.debug('SUCCESS SENDED');
 
             updateState({

@@ -25,7 +25,7 @@ export default function ChangeTeamNameLayout({teamId}:{teamId: string}){
 
     const { mutate, isPending } = useMutation({
         mutationFn: (data: ChangeTeamNameType) => teamService.changeTeamName(data),
-        onSuccess: async (data: any) => {
+        onSuccess: async () => {
             console.debug('SUCCESS SENDED');
 
             updateState({

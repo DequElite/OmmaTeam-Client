@@ -1,6 +1,5 @@
-import { TaskType, TinyTaskType } from '../../api/types/tasks.types'
+import { TinyTaskType } from '../../api/types/tasks.types'
 import Calendar from '../../components/Calendar/Calendar.component'
-import Difficulty from '../../components/Difficulty/Difficulty.component';
 import TinyTask from '../../components/TinyTask/TinyTask.component';
 import styles from './styles.module.scss'
 

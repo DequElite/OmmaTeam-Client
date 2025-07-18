@@ -22,7 +22,7 @@ export default function AcceptInvitation({token}:{token:string}){
 
     const { mutate } = useMutation({
         mutationFn: (data: AcceptInvitationType) => teamService.acceptInvitation(data),
-        onSuccess: async (data: any) => {
+        onSuccess: async () => {
 
             await dispatch(getUserTeamsShortData());
 

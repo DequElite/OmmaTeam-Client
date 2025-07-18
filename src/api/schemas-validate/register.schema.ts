@@ -1,5 +1,4 @@
 import { z } from "zod";
-import { UsersRoles } from "../types/user.types";
 import { emailField, passwordField, roleField, usernameField } from "./global.schemas";
 
 export const ForgotPassowrdSchema = z.object({

@@ -28,7 +28,7 @@ export default function CreateTeamLayout(){
 
     const { mutate, isPending } = useMutation({
         mutationFn: (data: CreateTeamType) => teamService.createTeam(data),
-        onSuccess: async (data: any) => {
+        onSuccess: async () => {
             console.debug('SUCCESS SENDED');
 
             await dispatch (getUserTeamsShortData());

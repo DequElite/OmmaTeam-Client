@@ -9,6 +9,7 @@ export async function handleResponse<T>(promise: Promise<AxiosResponse<T>>): Pro
             const axiosError = err as AxiosError;
             
             if (axiosError.response) {
+                //@ts-ignore
                 throw new AxiosError(axiosError.response.data?.message || 'Server error', axiosError.code, axiosError.config, axiosError.request, axiosError.response);
             }
             

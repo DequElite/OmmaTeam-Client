@@ -26,3 +26,4 @@ dist-ssr
 *.txt
 
 .env
+.env.docker

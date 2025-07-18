@@ -9,7 +9,6 @@ import { useMutation } from "@tanstack/react-query";
 import { UserService } from "../../api/services/UserRegister.service";
 import { useMessageBox } from "../../contexts/MessageBoxContext/useMessageBox";
 import { useTranslation } from "react-i18next";
-import { useEffect } from "react";
 
 const userService = new UserService();
 

@@ -1,7 +1,6 @@
 import { handleResponse } from "../../utils/handleResponse.util";
 import { validateSchemas } from "../../utils/validate.util";
 import registerClient, { BaseRegisterUrl } from "../clients/register-service.client";
-import { passwordField } from "../schemas-validate/global.schemas";
 import { 
     logInSchema, 
     signUpSchema 
@@ -9,7 +8,6 @@ import {
 import { 
     ForgotPassowrd,
     LogIn, 
-    ResetPassword, 
     ResetPasswordShared, 
     SignUp, 
     User

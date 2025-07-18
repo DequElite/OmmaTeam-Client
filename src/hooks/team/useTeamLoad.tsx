@@ -1,6 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
 import { TeamService } from "../../api/services/Team.service";
-import { useAppSelector } from "../../store/store";
 import { useMessageBox } from "../../contexts/MessageBoxContext/useMessageBox";
 import { useNavigate } from "@tanstack/react-router";
 import { useEffect } from "react";
