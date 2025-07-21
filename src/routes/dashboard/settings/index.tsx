@@ -59,6 +59,7 @@ function RouteComponent() {
         <Button 
           variant='branded'
           width={25}
+          width_on_mobile={65}
           height={6}
           type='submit'
           onClick={handleLogOut}

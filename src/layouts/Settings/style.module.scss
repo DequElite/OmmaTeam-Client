@@ -51,3 +51,15 @@
           text-decoration: none;
       }
     }
+
+@media (max-width: 600px) {
+    .layout {
+        @include mixs.centeredColumn;
+        gap: 0px;
+
+        &__profile, &__password {
+            width: 80%;
+        }
+    }
+
+}

@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import Sidebar from "../../components/Sidebar/Sidebar";
 import styles from "./style.module.scss";
 import { useAppSelector } from "../../store/store";
 // import { useTranslation } from "react-i18next";
 import useTeamLoad from "../../hooks/team/useTeamLoad";
+import useIsScreenWidth from "../../hooks/useIsScreenWidth";
 
 interface DashboardLayoutProps {
     children: React.ReactNode;
@@ -21,10 +22,15 @@ export default function TeamCabinetLayout(props: DashboardLayoutProps) {
     const { data: teamData } = useTeamLoad(props.teamId);
     const isLeader = teamData?.isLeader;
 
+    const { isSmallScreen } = useIsScreenWidth({ minScreenWidth: 600 });
+    const [isSidebarOpened, setIsSidebarOpened] = useState(false);
+
     return (
         <>
             <main className={styles["layout"]}>
-                <section className={styles["layout__sidebar"]}>
+                <section
+                    className={`${styles["layout__sidebar"]} ${isSidebarOpened ? styles["opened"] : ""}`}
+                >
                     <Sidebar 
                         title={teamData?.name || 'OmmaTeam'}
                         primaryLinks={[
@@ -86,6 +92,9 @@ export default function TeamCabinetLayout(props: DashboardLayoutProps) {
                             <section className={styles["content__header-other"]}>
                                 {
                                     props.headerSecondaryChildren
+                                }
+                                {
+                                    isSmallScreen && <button onClick={() => setIsSidebarOpened(prev => !prev)}><img src="/svg/Dark/Burger.svg" alt="" /></button>
                                 }
                             </section>
                         </div>

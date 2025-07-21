@@ -84,3 +84,13 @@
         color: #7E7E7E;
     }
 }
+
+@media (max-width: 600px) {
+
+    .layout__item-info{
+        .info__ownericon{
+            display: none;
+        }
+    }
+
+}

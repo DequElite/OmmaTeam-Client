@@ -3,6 +3,7 @@ import ChangeButton, { OptionType } from '../ChangeButton/ChangeButton.component
 import styles from './styles.module.scss'
 import generateMonthGrid from '../../utils/generateMonthGrid.util';
 import isSameDay from '../../utils/isSameDay.util';
+import useIsScreenWidth from '../../hooks/useIsScreenWidth';
 
 const daysOfWeek = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
 const monthNames = [
@@ -21,6 +22,8 @@ export default function Calendar({ childrens }: CalendarProps) {
     const today = new Date();
     const [year, setYear] = useState(today.getFullYear());
     const [month, setMonth] = useState(today.getMonth());
+
+    const { isSmallScreen } = useIsScreenWidth({ minScreenWidth: 600 });
 
     const monthOptions = monthNames.map((m) => ({
         label: m,
@@ -51,15 +54,14 @@ export default function Calendar({ childrens }: CalendarProps) {
     for (let i = 0; i < dates.length; i += 7) {
         rows.push(dates.slice(i, i + 7));
     }
-    console.debug(rows)
-    
+
     return (
         <>
             <div className={styles['calendar']}>
                 <header className={styles['calendar__header']}>
                     <ChangeButton 
                         options={monthOptions}
-                        width={15}
+                        width={!isSmallScreen ? 15 : 45}
                         height={5}
                         size_type={{
                             width: '%',
@@ -70,6 +72,7 @@ export default function Calendar({ childrens }: CalendarProps) {
                     <h3>{monthNames[month]} {year}</h3>
                 </header>
                 <section className={styles['calendar__table']}>
+                    <div className={styles['calendar__table-wrapper']}>
                     <table className={styles['calendar__grid']}>
                         <thead>
                             <tr>
@@ -103,6 +106,7 @@ export default function Calendar({ childrens }: CalendarProps) {
                             ))}
                         </tbody>
                     </table>
+                    </div>
                 </section>
             </div>
         </>

@@ -43,3 +43,10 @@
         justify-content: space-between;
     }
 }
+
+
+@media (max-width: 600px) {
+    .box{
+        width: 100%;
+    }
+}

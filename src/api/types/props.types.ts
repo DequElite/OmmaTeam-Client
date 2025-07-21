@@ -24,6 +24,7 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
     type?: 'button' | 'submit' | 'reset';
     disabled?: boolean;
     form?:string;
+    width_on_mobile?:number;
 }
 
 export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {

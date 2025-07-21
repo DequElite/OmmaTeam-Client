@@ -26,6 +26,7 @@ function RouteComponent() {
         <Button
           variant='branded'
           width={24}
+          width_on_mobile={70}
           height={5}
           onClick={()=>navigate({to:'create'})}
         >

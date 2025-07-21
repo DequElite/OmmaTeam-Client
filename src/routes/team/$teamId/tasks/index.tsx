@@ -9,6 +9,7 @@ import { TaskType } from '../../../../api/types/tasks.types'
 import { TaskService } from '../../../../api/services/Task.service'
 import { lazy, Suspense, useEffect, useState } from 'react'
 import ChangeButton, { OptionType } from '../../../../components/ChangeButton/ChangeButton.component'
+import { useMessageBox } from '../../../../contexts/MessageBoxContext/useMessageBox'
 
 const TeamTasksLayout = lazy(() => import('../../../../layouts/TeamTasks/TeamTasks.layout'));
 
@@ -22,6 +23,8 @@ const taskService = new TaskService();
 function RouteComponent() {
   const { teamId } = Route.useParams() 
   const { data: teamData, isLoading: teamLoading, isSuccess } = useTeamLoad(teamId);
+
+  const {updateState } = useMessageBox();
 
   const isLeader = useIsTeamLeader({ isSuccess, data: teamData, redirect: false });
   
@@ -46,22 +49,57 @@ function RouteComponent() {
     {label:'Completed', value:'completed'}
   ] 
 
+  // useEffect(() => {
+  //   if ((isError && error) || (UserTasksDataIsError && UserTasksDataError)) {
+  //     // navigate({ to: '/', replace: true });
+  //     updateState({
+  //       isOpened: true,
+  //       desc: 'Something went wrong',
+  //       type: 'error'
+  //     });
+  //   } else if (data && UserTasksData) {
+  //     const source = isLeader ? data : UserTasksData;
+  //     setAllTasks(source);
+  //     setTasks(source.filter(task => !task.isCompleted));
+  //   }
+  // }, [isError, error, UserTasksDataIsError, UserTasksDataError, data, UserTasksData, isLeader, navigate]);
   useEffect(() => {
-    if ((isError && error) || (UserTasksDataIsError && UserTasksDataError)) {
-      navigate({ to: '/', replace: true });
-    } else if (data && UserTasksData) {
-      const source = isLeader ? data : UserTasksData;
-      setAllTasks(source);
-      setTasks(source.filter(task => !task.isCompleted));
+    if (UserTasksDataIsError && UserTasksDataError) {
+      updateState({
+        isOpened: true,
+        desc: 'Something went wrong',
+        type: 'error'
+      });
+    } else if (!isLeader && UserTasksData) {
+      setAllTasks(UserTasksData);
+      setTasks(UserTasksData.filter(task => !task.isCompleted));
     }
-  }, [isError, error, UserTasksDataIsError, UserTasksDataError, data, UserTasksData, isLeader, navigate]);
+  }, [UserTasksData, UserTasksDataIsError, UserTasksDataError, isLeader]);
+
+  useEffect(() => {
+    if (isError && error) {
+      updateState({
+        isOpened: true,
+        desc: 'Something went wrong',
+        type: 'error'
+      });
+    } else if (isLeader && data) {
+      setAllTasks(data);
+      setTasks(data.filter(task => !task.isCompleted));
+    }
+  }, [data, isError, error, isLeader]);
 
   if(isLoading || teamLoading || UserTasksDataLoading) {
     return <WindowLoading />
   }
-  if (isError || !data || !teamData || UserTasksDataIsError || !UserTasksData) {
-    navigate({ to: '/', replace: true });
-    return null;
+  if (isError || !teamData || UserTasksDataIsError) {
+    console.debug(UserTasksData)
+    // navigate({ to: '/', replace: true });
+    updateState({
+        isOpened: true,
+        desc: 'Something went wrong',
+        type: 'error'
+      });
   }
 
   
