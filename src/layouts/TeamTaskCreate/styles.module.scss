@@ -133,3 +133,38 @@
         gap: 20px;
     }
 }
+
+@media (max-width:600px){
+    .editor-layout{
+        @include mixs.centeredColumn;
+        justify-content: start;
+        gap: 20px;
+
+        .editor__details {
+            width: 100%;
+            height: 100vh;
+            @include mixs.centeredColumn;
+            justify-content: space-between;
+
+            &-desc {
+                width: 100%;
+                height: 30vh;
+            }
+
+            &-subtasks{
+                width: 100%;
+                height: 50vh;
+                @include mixs.centeredColumn;
+                justify-content: start;
+                margin-top: 50px;
+            }
+        }
+
+        .editor__info{
+            width: 100%;
+            height: 100%;
+            @include mixs.centeredColumn;
+            gap: 10px;
+        }
+    }
+}

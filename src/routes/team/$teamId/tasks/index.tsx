@@ -1,4 +1,4 @@
-import { createFileRoute, useNavigate } from '@tanstack/react-router'
+import { createFileRoute } from '@tanstack/react-router'
 import TeamCabinetLayout from '../../../../layouts/TeamCabinetLayout/TeamCabinet.layout'
 import { protectedLoader } from '../../../../loaders/protectedLoader'
 import useTeamLoad from '../../../../hooks/team/useTeamLoad'
@@ -10,6 +10,7 @@ import { TaskService } from '../../../../api/services/Task.service'
 import { lazy, Suspense, useEffect, useState } from 'react'
 import ChangeButton, { OptionType } from '../../../../components/ChangeButton/ChangeButton.component'
 import { useMessageBox } from '../../../../contexts/MessageBoxContext/useMessageBox'
+import useIsScreenWidth from '../../../../hooks/useIsScreenWidth'
 
 const TeamTasksLayout = lazy(() => import('../../../../layouts/TeamTasks/TeamTasks.layout'));
 
@@ -27,8 +28,8 @@ function RouteComponent() {
   const {updateState } = useMessageBox();
 
   const isLeader = useIsTeamLeader({ isSuccess, data: teamData, redirect: false });
-  
-  const navigate = useNavigate();
+
+  const { isSmallScreen } = useIsScreenWidth({ minScreenWidth: 600 });
   
   const { data: UserTasksData, isLoading: UserTasksDataLoading, isError: UserTasksDataIsError, error: UserTasksDataError } = useQuery<TaskType[]>({
     queryKey: ['user-tasks', teamId],
@@ -48,21 +49,7 @@ function RouteComponent() {
     {label: 'In the progres', value: 'in_the_progres'}, 
     {label:'Completed', value:'completed'}
   ] 
-
-  // useEffect(() => {
-  //   if ((isError && error) || (UserTasksDataIsError && UserTasksDataError)) {
-  //     // navigate({ to: '/', replace: true });
-  //     updateState({
-  //       isOpened: true,
-  //       desc: 'Something went wrong',
-  //       type: 'error'
-  //     });
-  //   } else if (data && UserTasksData) {
-  //     const source = isLeader ? data : UserTasksData;
-  //     setAllTasks(source);
-  //     setTasks(source.filter(task => !task.isCompleted));
-  //   }
-  // }, [isError, error, UserTasksDataIsError, UserTasksDataError, data, UserTasksData, isLeader, navigate]);
+  
   useEffect(() => {
     if (UserTasksDataIsError && UserTasksDataError) {
       updateState({
@@ -122,7 +109,7 @@ function RouteComponent() {
       headerSecondaryChildren={
         <ChangeButton
           options={filterTypes} 
-          width={30}
+          width={!isSmallScreen ? 30 : 100}
           height={5}
           size_type={{width:'%', height: 'vh'}}
           onSelect={handleSelectFilter}

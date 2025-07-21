@@ -30,3 +30,14 @@
         }
     }
 }
+
+@media (max-width:600px){
+    .layout {
+        @include mixs.centeredColumn;
+        justify-content: start;
+    }
+
+    .form {
+        width: 80%;
+    }
+}

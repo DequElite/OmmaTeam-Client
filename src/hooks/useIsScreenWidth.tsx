@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useLayoutEffect, useState } from "react";
 
 interface useIsScreenWidthProps{
     minScreenWidth: number;
@@ -7,7 +7,7 @@ interface useIsScreenWidthProps{
 export default function useIsScreenWidth(props: useIsScreenWidthProps){
     const [isSmallScreen, setIsSmallScreen] = useState(false);
 
-    useEffect(() => {
+    useLayoutEffect(() => {
       const handleResize = () => {
         setIsSmallScreen(window.innerWidth <= props.minScreenWidth);
       };

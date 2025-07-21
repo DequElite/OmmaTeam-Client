@@ -188,4 +188,24 @@
       }
   }
 }
-  
+
+  @media (max-width: 600px) {
+    .layout__preview{
+      display: none;
+    }
+    .layout__form{
+      width: 100%;
+
+      &-container{
+        width: 100%;
+
+        .layout__form-box {
+          height: 50%;
+
+          .layout__form-window{
+            height: 20vh;
+          }
+        }
+      }
+    }
+  }

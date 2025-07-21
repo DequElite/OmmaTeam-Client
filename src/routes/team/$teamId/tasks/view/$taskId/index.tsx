@@ -174,6 +174,7 @@ function RouteComponent() {
                     <Button
                       variant='branded'
                       width={25}
+                      width_on_mobile={100}
                       height={5}
                       disabled
                     >
@@ -186,7 +187,8 @@ function RouteComponent() {
 
                 {isLeader && (
                   <>
-                    <Button variant='branded' width={25} height={5} onClick={handleDeleteTask}>
+                    
+                    <Button variant='branded' width={25} height={5} onClick={handleDeleteTask} width_on_mobile={100}>
                       <span style={{ fontSize: '1.1rem', color: "#FFFFFF" }}>Delete</span>
                     </Button>
                   </>
@@ -195,10 +197,10 @@ function RouteComponent() {
             ) : (
               isLeader ? (
                 <div style={{ display: 'flex', gap: '10px', width: '100%', justifyContent: 'end' }}>
-                  <Button variant='branded' width={25} height={5} onClick={handleCompeteTask}>
+                  <Button width_on_mobile={100} variant='branded' width={25} height={5} onClick={handleCompeteTask}>
                     <span style={{ fontSize: '1.1rem', color: "#FFFFFF" }}>Finish task</span>
                   </Button>
-                  <Button variant='branded' width={25} height={5} onClick={handleDeleteTask}>
+                  <Button width_on_mobile={100} variant='branded' width={25} height={5} onClick={handleDeleteTask}>
                     <span style={{ fontSize: '1.1rem', color: "#FFFFFF" }}>Delete</span>
                   </Button>
                 </div>
@@ -207,6 +209,7 @@ function RouteComponent() {
                   variant='branded'
                   width={25}
                   height={5}
+                  width_on_mobile={100}
                   onClick={handleCompeteTask}
                 >
                   <span style={{ fontSize: '1.1rem', color: "#FFFFFF", display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '5px' }}>
