@@ -10,6 +10,7 @@ import { useMutation } from "@tanstack/react-query";
 import { ChangeTeamNameType } from "../../api/types/team.types";
 import { useMessageBox } from "../../contexts/MessageBoxContext/useMessageBox";
 import { useNavigate } from "@tanstack/react-router";
+import { useTranslation } from "react-i18next";
 
 const teamService = new TeamService();
 
@@ -17,6 +18,8 @@ export default function ChangeTeamNameLayout({teamId}:{teamId: string}){
     const { updateState } = useMessageBox();
 
     const navigate = useNavigate();
+
+    const { t } = useTranslation(); 
 
     const { register, handleSubmit, formState: {errors} } = useForm({
         mode: 'onChange',
@@ -87,7 +90,7 @@ export default function ChangeTeamNameLayout({teamId}:{teamId: string}){
         <form className={styles['form']} onSubmit={handleSubmit(onSubmit)}>
             <header className={styles['form__header']}>
                 <h3>
-                    Team name
+                    {t('pages.team.settings.team_name')}
                 </h3>
             </header>
             <InputField 

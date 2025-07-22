@@ -8,11 +8,14 @@ import { useState } from 'react';
 import { useMutation } from '@tanstack/react-query';
 import { TaskService } from '../../api/services/Task.service';
 import { useMessageBox } from '../../contexts/MessageBoxContext/useMessageBox';
+import { useTranslation } from 'react-i18next';
 
 const taskService = new TaskService();
 
 export default function TaskViewLayout({data}:{ data: TaskType }){
     const { updateState } = useMessageBox();
+
+    const { t } = useTranslation(); 
 
     const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
     
@@ -71,7 +74,7 @@ export default function TaskViewLayout({data}:{ data: TaskType }){
                 <section className={styles['viewer__details']}>
                     <div className={styles['viewer__details-desc']}>
                         <h3>
-                            Task Description
+                            {t('pages.team.task.task_desc')}
                         </h3>
                         <div className={styles['viewer__details-desc-container']}>
                             <p>
@@ -83,7 +86,7 @@ export default function TaskViewLayout({data}:{ data: TaskType }){
                         data.type === TaskTypes.SUBTASKS && data.subtasks.length > 0 && 
                         <div className={styles['viewer__details-subtasks']}>
                             <h3>
-                                Sub Tasks
+                                {t('other.sub_tasks')}
                             </h3>
                             <div className={styles['subtasks-container']}>
                                 <ul className={styles['subtasks-list']}>
@@ -124,7 +127,7 @@ export default function TaskViewLayout({data}:{ data: TaskType }){
                 <section className={styles['viewer__info']}>
                     <div className={styles['viewer__info-name']}>
                         <h3>
-                            Task name
+                            {t('pages.team.task.task_name')}
                         </h3>
                         <h4>
                             {data.title}
@@ -132,7 +135,7 @@ export default function TaskViewLayout({data}:{ data: TaskType }){
                     </div>
                     <div className={styles['viewer__info-deadline']}>
                         <h3>
-                            Deadline
+                            {t('pages.team.task.deadline')}
                         </h3>
                         <h4>
                             To {new Date(data.deadline).toLocaleString()}
@@ -140,7 +143,7 @@ export default function TaskViewLayout({data}:{ data: TaskType }){
                     </div>
                     <div className={styles['viewer__info-type']}>
                         <h3>
-                            Task type
+                            {t('pages.team.task.task_type')}
                         </h3>
                         <h4>
                             {data.type}
@@ -148,22 +151,22 @@ export default function TaskViewLayout({data}:{ data: TaskType }){
                     </div>
                     <div className={styles['viewer__info-difficulty']}>
                         <h3>
-                            Task Difficulty
+                            {t('pages.team.task.task_difficulty')}
                         </h3>
                         <Difficulty difficulty={difficulty}/>
                     </div>
                     <div className={styles['viewer__info-responsible']}>
                         <h3>
-                            Task responsible
+                            {t('pages.team.task.task_resp')}
                         </h3>
                         <Responsible name={data.assignedTo.user.username || ''}/>
                     </div>
                     <div className={styles['viewer__info-status']}>
                         <h3>
-                            Task status
+                            {t('pages.team.task.task_status')}
                         </h3>
                         <h4>
-                            {data.isCompleted ? 'Completed' : 'In the progress'}
+                            {data.isCompleted ? t('other.completed') : t('other.in_prog')}
                         </h4>
                     </div>
                 </section>

@@ -5,9 +5,12 @@ import Select from '../../components/Select/Select.component';
 import styles from './styles.module.scss';
 import { CreateTaskType, type TaskTypes } from '../../api/types/tasks.types';
 import { useForm } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
 
 export default function TaskSettingsLayout({teamData, form}:{teamData: TeamDataType, form: ReturnType<typeof useForm<CreateTaskType>>}){
     const navigate = useNavigate();
+
+    const { t } = useTranslation(); 
 
     const selectedTaskType = form.watch('type');
 
@@ -31,7 +34,7 @@ export default function TaskSettingsLayout({teamData, form}:{teamData: TeamDataT
                 <div className={styles['form']}>
                     <InputField 
                         type='text'
-                        title='Task name'
+                        title={t('pages.team.task.task_name')}
                         isRequired={true}
                         isError={!!form.formState.errors.title}
                         errorText={form.formState.errors.title?.message?.toString() ?? ''}
@@ -40,7 +43,7 @@ export default function TaskSettingsLayout({teamData, form}:{teamData: TeamDataT
                     />
                     <InputField 
                         type='date'
-                        title='Task deadline'
+                        title={t('pages.team.task.deadline')}
                         isRequired={true}
                         isError={!!form.formState.errors.deadline}
                         errorText={form.formState.errors.deadline?.message?.toString() ?? ''}
@@ -48,7 +51,7 @@ export default function TaskSettingsLayout({teamData, form}:{teamData: TeamDataT
                         {...form.register('deadline', {required: true})}
                     />
                     <Select 
-                        title='Task type'
+                        title={t('pages.team.task.task_type')}
                         name='type'
                         isRequired={true}
                         options={[
@@ -65,7 +68,7 @@ export default function TaskSettingsLayout({teamData, form}:{teamData: TeamDataT
                         selectedValue={selectedTaskType}
                     />
                     <Select 
-                        title='Task difficulty'
+                        title={t('pages.team.task.task_difficulty')}
                         name='hardlevel'
                         isRequired={true}
                         options={[
@@ -85,7 +88,7 @@ export default function TaskSettingsLayout({teamData, form}:{teamData: TeamDataT
                         onChange={(value: string)=>handleSelect(value, "hardLevel")}
                     />
                     <Select 
-                        title='Task responsible'
+                        title={t('pages.team.task.task_resp')}
                         name='teammateId'
                         isRequired={true}
                         options={responsibleOptions}

@@ -9,11 +9,14 @@ import { z } from "zod";
 import { useMutation } from "@tanstack/react-query";
 import { TeamService } from "../../api/services/Team.service";
 import { useMessageBox } from "../../contexts/MessageBoxContext/useMessageBox";
+import { useTranslation } from "react-i18next";
 
 const teamService = new TeamService();
 
 export default function DeleteUserLayout({teamId}:{teamId: string}){
     const { updateState } = useMessageBox();
+
+    const { t } = useTranslation(); 
 
     const { register, handleSubmit, formState: {errors} } = useForm({
         mode: 'onChange',
@@ -61,7 +64,7 @@ export default function DeleteUserLayout({teamId}:{teamId: string}){
         <form className={styles['form']} onSubmit={handleSubmit(onSubmit)}>
             <header className={styles['form__header']}>
                 <h3>
-                    Delete user from team
+                    {t('pages.team.settings.del_user')}
                 </h3>
             </header>
             <InputField 

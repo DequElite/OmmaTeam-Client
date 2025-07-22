@@ -13,6 +13,7 @@ import { TeamService } from '../../../../../api/services/Team.service'
 import { SomeTeamByID } from '../../../../../api/types/team.types'
 import { useAppDispatch } from '../../../../../store/store'
 import { getUserTeamsShortData } from '../../../../../store/services/userTeams.service'
+import { useTranslation } from 'react-i18next'
 
 const teamService = new TeamService();
 
@@ -28,6 +29,8 @@ function RouteComponent() {
   const { data, isLoading, isSuccess } = useTeamLoad(teamId)
 
   const dispatch = useAppDispatch();
+
+  const { t } = useTranslation(); 
 
   const { confirm } = useConfirmBox();
   const { updateState } = useMessageBox();
@@ -132,7 +135,7 @@ function RouteComponent() {
         >
           <span style={{fontSize:'1.1rem', color:"#FFFFFF", display:'flex', justifyContent:'center', alignItems: 'center', gap:'10px'}}>
             <img src="/svg/Bin.svg" alt="" width={20} /> 
-            Delete team
+            {t('pages.team.settings.del_team')}
           </span>
         </Button>
       }

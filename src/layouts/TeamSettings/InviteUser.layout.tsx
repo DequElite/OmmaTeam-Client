@@ -9,12 +9,15 @@ import { z } from "zod";
 import { emailField } from "../../api/schemas-validate/global.schemas";
 import { useMutation } from "@tanstack/react-query";
 import { InviteTeammateType } from "../../api/types/team.types";
+import { useTranslation } from "react-i18next";
 
 const teamService = new TeamService();
 
 export default function InviteUserLayout({teamId}:{teamId: string}){
     const { updateState } = useMessageBox();
     
+    const { t } = useTranslation(); 
+
     const { register, handleSubmit, formState: {errors} } = useForm({
         mode: 'onChange',
         resolver: zodResolver(z.object({email:emailField}))
@@ -70,7 +73,7 @@ export default function InviteUserLayout({teamId}:{teamId: string}){
         <form className={styles['form']} onSubmit={handleSubmit(onSubmit)}>
             <header className={styles['form__header']}>
                 <h3>
-                    Invite user to team
+                    {t('pages.team.settings.invite')}
                 </h3>
             </header>
             <InputField 

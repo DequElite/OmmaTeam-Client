@@ -5,6 +5,7 @@ import { useAppSelector } from "../../store/store";
 // import { useTranslation } from "react-i18next";
 import useTeamLoad from "../../hooks/team/useTeamLoad";
 import useIsScreenWidth from "../../hooks/useIsScreenWidth";
+import { useTranslation } from "react-i18next";
 
 interface DashboardLayoutProps {
     children: React.ReactNode;
@@ -17,7 +18,7 @@ interface DashboardLayoutProps {
 export default function TeamCabinetLayout(props: DashboardLayoutProps) {
     const user = useAppSelector(state => state.userProfile);
 
-    // const { t } = useTranslation(); 
+    const { t } = useTranslation(); 
 
     const { data: teamData } = useTeamLoad(props.teamId);
     const isLeader = teamData?.isLeader;
@@ -36,17 +37,17 @@ export default function TeamCabinetLayout(props: DashboardLayoutProps) {
                         primaryLinks={[
                             {
                                 link: '/dashboard',
-                                name: 'Home',
+                                name: t('pages.team.sidebar.home'),
                                 icon: '/svg/Home.svg'
                             },
                             {
                                 link:  `/team/${props.teamId}/tasks`,
-                                name: 'Tasks',
+                                name: t('pages.team.sidebar.tasks'),
                                 icon: '/svg/Tasks.svg'
                             },
                             {
                                 link: `/team/${props.teamId}/chat`,
-                                name: 'Chat',
+                                name: t('pages.team.sidebar.chat'),
                                 icon: '/svg/Chat.svg'
                             },
                             // {
@@ -56,19 +57,19 @@ export default function TeamCabinetLayout(props: DashboardLayoutProps) {
                             // },
                             {
                                 link: `/team/${props.teamId}/teammates`,
-                                name: 'Teammates',
+                                name: t('pages.team.sidebar.teammates'),
                                 icon: '/svg/Team.svg'
                             },
                         ]}
                         secondaryLinks={isLeader ? [
                             {
                                 link: `/team/${props.teamId}/leader/task`,
-                                name: 'Task',
+                                name: t('pages.team.sidebar.task'),
                                 icon: '/svg/Task.svg'
                             },
                             {
                                 link: `/team/${props.teamId}/leader/settings`,
-                                name: 'Settings',
+                                name: t('pages.team.sidebar.settings'),
                                 icon: '/svg/Settings.svg'
                             },
                         ] : []}

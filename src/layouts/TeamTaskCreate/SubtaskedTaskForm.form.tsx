@@ -12,6 +12,7 @@ import { useMessageBox } from "../../contexts/MessageBoxContext/useMessageBox";
 import { useMutation } from "@tanstack/react-query";
 import { TaskService } from "../../api/services/Task.service";
 import { useNavigate } from "@tanstack/react-router";
+import { useTranslation } from "react-i18next";
 
 const taskService = new TaskService();
 
@@ -19,6 +20,8 @@ export default function SubtaskedTaskForm({teamData}:{teamData: TeamDataType}){
     const { updateState } = useMessageBox();
 
     const navigate = useNavigate();
+
+    const { t } = useTranslation(); 
 
     const form = useForm<CreateTaskType>({
         mode: 'onChange',
@@ -111,7 +114,7 @@ export default function SubtaskedTaskForm({teamData}:{teamData: TeamDataType}){
                 <section className={styles['editor__details']}>
                     <div className={styles['editor__details-desc']}>
                         <TextArea 
-                            title='Task Description'
+                            title={t('pages.team.task.task_desc')}
                             placeholder="Write a description"
                             isRequired={true}
                             isError={!!form.formState.errors.description}
@@ -121,7 +124,7 @@ export default function SubtaskedTaskForm({teamData}:{teamData: TeamDataType}){
                     </div>
                     <div className={styles['editor__details-subtasks']}>
                         <h3>
-                            Sub Tasks
+                            {t('other.sub_tasks')}
                         </h3>
                         <div className={styles['subtasks-container']}>
                             <ul className={styles['subtasks-list']}>

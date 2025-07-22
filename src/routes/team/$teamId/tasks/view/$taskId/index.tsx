@@ -10,6 +10,7 @@ import useIsTeamLeader from '../../../../../../hooks/team/useIsTeamLeader';
 import useTeamLoad from '../../../../../../hooks/team/useTeamLoad';
 import useConfirmBox from '../../../../../../contexts/ConfirmBoxContext/useConfirmBox';
 import { useMessageBox } from '../../../../../../contexts/MessageBoxContext/useMessageBox';
+import { useTranslation } from 'react-i18next';
 
 const TaskViewLayout = lazy(() => import('../../../../../../layouts/TaskView/TaskView.layout'));
 
@@ -27,6 +28,8 @@ function RouteComponent() {
   const isLeader = useIsTeamLeader({ isSuccess, data: teamData, redirect: false });
 
   const navigate = useNavigate();
+
+  const { t } = useTranslation(); 
 
   const { confirm } = useConfirmBox();
   const { updateState } = useMessageBox();
@@ -179,7 +182,7 @@ function RouteComponent() {
                       disabled
                     >
                       <span style={{ fontSize: '1.1rem', color: "#FFFFFF", display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '5px' }}>
-                        Completed
+                        {t('buttons.finish')}
                       </span>
                     </Button>
                   )
@@ -189,7 +192,7 @@ function RouteComponent() {
                   <>
                     
                     <Button variant='branded' width={25} height={5} onClick={handleDeleteTask} width_on_mobile={100}>
-                      <span style={{ fontSize: '1.1rem', color: "#FFFFFF" }}>Delete</span>
+                      <span style={{ fontSize: '1.1rem', color: "#FFFFFF" }}>{t('buttons.del')}</span>
                     </Button>
                   </>
                 )}
@@ -213,7 +216,7 @@ function RouteComponent() {
                   onClick={handleCompeteTask}
                 >
                   <span style={{ fontSize: '1.1rem', color: "#FFFFFF", display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '5px' }}>
-                    Finish Task
+                    {t('butons.finish')}
                   </span>
                 </Button>
               )

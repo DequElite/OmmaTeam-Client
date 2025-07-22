@@ -28,7 +28,9 @@
         "Confirm": "Confirm",
         "CreateTeam": "Create team",
         "Save": "Save",
-        "ChangePassword": "Change Password"
+        "ChangePassword": "Change Password",
+        "del": "Delete",
+        "finish": "Finish"
     },
     "forms": {
         "SignUp": {
@@ -74,6 +76,36 @@
         "owner": "Owner",
         "tasks": "tasks",
         "profile": "Profile",
-        "password": "Password"
+        "password": "Password",
+        "completed": "Completed",
+        "in_prog": "In the progres",
+        "sub_tasks": "Sub Tasks"
+    },
+    "pages": {
+        "team":{
+            "sidebar": {
+                "home": "Home",
+                "tasks": "Tasks",
+                "chat": "Chat",
+                "teammates": "Teammates",
+                "task": "Task",
+                "settings": "Settings"
+            },
+            "task": {
+                "task_desc": "Task Description",
+                "task_name": "Task name",
+                "deadline": "Deadline",
+                "task_type": "Task type",
+                "task_difficulty": "Task Difficulty",
+                "task_resp": "Task Responsible",
+                "task_status": "Task status"
+            },
+            "settings": {
+                "team_name": "Team name",
+                "del_user": "Delete user from team",
+                "invite": "Invite user to team",
+                "del_team": "Delete team"
+            }
+        }
     }
 }

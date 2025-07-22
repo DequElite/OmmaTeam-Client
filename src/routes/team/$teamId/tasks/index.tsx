@@ -11,6 +11,8 @@ import { lazy, Suspense, useEffect, useState } from 'react'
 import ChangeButton, { OptionType } from '../../../../components/ChangeButton/ChangeButton.component'
 import { useMessageBox } from '../../../../contexts/MessageBoxContext/useMessageBox'
 import useIsScreenWidth from '../../../../hooks/useIsScreenWidth'
+import { useTranslation } from 'react-i18next'
+import { capitalizeFirstLetter } from '../../../../utils/capitalizeFirstLetter.util'
 
 const TeamTasksLayout = lazy(() => import('../../../../layouts/TeamTasks/TeamTasks.layout'));
 
@@ -24,6 +26,8 @@ const taskService = new TaskService();
 function RouteComponent() {
   const { teamId } = Route.useParams() 
   const { data: teamData, isLoading: teamLoading, isSuccess } = useTeamLoad(teamId);
+
+  const { t } = useTranslation(); 
 
   const {updateState } = useMessageBox();
 
@@ -104,7 +108,7 @@ function RouteComponent() {
 
   return (
     <TeamCabinetLayout
-      title='Tasks'
+      title={capitalizeFirstLetter(t('other.tasks'))}
       teamId={teamId}
       headerSecondaryChildren={
         <ChangeButton
