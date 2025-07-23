@@ -9,6 +9,7 @@ import { LanguageBox } from "./components/LanguageBox/LanguageBox.component";
 import { getUserTeamsShortData } from "./store/services/userTeams.service";
 import ConfirmBox from "./components/ConfirmBox/ConfirmBox.component";
 import useConfirmBox from "./contexts/ConfirmBoxContext/useConfirmBox";
+import { HelmetProvider } from 'react-helmet-async'
 
 const router = createRouter({
   routeTree,
@@ -39,7 +40,9 @@ function App() {
       <LanguageBox />
       <MessageBox />
       {/* <WindowLoading /> */}
-      <RouterProvider router={router} />
+      <HelmetProvider>
+        <RouterProvider router={router} />
+      </HelmetProvider>
     </>
   )
 }
