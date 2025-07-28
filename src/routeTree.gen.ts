@@ -9,6 +9,7 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as FeedbackRouteImport } from './routes/feedback'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as DashboardIndexRouteImport } from './routes/dashboard/index'
 import { Route as DashboardTeamsIndexRouteImport } from './routes/dashboard/teams/index'
@@ -28,6 +29,11 @@ import { Route as TeamTeamIdLeaderTaskIndexRouteImport } from './routes/team/$te
 import { Route as TeamTeamIdLeaderSettingsIndexRouteImport } from './routes/team/$teamId/leader/settings/index'
 import { Route as TeamTeamIdTasksViewTaskIdIndexRouteImport } from './routes/team/$teamId/tasks/view/$taskId/index'
 
+const FeedbackRoute = FeedbackRouteImport.update({
+  id: '/feedback',
+  path: '/feedback',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -128,6 +134,7 @@ const TeamTeamIdTasksViewTaskIdIndexRoute =
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/feedback': typeof FeedbackRoute
   '/dashboard': typeof DashboardIndexRoute
   '/auth/forgot-password': typeof AuthForgotPasswordIndexRoute
   '/auth/google': typeof AuthGoogleIndexRoute
@@ -148,6 +155,7 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/feedback': typeof FeedbackRoute
   '/dashboard': typeof DashboardIndexRoute
   '/auth/forgot-password': typeof AuthForgotPasswordIndexRoute
   '/auth/google': typeof AuthGoogleIndexRoute
@@ -169,6 +177,7 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/feedback': typeof FeedbackRoute
   '/dashboard/': typeof DashboardIndexRoute
   '/auth/forgot-password/': typeof AuthForgotPasswordIndexRoute
   '/auth/google/': typeof AuthGoogleIndexRoute
@@ -191,6 +200,7 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/feedback'
     | '/dashboard'
     | '/auth/forgot-password'
     | '/auth/google'
@@ -211,6 +221,7 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/feedback'
     | '/dashboard'
     | '/auth/forgot-password'
     | '/auth/google'
@@ -231,6 +242,7 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
+    | '/feedback'
     | '/dashboard/'
     | '/auth/forgot-password/'
     | '/auth/google/'
@@ -252,6 +264,7 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  FeedbackRoute: typeof FeedbackRoute
   DashboardIndexRoute: typeof DashboardIndexRoute
   AuthForgotPasswordIndexRoute: typeof AuthForgotPasswordIndexRoute
   AuthGoogleIndexRoute: typeof AuthGoogleIndexRoute
@@ -273,6 +286,13 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/feedback': {
+      id: '/feedback'
+      path: '/feedback'
+      fullPath: '/feedback'
+      preLoaderRoute: typeof FeedbackRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -404,6 +424,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  FeedbackRoute: FeedbackRoute,
   DashboardIndexRoute: DashboardIndexRoute,
   AuthForgotPasswordIndexRoute: AuthForgotPasswordIndexRoute,
   AuthGoogleIndexRoute: AuthGoogleIndexRoute,

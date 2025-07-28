@@ -11,7 +11,7 @@ export interface OmmaCardsProps {
     style?: any;
 }
 
-export type ButtonVariant = 'branded' | 'dark' | 'branded-reverese';
+export type ButtonVariant = 'branded' | 'dark' | 'branded-reverese' | 'light' | 'dark-border';
 export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
     children: React.ReactNode;
     variant: ButtonVariant;

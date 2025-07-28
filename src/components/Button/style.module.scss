@@ -30,10 +30,20 @@
     background-color: #424242;
 }
 
+.dark-border {
+    background-color: #424242;
+    border: 3px solid #CA5E7C;
+}
+
+.light {
+    background-color: #FFECEA;
+    color: #773AAD;
+}
+
 .branded {
     background: linear-gradient(90deg, vars.$light_orange, vars.$light_purple);
 }
-  
+
 .branded-reverese {
     background: linear-gradient(90deg, vars.$light_purple, vars.$light_orange);
 }

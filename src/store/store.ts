@@ -26,8 +26,8 @@ const store = configureStore({
         }),
 });
 
-export const isAuthSelector = (state: AppState) => state.userProfile.status.isAuth;
-export const isAuthLoadedSelector = (state: AppState) => state.userProfile.status.isLoaded;
+// export const isAuthSelector = (state: AppState) => state.userProfile.status.isAuth;
+// export const isAuthLoadedSelector = (state: AppState) => state.userProfile.status.isLoaded;
 
 export type AppState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;

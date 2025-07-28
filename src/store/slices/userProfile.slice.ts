@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { UsersRoles } from "../../api/types/user.types";
 import { getUserProfile } from "../services/userProfile.service";
+import { AppState } from "../store";
 
 export type UserProfileState = {
     username: string;
@@ -31,6 +32,13 @@ export const userProfileSlice = createSlice({
     extraReducers: (builder) => {
         builder
             .addCase(getUserProfile.fulfilled, (state, action) => {
+                if (!action.payload) {
+                    state.status.isSuccess = false;
+                    state.status.isAuth = false;
+                    state.status.isLoaded = true;
+                    return;
+                }
+
                 state.status.isSuccess = true;
                 state.status.isAuth = true;
                 state.status.isLoaded = true;
@@ -41,13 +49,15 @@ export const userProfileSlice = createSlice({
             .addCase(getUserProfile.rejected, (state, _) => {
                 state.status.isSuccess = false;
                 state.status.isAuth = false;
-                state.status.isLoaded = false;
+                state.status.isLoaded = true;
                 state.username = 'guest';
                 state.email = 'guest@ommateam.com';
                 state.role = UsersRoles.User;
             });
-
     },
 });
+
+export const isAuthSelector = (state: AppState) => state.userProfile.status.isAuth;
+export const isAuthLoadedSelector = (state: AppState) => state.userProfile.status.isLoaded;
 
 export default userProfileSlice.reducer;

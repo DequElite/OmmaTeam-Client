@@ -66,7 +66,6 @@ export default function SignUpLayout() {
         },
     })
 
-
     const onSubmit: SubmitHandler<SignUp> = (data: SignUp) => {
 
         mutate({

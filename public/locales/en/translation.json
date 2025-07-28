@@ -30,7 +30,9 @@
         "Save": "Save",
         "ChangePassword": "Change Password",
         "del": "Delete",
-        "finish": "Finish"
+        "finish": "Finish",
+        "rate_platform": "Rate Platform",
+        "become_a_sponsor": "Become a sponsor"
     },
     "forms": {
         "SignUp": {
@@ -62,6 +64,12 @@
         },
         "GoogleSign": {
             "title": "We are registering you via Google..."
+        },
+        "Feedback": {
+            "title": "Feedback",
+            "desc": "Rate the platform for further promotion! Participate in positive feedback collections and receive rewards!",
+            "field1": "How would you rate the platform?",
+            "field2": "Your feedback"
         }
     },
     "cabinet":{

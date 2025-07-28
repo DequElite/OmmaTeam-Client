@@ -1,21 +1,22 @@
 import { redirect } from "@tanstack/react-router";
-import store, { isAuthLoadedSelector, isAuthSelector } from "../store/store";
+import store from "../store/store";
 import { getUserProfile } from "../store/services/userProfile.service";
+import { isAuthLoadedSelector, isAuthSelector } from "../store/slices/userProfile.slice";
 
 export async function protectedLoader() {
-    await store.dispatch(getUserProfile());
+  const result = await store.dispatch(getUserProfile());
 
-    const state = store.getState();
-    const isAuth = isAuthSelector(state);
-    const isAuthLoaded = isAuthLoadedSelector(state);
+  const state = store.getState();
+  const isAuth = isAuthSelector(state);
+  const isAuthLoaded = isAuthLoadedSelector(state);
 
-    if (!isAuthLoaded) {
-        return { loading: true }; 
-    }
+  if (!isAuthLoaded) {
+    return { loading: true }; // или загрузочный спиннер
+  }
 
-    if (!isAuth) {
-        throw redirect({ to: '/auth/login' });
-    }
+  if (getUserProfile.rejected.match(result) || !isAuth) {
+    throw redirect({ to: "/auth/login" });
+  }
 
-    return null;
+  return null;
 }

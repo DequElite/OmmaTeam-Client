@@ -2,7 +2,7 @@ import React from "react";
 import styles from "./style.module.scss";
 import { useTranslation } from "react-i18next";
 
-type AuthType = 'SignUp' | 'LogIn' | 'ResetPassword' | 'ForgotPassoword' | 'GoogleSign';
+type AuthType = 'SignUp' | 'LogIn' | 'ResetPassword' | 'ForgotPassoword' | 'GoogleSign' | 'Feedback';
 interface AuthProps {
     children: React.ReactNode;
     authType: AuthType;
